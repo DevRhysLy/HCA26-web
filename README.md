@@ -1,36 +1,274 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Hapkido College of Australia Website
 
-## Getting Started
+A modern martial arts website built for **Hapkido College of Australia (HCA)** using **Next.js 16**, **TypeScript**, **Tailwind CSS**, and **Contentful CMS**.
 
-First, run the development server:
+The website is designed to provide:
+
+* Dynamic class pages
+* Instructor profiles
+* Studio location pages
+* Testimonials
+* FAQ system
+* Member calendar/events
+* SEO optimisation
+* Mobile-first responsive design
+* Contact forms with Resend email integration
+
+---
+
+# Tech Stack
+
+* **Next.js 16 (App Router)**
+* **React**
+* **TypeScript**
+* **Tailwind CSS**
+* **Contentful CMS**
+* **Resend Email API**
+* **Vercel Deployment**
+* **GitHub**
+
+---
+
+# Features
+
+## Dynamic CMS Content
+
+Managed through Contentful:
+
+* Classes
+* Instructors
+* About pages
+* Studio locations
+* Testimonials
+* FAQ entries
+* Member calendar/events
+
+---
+
+## SEO Optimisation
+
+* Dynamic metadata
+* OpenGraph support
+* Twitter cards
+* Sitemap generation
+* Robots.txt
+* Dynamic slug page SEO
+
+---
+
+## Responsive Design
+
+* Mobile-first layouts
+* Sticky mobile CTA
+* Responsive navigation
+* Optimised mobile hero sections
+
+---
+
+## Contact System
+
+* Contact form validation
+* Email notifications using Resend
+* Auto-confirmation emails
+* Form success/error handling
+
+---
+
+## Calendar System
+
+Supports:
+
+* Single-day events
+* Date ranges
+* Recurring weekly events
+* Monthly calendar display
+
+---
+
+# Project Structure
+
+```txt
+app/
+components/
+config/
+lib/
+public/
+types/
+```
+
+## Important Folders
+
+### `app/`
+
+Next.js App Router pages and layouts.
+
+### `components/`
+
+Reusable UI components.
+
+### `lib/`
+
+Contentful helpers, SEO helpers, utilities.
+
+### `public/`
+
+Static assets and images.
+
+---
+
+# Environment Variables
+
+Create:
+
+```txt
+.env.local
+```
+
+Add:
+
+```env
+CONTENTFUL_SPACE_ID=
+CONTENTFUL_ACCESS_TOKEN=
+RESEND_API_KEY=
+CONTACT_EMAIL=
+```
+
+---
+
+# Installation
+
+## Clone Repository
+
+```bash
+git clone https://github.com/DevRhysLy/HCA26-web.git
+```
+
+## Install Dependencies
+
+```bash
+npm install
+```
+
+## Start Development Server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Website runs on:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```txt
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+# Deployment
 
-To learn more about Next.js, take a look at the following resources:
+The website is designed for deployment on **Vercel**.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Recommended Workflow
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```txt
+Local Development
+↓
+Git Commit
+↓
+Push to GitHub
+↓
+Automatic Vercel Deployment
+```
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+# Git Branch Strategy
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```txt
+main      → Production
+develop   → Staging / Testing
+feature/* → New Features
+```
+
+---
+
+# Contentful Models
+
+## Classes
+
+* Service name
+* Short description
+* Long description
+* Hero image
+* Slug
+
+## Instructors
+
+* Name
+* Rank
+* Avatar
+* Short bio
+* Full bio
+* Slug
+
+## Studio Locations
+
+* Location name
+* Address
+* Description
+* Google Maps embed URL
+* Banner image
+* Slug
+
+## FAQ
+
+* Question
+* Answer
+
+## Member Calendar
+
+* Title
+* Start date
+* End date
+* Recurring settings
+* Description
+
+---
+
+# SEO Features
+
+## Automatic Sitemap
+
+Generated at:
+
+```txt
+/sitemap.xml
+```
+
+## Robots File
+
+Generated at:
+
+```txt
+/robots.txt
+```
+
+## Dynamic Metadata
+
+Each slug page automatically generates:
+
+* Titles
+* Descriptions
+* OpenGraph previews
+* Twitter cards
+
+---
+
+# Author
+
+Developed by Rhys Ly for Hapkido College of Australia.
+
+---
+
+# License
+
+Private project for Hapkido College of Australia.
