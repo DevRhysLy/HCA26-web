@@ -3,7 +3,7 @@ import type { MetadataRoute } from "next";
 import {
   getClasses,
   getInstructors,
-  getStudioLocations,
+  getLocations,
   getAbout,
 } from "@/lib/contentful";
 
@@ -18,7 +18,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   ] = await Promise.all([
     getClasses(),
     getInstructors(),
-    getStudioLocations(),
+    getLocations(),
     getAbout(),
   ]);
 

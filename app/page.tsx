@@ -11,30 +11,30 @@ import CTASection from "@/components/content/CTASection";
 import {
   getClasses,
   getInstructors,
-  getStudioLocations,
+  getLocations,
   getAssetUrl,
   getTestimonials,
   getFaqs,
-  getMemberCalendarItems,
+  getCalendarEvents,
 } from "@/lib/contentful";
 
 function mapInstructors(instructorsData: any) {
   return instructorsData.items.map((instructor: any) => {
     const avatarUrl = getAssetUrl(
       instructorsData,
-      instructor.fields.avatar?.sys?.id,
+      instructor.fields.image?.sys?.id,
     );
 
     return {
       id: instructor.sys.id,
-      name: instructor.fields.name,
+      name: instructor.fields.title,
       rank: instructor.fields.rank,
-      bio: instructor.fields.shortBio,
+      bio: instructor.fields.description,
       href: `/instructors/${instructor.fields.slug}`,
       image: avatarUrl
         ? {
             src: avatarUrl,
-            alt: instructor.fields.name,
+            alt: instructor.fields.title,
           }
         : undefined,
     };
@@ -44,9 +44,9 @@ function mapInstructors(instructorsData: any) {
 function mapServices(services: any[]) {
   return services.map((program: any) => ({
     id: program.sys.id,
-    title: program.fields.service,
-    age: program.fields.age,
-    description: program.fields.shortDescription,
+    title: program.fields.title,
+    age: program.fields.ageRange,
+    description: program.fields.description,
     href: `/classes/${program.fields.slug}`,
   }));
 }
@@ -61,11 +61,12 @@ function mapLocations(locations: any[]) {
 }
 
 function mapTestimonials(testimonials: any[]) {
+  console.log(testimonials)
   return testimonials.map((testimonial: any) => ({
     id: testimonial.sys.id,
-    name: testimonial.fields.name,
+    name: testimonial.fields.title,
     rating: testimonial.fields.rating,
-    testimonialDescription: testimonial.fields.testimonialDescription,
+    testimonialDescription: testimonial.fields.description,
   }));
 }
 
@@ -74,8 +75,6 @@ function mapFaqs(faqs: any[]) {
     id: faq.sys.id,
     question: faq.fields.question,
     answer: faq.fields.answer,
-    category: faq.fields.category,
-    order: faq.fields.order,
   }));
 }
 
@@ -106,10 +105,10 @@ export default async function Home() {
   ] = await Promise.all([
     getClasses(),
     getInstructors(),
-    getStudioLocations(),
+    getLocations(),
     getTestimonials(),
     getFaqs(),
-    getMemberCalendarItems(),
+    getCalendarEvents(),
   ]);
 
   return (

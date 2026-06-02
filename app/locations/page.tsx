@@ -1,24 +1,26 @@
-import { getStudioLocations } from "@/lib/contentful";
+import { getLocations } from "@/lib/contentful";
 import CardGridPage from "@/components/content/CardGridPage";
 import type { Metadata } from "next";
+import { sortByOrder, mapToCardItem } from "@/lib/contentfulMappers";
 
 export const metadata: Metadata = {
   title: "Locations",
-  description:
-    "Find your closest Hapkido College of Australia dojang.",
+  description: "Find your closest Hapkido College of Australia dojang.",
+  openGraph: {
+    title: "Locations",
+    description: "Find your closest Hapkido College of Australia dojang.",
+  },
 };
 
 export default async function Locations() {
-  const studioLocations = await getStudioLocations();
-
-  const items = studioLocations.map((location: any) => ({
-    id: location.sys.id,
-    title: location.fields.location,
-    description: location.fields.description,
-    href: `/locations/${location.fields.slug}`,
-    badge: "Training Dojang",
-    ctaLabel: "View Location",
-  }));
+  const locations = await getLocations();
+  const items = sortByOrder(locations).map((location: any) =>
+    mapToCardItem(location, {
+      basePath: "/locations",
+      badge: "Training Dojang",
+      ctaLabel: "View Location",
+    }),
+  );
 
   return (
     <CardGridPage

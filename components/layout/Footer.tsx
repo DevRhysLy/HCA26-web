@@ -2,9 +2,9 @@ import Link from "next/link";
 import { getClasses } from "@/lib/contentful";
 import { navItems } from "@/config/navigation";
 import { FaInstagram, FaFacebookF, FaYoutube } from "react-icons/fa";
-const classes = await getClasses();
 
 export default async function Footer() {
+  const classes = await getClasses();
   return (
     <footer className="relative overflow-hidden border-t border-black/10 bg-[#F8FAFC]">
       {/* Background accents */}
@@ -77,7 +77,7 @@ export default async function Footer() {
                     href={`/classes/${program.fields.slug}`}
                     className="text-black/65 transition-colors duration-200 hover:text-[#C60C30]"
                   >
-                    {program.fields.service}
+                    {program.fields.title}
                   </Link>
                 </li>
               ))}

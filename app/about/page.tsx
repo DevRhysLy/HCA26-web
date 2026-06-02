@@ -1,7 +1,7 @@
 import { getAbout } from "@/lib/contentful";
 import CardGridPage from "@/components/content/CardGridPage";
 import type { Metadata } from "next";
-
+import { mapToCardItem } from "@/lib/contentfulMappers";
 export const metadata: Metadata = {
   title: "About",
   description:
@@ -9,16 +9,13 @@ export const metadata: Metadata = {
 };
 
 export default async function About() {
-  const aboutpage = await getAbout();
-
-  const items = aboutpage.map((about: any) => ({
-    id: about.sys.id,
-    title: about.fields.title,
-    description: about.fields.subtitle,
-    href: `/about/${about.fields.slug}`,
-    badge: about.fields.age,
-    ctaLabel: "Learn More",
-  }));
+  const aboutPages = await getAbout();
+  const items = aboutPages.map((page: any) =>
+    mapToCardItem(page, {
+      basePath: "/about",
+      ctaLabel: "Learn More",
+    }),
+  );
 
   return (
     <>

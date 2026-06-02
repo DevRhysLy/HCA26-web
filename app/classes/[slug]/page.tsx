@@ -7,9 +7,14 @@ import CTASection from "@/components/content/CTASection";
 import {
   getClasses,
   getClassBySlug,
-  getAssetUrl,
   createSeoMetadata,
 } from "@/lib/contentful";
+
+import {
+  getSlugPageData,
+  getSeoDescription,
+  createHeroImage,
+} from "@/lib/contentfulSlugHelpers";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -28,25 +33,23 @@ export async function generateMetadata({
 }: PageProps): Promise<Metadata> {
   const { slug } = await params;
 
-  const classData = await getClassBySlug(slug);
-  const martialClass = classData.items?.[0];
+  const { entry, imageUrl } = await getSlugPageData({
+    slug,
+    fetcher: getClassBySlug,
+  });
 
-  if (!martialClass) {
+  if (!entry) {
     return {
       title: "Class Not Found",
     };
   }
 
-  const imageUrl = getAssetUrl(
-    classData,
-    martialClass.fields.image?.sys?.id
-  );
-
   return createSeoMetadata({
-    title: martialClass.fields.service,
-    description:
-      martialClass.fields.shortDescription ??
-      `${martialClass.fields.service} at Hapkido College of Australia.`,
+    title: entry.fields.title,
+    description: getSeoDescription({
+      entry,
+      fallback: `${entry.fields.title} at Hapkido College of Australia.`,
+    }),
     imageUrl,
   });
 }
@@ -56,39 +59,22 @@ export const revalidate = 60;
 export default async function ClassPage({ params }: PageProps) {
   const { slug } = await params;
 
-  const classData = await getClassBySlug(slug);
-  const classItem = classData.items?.[0];
+  const { entry, imageUrl } = await getSlugPageData({
+    slug,
+    fetcher: getClassBySlug,
+  });
 
-  if (!classItem) return notFound();
-
-  const bannerImageUrl = getAssetUrl(
-    classData,
-    classItem.fields.image?.sys?.id
-  );
+  if (!entry) return notFound();
 
   return (
     <main className="bg-[#F8FAFC] min-h-screen">
       <MarkdownPage
-        title={classItem.fields.service}
-        body={classItem.fields.longDescription ?? ""}
-        heroImage={
-          bannerImageUrl
-            ? {
-                src: bannerImageUrl,
-                alt: classItem.fields.service,
-              }
-            : undefined
-        }
+        title={entry.fields.title}
+        body={entry.fields.body ?? ""}
+        heroImage={createHeroImage(entry, imageUrl)}
       />
 
-      <CTASection
-        title="Ready to Book a Free Trial?"
-        description="Contact us today and we’ll help you find the right class for your child."
-        primaryLabel="Book Free Trial"
-        primaryHref="/contact"
-        secondaryLabel="View Timetable"
-        secondaryHref="/schedule"
-      />
+      <CTASection />
     </main>
   );
 }
