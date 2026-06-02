@@ -1,5 +1,6 @@
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import Image from "next/image";
 
 interface MarkdownPageProps {
   title: string;
@@ -27,18 +28,23 @@ export default function MarkdownPage({
       {/* Hero Banner Image - for locations/pages */}
       {heroImage && (
         <section className="relative overflow-hidden">
-          <img
-            src={heroImage.src}
-            alt={heroImage.alt ?? title}
-            className="h-[360px] md:h-[460px] w-full object-cover"
-          />
+          <div className="relative h-[360px] md:h-[460px] w-full">
+            <Image
+              src={heroImage.src}
+              alt={heroImage.alt ?? title}
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover"
+            />
+          </div>
 
           <div className="absolute inset-0 bg-black/45" />
 
-<div className="absolute inset-0 flex items-end">
-  <div className="max-w-5xl mx-auto w-full px-6 pb-12">
-    <div
-      className="
+          <div className="absolute inset-0 flex items-end">
+            <div className="max-w-5xl mx-auto w-full px-6 pb-12">
+              <div
+                className="
         max-w-3xl
         rounded-3xl
         border border-white/10
@@ -47,22 +53,22 @@ export default function MarkdownPage({
         p-8 md:p-10
         shadow-2xl
       "
-    >
-      <p className="text-xs font-bold tracking-[0.35em] uppercase text-[#C60C30] mb-3">
-        Hapkido College of Australia
-      </p>
+              >
+                <p className="text-xs font-bold tracking-[0.35em] uppercase text-[#C60C30] mb-3">
+                  Hapkido College of Australia
+                </p>
 
-      <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-white">
-        {title}
-      </h1>
+                <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-white">
+                  {title}
+                </h1>
 
-      <div className="mt-5 flex h-1 w-40 overflow-hidden rounded-full">
-        <div className="w-1/2 bg-[#C60C30]" />
-        <div className="w-1/2 bg-[#003478]" />
-      </div>
-    </div>
-  </div>
-</div>
+                <div className="mt-5 flex h-1 w-40 overflow-hidden rounded-full">
+                  <div className="w-1/2 bg-[#C60C30]" />
+                  <div className="w-1/2 bg-[#003478]" />
+                </div>
+              </div>
+            </div>
+          </div>
         </section>
       )}
 
@@ -76,11 +82,15 @@ export default function MarkdownPage({
                 <div className="relative">
                   <div className="rounded-full bg-gradient-to-br from-[#C60C30] via-white to-[#003478] p-[4px] shadow-md">
                     <div className="rounded-full bg-white p-1">
-                      <img
-                        src={profileImage.src}
-                        alt={profileImage.alt ?? title}
-                        className="h-40 w-40 rounded-full object-cover object-top"
-                      />
+                      <div className="relative h-40 w-40 overflow-hidden rounded-full">
+                        <Image
+                          src={profileImage.src}
+                          alt={profileImage.alt ?? title}
+                          fill
+                          sizes="160px"
+                          className="object-cover object-top"
+                        />
+                      </div>
                     </div>
                   </div>
 
@@ -121,9 +131,7 @@ export default function MarkdownPage({
                 </h3>
               ),
               p: ({ children }) => (
-                <p className="text-black/70 leading-relaxed mb-5">
-                  {children}
-                </p>
+                <p className="text-black/70 leading-relaxed mb-5">{children}</p>
               ),
               a: ({ href, children }) => (
                 <a

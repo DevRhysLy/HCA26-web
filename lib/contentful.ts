@@ -53,7 +53,14 @@ async function getEntries(
   return options?.fullResponse ? data : data.items;
 }
 
-export function getAssetUrl(data: any, assetId?: string) {
+export function getAssetUrl(
+  data: any,
+  assetId?: string,
+  options?: {
+    width?: number;
+    quality?: number;
+  },
+) {
   if (!assetId) return undefined;
 
   const asset = data.includes?.Asset?.find(
@@ -62,7 +69,12 @@ export function getAssetUrl(data: any, assetId?: string) {
 
   const url = asset?.fields?.file?.url;
 
-  return url ? `https:${url}` : undefined;
+  if (!url) return undefined;
+
+  const width = options?.width ?? 1200;
+  const quality = options?.quality ?? 80;
+
+  return `https:${url}?w=${width}&q=${quality}&fm=webp`;
 }
 
 export function createSeoMetadata({

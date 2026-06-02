@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export interface CardGridItem {
   id: string;
@@ -55,7 +56,8 @@ export default function CardGridPage({
         <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
           {items.map((item) => (
             <Link key={item.id} href={item.href} className="group">
-              <div className="
+              <div
+                className="
   relative
   h-full
   overflow-hidden
@@ -71,7 +73,8 @@ export default function CardGridPage({
   hover:-translate-y-1
   hover:border-[#003478]/20
   hover:shadow-[0_18px_45px_rgba(0,52,120,0.10)]
-">
+"
+              >
                 {!item.image && (
                   <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-[#C60C30] to-[#003478]" />
                 )}
@@ -80,29 +83,19 @@ export default function CardGridPage({
                 {item.image && (
                   <div className="mb-6 flex justify-center">
                     <div className="relative">
-                      {/* Outer Korean flag inspired ring */}
                       <div className="rounded-full bg-gradient-to-br from-[#C60C30] via-white to-[#003478] p-[3px]">
-                        {/* Inner border */}
-                        <div className="rounded-full bg-white p-1 shadow-md">
-                          <img
+                        <div className="relative h-32 w-32 overflow-hidden rounded-full bg-white p-1 shadow-md">
+                          <Image
                             src={item.image.src}
                             alt={item.image.alt ?? item.title}
-                            className="
-              h-32
-              w-32
-              rounded-full
-              object-cover
-              object-top
-              transition-transform
-              duration-300
-              group-hover:scale-[1.03]
-            "
+                            fill
+                            sizes="128px"
+                            className="rounded-full object-cover object-top transition-transform duration-300 group-hover:scale-[1.03]"
                           />
                         </div>
                       </div>
 
-                      {/* Small accent dot */}
-                      <div className="absolute bottom-1 right-1 h-4 w-4 rounded-full border-2 border-white bg-[#003478]" />
+                      {/* {/* this is a dot (maybe add)* <div className="absolute bottom-1 right-1 h-4 w-4 rounded-full border-2 border-white bg-[#003478]" /> */}
                     </div>
                   </div>
                 )}

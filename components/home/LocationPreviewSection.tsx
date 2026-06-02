@@ -72,7 +72,7 @@ export default function LocationPreviewSection({
                 {/* Top accent */}
                 <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-[#C60C30] to-[#003478]" />
 
-                {/* Optional image */}
+                {/* Optional image
                 {location.image && (
                   <div className="relative h-56 overflow-hidden">
                     <img
@@ -83,7 +83,7 @@ export default function LocationPreviewSection({
 
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
                   </div>
-                )}
+                )} */}
 
                 <div className="p-7">
                   {/* Badge */}

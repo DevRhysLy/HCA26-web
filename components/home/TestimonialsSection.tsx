@@ -29,7 +29,7 @@ export default function TestimonialsSection({
   return (
     <section className="relative overflow-hidden bg-[#F8FAFC] py-16 md:py-24">
       {/* Background Image */}
-      {backgroundImage && (
+      {/* {backgroundImage && (
         <div className="absolute inset-0">
           <img
             src={backgroundImage}
@@ -38,7 +38,7 @@ export default function TestimonialsSection({
           />
           <div className="absolute inset-0 bg-white/5" />
         </div>
-      )}
+      )} */}
 
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">

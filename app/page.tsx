@@ -54,7 +54,7 @@ function mapServices(services: any[]) {
 function mapLocations(locations: any[]) {
   return locations.map((location: any) => ({
     id: location.sys.id,
-    title: location.fields.location,
+    title: location.fields.title,
     description: location.fields.description,
     href: `/locations/${location.fields.slug}`,
   }));
