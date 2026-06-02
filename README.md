@@ -1,36 +1,257 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Hapkido College of Australia Website
 
-## Getting Started
+Modern website built with Next.js, TypeScript, Tailwind CSS, and Contentful CMS.
 
-First, run the development server:
+## Overview
+
+This project powers the official Hapkido College of Australia website, providing information about:
+
+* Martial arts classes
+* Instructors
+* Training locations
+* Hapkido information pages
+* Events and member calendar
+* Testimonials
+* Frequently Asked Questions
+* Contact and trial bookings
+
+The website is designed to be:
+
+* Fast and SEO-friendly
+* Fully content-managed through Contentful
+* Easy to maintain and extend
+* Optimised for desktop and mobile devices
+
+---
+
+## Tech Stack
+
+### Frontend
+
+* Next.js 16
+* React
+* TypeScript
+* Tailwind CSS
+
+### CMS
+
+* Contentful
+
+### Hosting
+
+* Vercel (recommended)
+
+---
+
+## Project Structure
+
+```txt
+app/
+├── about/
+├── classes/
+├── contact/
+├── faq/
+├── instructors/
+├── locations/
+├── schedule/
+
+components/
+├── content/
+├── contact/
+├── home/
+├── layout/
+├── location/
+
+contentful/
+└── migrations/
+
+lib/
+├── contentful.ts
+├── contentfulMappers.ts
+├── contentfulSlugHelpers.ts
+
+public/
+├── images/
+
+config/
+├── navigation.ts
+```
+
+---
+
+## Contentful Content Models
+
+The project uses a consistent content model structure.
+
+### Location
+
+```txt
+title
+slug
+description
+body
+image
+address
+googleMapsEmbedUrl
+order
+featured
+```
+
+### Instructor
+
+```txt
+title
+slug
+description
+body
+image
+rank
+order
+featured
+```
+
+### Martial Class
+
+```txt
+title
+slug
+description
+body
+image
+ageRange
+order
+featured
+```
+
+### About Page
+
+```txt
+title
+slug
+description
+body
+image
+```
+
+### Testimonial
+
+```txt
+title
+description
+rating
+image
+order
+featured
+```
+
+### FAQ
+
+```txt
+title
+description
+category
+order
+featured
+```
+
+### Calendar Event
+
+```txt
+title
+description
+type
+startDate
+endDate
+
+isRecurring
+recurringDay
+recurringStartDate
+recurringEndDate
+
+location
+order
+featured
+```
+
+---
+
+## Environment Variables
+
+Create a `.env.local` file:
+
+```env
+CONTENTFUL_SPACE_ID=
+CONTENTFUL_ACCESS_TOKEN=
+CONTENTFUL_PREVIEW_ACCESS_TOKEN=
+CONTENTFUL_PREVIEW_SECRET=
+RESEND_API_KEY=
+CONTACT_EMAIL=
+```
+
+---
+
+## Local Development
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Start development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```txt
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## Contentful Migrations
 
-To learn more about Next.js, take a look at the following resources:
+Content model migrations are stored in:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```txt
+contentful/migrations/
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Example:
 
-## Deploy on Vercel
+```txt
+001-create-content-models.js
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Run migrations:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+contentful space migration \
+  --space-id YOUR_SPACE_ID \
+  --environment-id master \
+  ./contentful/migrations/001-create-content-models.js
+```
+
+---
+
+## SEO
+
+Every dynamic page includes:
+
+* Metadata generation
+* Open Graph support
+* Twitter cards
+* Dynamic page titles
+* Dynamic descriptions
+* Contentful image support
+
+---
+
+## Hapkido College of Australia
+
+Traditional Hapkido training for children, youth, and adults.
+
+Building confidence, discipline, leadership, fitness, and self-defence skills in a supportive family environment.
