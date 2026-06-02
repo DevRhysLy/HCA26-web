@@ -16,8 +16,6 @@ export default async function FaqPage() {
     id: faq.sys.id,
     question: faq.fields.question,
     answer: faq.fields.answer,
-    category: faq.fields.category,
-    order: faq.fields.order,
   }));
 
   return <FaqSection faqs={faqs} />;

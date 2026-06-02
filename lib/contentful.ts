@@ -17,7 +17,7 @@ async function contentfulFetch(endpoint: string) {
     const errorBody = await res.text();
 
     throw new Error(
-      `Contentful fetch failed: ${res.status} ${res.statusText}\n${errorBody}`
+      `Contentful fetch failed: ${res.status} ${res.statusText}\n${errorBody}`,
     );
   }
 
@@ -34,7 +34,7 @@ async function getEntries(
     slug?: string;
     include?: number;
     fullResponse?: boolean;
-  }
+  },
 ) {
   const params = new URLSearchParams({
     content_type: contentType,
@@ -57,7 +57,7 @@ export function getAssetUrl(data: any, assetId?: string) {
   if (!assetId) return undefined;
 
   const asset = data.includes?.Asset?.find(
-    (asset: any) => asset.sys.id === assetId
+    (asset: any) => asset.sys.id === assetId,
   );
 
   const url = asset?.fields?.file?.url;
@@ -97,65 +97,72 @@ export function createSeoMetadata({
 /* Content Models                                                             */
 /* -------------------------------------------------------------------------- */
 
-export function getStudioLocations() {
-  return getEntries("studioLocations");
+/* Locations */
+export function getLocations() {
+  return getEntries("location");
 }
 
-export function getStudioLocationBySlug(slug: string) {
-  return getEntries("studioLocations", {
+export function getLocationBySlug(slug: string) {
+  return getEntries("location", {
     slug,
     include: 2,
     fullResponse: true,
   });
 }
 
+/* Instructors */
 export function getInstructors() {
-  return getEntries("mainInstructor", {
+  return getEntries("instructor", {
     include: 2,
     fullResponse: true,
   });
 }
 
 export function getInstructorBySlug(slug: string) {
-  return getEntries("mainInstructor", {
+  return getEntries("instructor", {
     slug,
     include: 2,
     fullResponse: true,
   });
 }
 
+/* Classes */
 export function getClasses() {
-  return getEntries("services");
+  return getEntries("martialClass");
 }
 
 export function getClassBySlug(slug: string) {
-  return getEntries("services", {
+  return getEntries("martialClass", {
     slug,
     include: 2,
     fullResponse: true,
   });
 }
 
+/* About */
 export function getAbout() {
-  return getEntries("aboutPages");
+  return getEntries("aboutPage");
 }
 
 export function getAboutPageBySlug(slug: string) {
-  return getEntries("aboutPages", {
+  return getEntries("aboutPage", {
     slug,
     include: 2,
     fullResponse: true,
   });
 }
 
+/* Testimonials */
 export function getTestimonials() {
-  return getEntries("testimonials");
+  return getEntries("testimonial");
 }
 
+/* FAQ */
 export function getFaqs() {
   return getEntries("faq");
 }
 
-export function getMemberCalendarItems() {
-  return getEntries("memberCalendar");
+/* Calendar */
+export function getCalendarEvents() {
+  return getEntries("calendarEvent");
 }

@@ -7,40 +7,17 @@ import CTASection from "@/components/content/CTASection";
 import {
   getInstructorBySlug,
   getInstructors,
-  getAssetUrl,
   createSeoMetadata,
 } from "@/lib/contentful";
 
+import {
+  getSlugPageData,
+  getSeoDescription,
+  createHeroImage,
+} from "@/lib/contentfulSlugHelpers";
+
 interface PageProps {
   params: Promise<{ slug: string }>;
-}
-
-export async function generateMetadata({
-  params,
-}: PageProps): Promise<Metadata> {
-  const { slug } = await params;
-
-  const instructorData = await getInstructorBySlug(slug);
-  const instructor = instructorData.items?.[0];
-
-  if (!instructor) {
-    return {
-      title: "Instructor Not Found",
-    };
-  }
-
-  const avatarUrl = getAssetUrl(
-    instructorData,
-    instructor.fields.avatar?.sys?.id
-  );
-
-  return createSeoMetadata({
-    title: instructor.fields.name,
-    description:
-      instructor.fields.shortBio ??
-      `Meet ${instructor.fields.name}, instructor at Hapkido College of Australia.`,
-    imageUrl: avatarUrl,
-  });
 }
 
 export async function generateStaticParams() {
@@ -51,44 +28,53 @@ export async function generateStaticParams() {
   }));
 }
 
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const { slug } = await params;
+
+  const { entry, imageUrl } = await getSlugPageData({
+    slug,
+    fetcher: getInstructorBySlug,
+  });
+
+  if (!entry) {
+    return {
+      title: "Instructor Not Found",
+    };
+  }
+
+  return createSeoMetadata({
+    title: entry.fields.title,
+    description: getSeoDescription({
+      entry,
+      fallback: `Meet ${entry.fields.title}, instructor at Hapkido College of Australia.`,
+    }),
+    imageUrl,
+  });
+}
+
 export const revalidate = 60;
 
 export default async function InstructorPage({ params }: PageProps) {
   const { slug } = await params;
 
-  const instructorData = await getInstructorBySlug(slug);
-  const instructor = instructorData.items?.[0];
+  const { entry, imageUrl } = await getSlugPageData({
+    slug,
+    fetcher: getInstructorBySlug,
+  });
 
-  if (!instructor) return notFound();
-
-  const avatarUrl = getAssetUrl(
-    instructorData,
-    instructor.fields.avatar?.sys?.id
-  );
+  if (!entry) return notFound();
 
   return (
     <>
       <MarkdownPage
-        title={instructor.fields.name}
-        body={instructor.fields.fullBio ?? ""}
-        profileImage={
-          avatarUrl
-            ? {
-                src: avatarUrl,
-                alt: instructor.fields.name,
-              }
-            : undefined
-        }
+        title={entry.fields.title}
+        body={entry.fields.body ?? ""}
+        profileImage={createHeroImage(entry, imageUrl)}
       />
 
-      <CTASection
-        title="Ready to Book a Free Trial?"
-        description="Contact us today and we’ll help you find the right class for your child."
-        primaryLabel="Book Free Trial"
-        primaryHref="/contact"
-        secondaryLabel="View Timetable"
-        secondaryHref="/schedule"
-      />
+      <CTASection />
     </>
   );
 }
