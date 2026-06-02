@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 interface InstructorPreviewItem {
   id: string;
@@ -30,7 +31,7 @@ export default function InstructorPreviewSection({
   instructors,
 }: InstructorPreviewSectionProps) {
   const sortedInstructors = [...instructors].sort(
-    (a, b) => extractRankNumber(b.rank) - extractRankNumber(a.rank)
+    (a, b) => extractRankNumber(b.rank) - extractRankNumber(a.rank),
   );
 
   const scrollRef = React.useRef<HTMLDivElement>(null);
@@ -103,11 +104,13 @@ export default function InstructorPreviewSection({
                 {instructor.image && (
                   <div className="mb-6 flex justify-center">
                     <div className="rounded-full bg-gradient-to-br from-[#C60C30] via-white to-[#003478] p-[4px] shadow-md">
-                      <div className="rounded-full bg-white p-1">
-                        <img
+                      <div className="relative h-32 w-32 overflow-hidden rounded-full">
+                        <Image
                           src={instructor.image.src}
                           alt={instructor.image.alt ?? instructor.name}
-                          className="h-32 w-32 rounded-full object-cover object-top transition-transform duration-300 group-hover:scale-[1.03]"
+                          fill
+                          sizes="128px"
+                          className="object-cover object-top transition-transform duration-300 group-hover:scale-[1.03]"
                         />
                       </div>
                     </div>

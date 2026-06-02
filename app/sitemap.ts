@@ -9,13 +9,23 @@ import {
 
 const BASE_URL = "https://www.hapkidocollege.com.au";
 
+function createSitemapEntry(
+  path: string,
+  options?: {
+    priority?: number;
+    changeFrequency?: MetadataRoute.Sitemap[number]["changeFrequency"];
+  },
+): MetadataRoute.Sitemap[number] {
+  return {
+    url: `${BASE_URL}${path}`,
+    lastModified: new Date(),
+    changeFrequency: options?.changeFrequency ?? "monthly",
+    priority: options?.priority ?? 0.7,
+  };
+}
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const [
-    classes,
-    instructorsData,
-    locations,
-    aboutPages,
-  ] = await Promise.all([
+  const [classes, instructorsData, locations, aboutPages] = await Promise.all([
     getClasses(),
     getInstructors(),
     getLocations(),
@@ -23,61 +33,63 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   ]);
 
   const staticPages: MetadataRoute.Sitemap = [
-    {
-      url: BASE_URL,
-      lastModified: new Date(),
-    },
-
-    {
-      url: `${BASE_URL}/classes`,
-      lastModified: new Date(),
-    },
-
-    {
-      url: `${BASE_URL}/locations`,
-      lastModified: new Date(),
-    },
-
-    {
-      url: `${BASE_URL}/instructors`,
-      lastModified: new Date(),
-    },
-
-    {
-      url: `${BASE_URL}/about`,
-      lastModified: new Date(),
-    },
-
-    {
-      url: `${BASE_URL}/contact`,
-      lastModified: new Date(),
-    },
-
-    {
-      url: `${BASE_URL}/faq`,
-      lastModified: new Date(),
-    },
+    createSitemapEntry("/", {
+      priority: 1,
+      changeFrequency: "weekly",
+    }),
+    createSitemapEntry("/classes", {
+      priority: 0.9,
+      changeFrequency: "monthly",
+    }),
+    createSitemapEntry("/locations", {
+      priority: 0.9,
+      changeFrequency: "monthly",
+    }),
+    createSitemapEntry("/instructors", {
+      priority: 0.8,
+      changeFrequency: "monthly",
+    }),
+    createSitemapEntry("/about", {
+      priority: 0.7,
+      changeFrequency: "monthly",
+    }),
+    createSitemapEntry("/contact", {
+      priority: 0.9,
+      changeFrequency: "monthly",
+    }),
+    createSitemapEntry("/faq", {
+      priority: 0.7,
+      changeFrequency: "monthly",
+    }),
   ];
 
-  const classPages = classes.map((item: any) => ({
-    url: `${BASE_URL}/classes/${item.fields.slug}`,
-    lastModified: new Date(),
-  }));
+  const classPages = classes.map((item: any) =>
+    createSitemapEntry(`/classes/${item.fields.slug}`, {
+      priority: 0.8,
+      changeFrequency: "monthly",
+    }),
+  );
 
-  const instructorPages = instructorsData.items.map((item: any) => ({
-    url: `${BASE_URL}/instructors/${item.fields.slug}`,
-    lastModified: new Date(),
-  }));
+  const instructorPages = instructorsData.items.map((item: any) =>
+    createSitemapEntry(`/instructors/${item.fields.slug}`, {
+      priority: 0.6,
+      changeFrequency: "monthly",
+    }),
+  );
 
-  const locationPages = locations.map((item: any) => ({
-    url: `${BASE_URL}/locations/${item.fields.slug}`,
-    lastModified: new Date(),
-  }));
+  const locationPages = locations.map((item: any) =>
+    createSitemapEntry(`/locations/${item.fields.slug}`, {
+      priority: 0.85,
+      changeFrequency: "monthly",
+    }),
+  );
 
-  const aboutSlugPages = aboutPages.map((item: any) => ({
-    url: `${BASE_URL}/about/${item.fields.slug}`,
-    lastModified: new Date(),
-  }));
+  const aboutSlugPages = aboutPages.map((item: any) =>
+    createSitemapEntry(`/about/${item.fields.slug}`, {
+      priority: 0.6,
+      changeFrequency: "monthly",
+    }),
+  );
 
   return [
     ...staticPages,

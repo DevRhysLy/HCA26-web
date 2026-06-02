@@ -32,7 +32,7 @@ export default function ServiceSection({
 
   return (
     <section className="relative overflow-hidden bg-[#F8FAFC] py-16 md:py-24">
-      {backgroundImage && (
+      {/* {backgroundImage && (
         <div className="absolute inset-0">
           <img
             src={backgroundImage}
@@ -41,7 +41,7 @@ export default function ServiceSection({
           />
           <div className="absolute inset-0 bg-white/5" />
         </div>
-      )}
+      )} */}
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
         <div className="mb-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">

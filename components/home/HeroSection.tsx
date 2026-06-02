@@ -1,14 +1,18 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function HeroSection() {
   return (
     <section className="relative overflow-hidden bg-[#F8FAFC]">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
-        <img
+        <Image
           src="/images/hero-img.jpg"
           alt="Hapkido training"
-          className="h-full w-full object-cover opacity-20"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover opacity-20"
         />
 
         <div className="absolute inset-0 bg-white/5" />
@@ -107,15 +111,14 @@ export default function HeroSection() {
           <div className="relative hidden lg:block">
             {/* Main image placeholder */}
             <div className="relative overflow-hidden rounded-[2rem] border border-black/10 bg-white shadow-2xl">
-              <div className="aspect-[4/5] overflow-hidden">
-                <img
+              <div className="relative aspect-[4/5] overflow-hidden">
+                <Image
                   src="/images/khlock.webp"
                   alt="Hapkido students training"
-                  className="
-      h-full
-      w-full
-      object-cover
-    "
+                  fill
+                  priority
+                  sizes="(max-width: 1024px) 0px, 50vw"
+                  className="object-cover"
                 />
               </div>
 
