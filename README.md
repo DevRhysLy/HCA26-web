@@ -1,161 +1,210 @@
 # Hapkido College of Australia Website
 
-A modern martial arts website built for **Hapkido College of Australia (HCA)** using **Next.js 16**, **TypeScript**, **Tailwind CSS**, and **Contentful CMS**.
+Modern website built with Next.js, TypeScript, Tailwind CSS, and Contentful CMS.
 
-The website is designed to provide:
+## Overview
 
-* Dynamic class pages
-* Instructor profiles
-* Studio location pages
-* Testimonials
-* FAQ system
-* Member calendar/events
-* SEO optimisation
-* Mobile-first responsive design
-* Contact forms with Resend email integration
+This project powers the official Hapkido College of Australia website, providing information about:
 
----
-
-# Tech Stack
-
-* **Next.js 16 (App Router)**
-* **React**
-* **TypeScript**
-* **Tailwind CSS**
-* **Contentful CMS**
-* **Resend Email API**
-* **Vercel Deployment**
-* **GitHub**
-
----
-
-# Features
-
-## Dynamic CMS Content
-
-Managed through Contentful:
-
-* Classes
+* Martial arts classes
 * Instructors
-* About pages
-* Studio locations
+* Training locations
+* Hapkido information pages
+* Events and member calendar
 * Testimonials
-* FAQ entries
-* Member calendar/events
+* Frequently Asked Questions
+* Contact and trial bookings
+
+The website is designed to be:
+
+* Fast and SEO-friendly
+* Fully content-managed through Contentful
+* Easy to maintain and extend
+* Optimised for desktop and mobile devices
 
 ---
 
-## SEO Optimisation
+## Tech Stack
 
-* Dynamic metadata
-* OpenGraph support
-* Twitter cards
-* Sitemap generation
-* Robots.txt
-* Dynamic slug page SEO
+### Frontend
 
----
+* Next.js 16
+* React
+* TypeScript
+* Tailwind CSS
 
-## Responsive Design
+### CMS
 
-* Mobile-first layouts
-* Sticky mobile CTA
-* Responsive navigation
-* Optimised mobile hero sections
+* Contentful
 
----
+### Hosting
 
-## Contact System
-
-* Contact form validation
-* Email notifications using Resend
-* Auto-confirmation emails
-* Form success/error handling
+* Vercel (recommended)
 
 ---
 
-## Calendar System
-
-Supports:
-
-* Single-day events
-* Date ranges
-* Recurring weekly events
-* Monthly calendar display
-
----
-
-# Project Structure
+## Project Structure
 
 ```txt
 app/
+├── about/
+├── classes/
+├── contact/
+├── faq/
+├── instructors/
+├── locations/
+├── schedule/
+
 components/
-config/
+├── content/
+├── contact/
+├── home/
+├── layout/
+├── location/
+
+contentful/
+└── migrations/
+
 lib/
+├── contentful.ts
+├── contentfulMappers.ts
+├── contentfulSlugHelpers.ts
+
 public/
-types/
+├── images/
+
+config/
+├── navigation.ts
 ```
-
-## Important Folders
-
-### `app/`
-
-Next.js App Router pages and layouts.
-
-### `components/`
-
-Reusable UI components.
-
-### `lib/`
-
-Contentful helpers, SEO helpers, utilities.
-
-### `public/`
-
-Static assets and images.
 
 ---
 
-# Environment Variables
+## Contentful Content Models
 
-Create:
+The project uses a consistent content model structure.
+
+### Location
 
 ```txt
-.env.local
+title
+slug
+description
+body
+image
+address
+googleMapsEmbedUrl
+order
+featured
 ```
 
-Add:
+### Instructor
+
+```txt
+title
+slug
+description
+body
+image
+rank
+order
+featured
+```
+
+### Martial Class
+
+```txt
+title
+slug
+description
+body
+image
+ageRange
+order
+featured
+```
+
+### About Page
+
+```txt
+title
+slug
+description
+body
+image
+```
+
+### Testimonial
+
+```txt
+title
+description
+rating
+image
+order
+featured
+```
+
+### FAQ
+
+```txt
+title
+description
+category
+order
+featured
+```
+
+### Calendar Event
+
+```txt
+title
+description
+type
+startDate
+endDate
+
+isRecurring
+recurringDay
+recurringStartDate
+recurringEndDate
+
+location
+order
+featured
+```
+
+---
+
+## Environment Variables
+
+Create a `.env.local` file:
 
 ```env
 CONTENTFUL_SPACE_ID=
 CONTENTFUL_ACCESS_TOKEN=
+CONTENTFUL_PREVIEW_ACCESS_TOKEN=
+CONTENTFUL_PREVIEW_SECRET=
 RESEND_API_KEY=
 CONTACT_EMAIL=
 ```
 
 ---
 
-# Installation
+## Local Development
 
-## Clone Repository
-
-```bash
-git clone https://github.com/DevRhysLy/HCA26-web.git
-```
-
-## Install Dependencies
+Install dependencies:
 
 ```bash
 npm install
 ```
 
-## Start Development Server
+Start development server:
 
 ```bash
 npm run dev
 ```
 
-Website runs on:
+Open:
 
 ```txt
 http://localhost:3000
@@ -163,112 +212,46 @@ http://localhost:3000
 
 ---
 
-# Deployment
+## Contentful Migrations
 
-The website is designed for deployment on **Vercel**.
-
-## Recommended Workflow
+Content model migrations are stored in:
 
 ```txt
-Local Development
-↓
-Git Commit
-↓
-Push to GitHub
-↓
-Automatic Vercel Deployment
+contentful/migrations/
+```
+
+Example:
+
+```txt
+001-create-content-models.js
+```
+
+Run migrations:
+
+```bash
+contentful space migration \
+  --space-id YOUR_SPACE_ID \
+  --environment-id master \
+  ./contentful/migrations/001-create-content-models.js
 ```
 
 ---
 
-# Git Branch Strategy
+## SEO
 
-```txt
-main      → Production
-develop   → Staging / Testing
-feature/* → New Features
-```
+Every dynamic page includes:
 
----
-
-# Contentful Models
-
-## Classes
-
-* Service name
-* Short description
-* Long description
-* Hero image
-* Slug
-
-## Instructors
-
-* Name
-* Rank
-* Avatar
-* Short bio
-* Full bio
-* Slug
-
-## Studio Locations
-
-* Location name
-* Address
-* Description
-* Google Maps embed URL
-* Banner image
-* Slug
-
-## FAQ
-
-* Question
-* Answer
-
-## Member Calendar
-
-* Title
-* Start date
-* End date
-* Recurring settings
-* Description
-
----
-
-# SEO Features
-
-## Automatic Sitemap
-
-Generated at:
-
-```txt
-/sitemap.xml
-```
-
-## Robots File
-
-Generated at:
-
-```txt
-/robots.txt
-```
-
-## Dynamic Metadata
-
-Each slug page automatically generates:
-
-* Titles
-* Descriptions
-* OpenGraph previews
+* Metadata generation
+* Open Graph support
 * Twitter cards
+* Dynamic page titles
+* Dynamic descriptions
+* Contentful image support
 
 ---
 
-# Author
+## Hapkido College of Australia
 
-Developed by Rhys Ly for Hapkido College of Australia.
+Traditional Hapkido training for children, youth, and adults.
 
----
-
-# License
-
-Private project for Hapkido College of Australia.
+Building confidence, discipline, leadership, fitness, and self-defence skills in a supportive family environment.
