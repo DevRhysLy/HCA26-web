@@ -8,7 +8,8 @@ export default function HeroSection() {
       <div className="absolute inset-0 z-0">
         <Image
           src="/images/hero-img.jpg"
-          alt="Hapkido training"
+          alt=""
+          aria-hidden="true"
           fill
           priority
           sizes="100vw"

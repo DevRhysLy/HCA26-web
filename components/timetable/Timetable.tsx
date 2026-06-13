@@ -157,6 +157,7 @@ export function Timetable(props: TimetableProps) {
                   <button
                     key={loc.id}
                     type="button"
+                    aria-pressed={active}
                     onClick={() => setLocation(loc.id)}
                     className={cn(
                       "group relative text-left rounded-2xl border transition-all duration-200",
@@ -216,6 +217,7 @@ export function Timetable(props: TimetableProps) {
                 <button
                   key={loc.id}
                   type="button"
+                  aria-pressed={active}
                   onClick={() => setLocation(loc.id)}
                   className={cn(
                     "group relative text-left rounded-2xl border transition-all duration-200",
@@ -269,7 +271,11 @@ export function Timetable(props: TimetableProps) {
 
         <div className="md:hidden">
           <div className="rounded-2xl border border-black/10 bg-white shadow-sm overflow-hidden mb-4">
-            <div className="flex overflow-x-auto gap-1 p-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            <div
+              role="tablist"
+              aria-label="Select day"
+              className="flex overflow-x-auto gap-1 p-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+            >
               {days.map((d) => {
                 const active = d === activeDay;
 
@@ -277,6 +283,8 @@ export function Timetable(props: TimetableProps) {
                   <button
                     key={d}
                     type="button"
+                    role="tab"
+                    aria-selected={active}
                     onClick={() => setActiveDay(d)}
                     className={cn(
                       "px-4 py-2 rounded-xl text-sm font-semibold transition-colors flex-shrink-0 border",
@@ -292,7 +300,7 @@ export function Timetable(props: TimetableProps) {
             </div>
           </div>
 
-          <div className="rounded-2xl border border-black/10 bg-white shadow-sm overflow-hidden">
+          <div role="tabpanel" aria-label={activeDay} className="rounded-2xl border border-black/10 bg-white shadow-sm overflow-hidden">
             <div className="px-5 py-4 border-b border-black/10 bg-[#F8FAFC]">
               <div className="text-[#003478] font-bold">{activeDay}</div>
               <div className="text-black/45 text-xs mt-1">

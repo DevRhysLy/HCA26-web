@@ -56,7 +56,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="bg-gray-950 text-white">
+      <body className="bg-[#F8FAFC]">
         <Header
           logoText="Hapkido College of Australia"
           navItems={navItems}
