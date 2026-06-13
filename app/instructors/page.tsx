@@ -21,14 +21,13 @@ export const metadata: Metadata = {
 export default async function InstructorsPage() {
   const instructorsData = await getInstructors();
 
-  const items = sortInstructorsByRank(
-    instructorsData.items
-  ).map((instructor: any) =>
-    mapToImageCardItem(instructor, instructorsData, {
-      basePath: "/instructors",
-      badge: instructor.fields.rank ?? "Instructor",
-      ctaLabel: "View Profile",
-    })
+  const items = sortInstructorsByRank(instructorsData.items).map(
+    (instructor: any) =>
+      mapToImageCardItem(instructor, instructorsData, {
+        basePath: "/instructors",
+        badge: instructor.fields.rank ?? "Instructor",
+        ctaLabel: "View Profile",
+      }),
   );
 
   return (

@@ -19,12 +19,12 @@ export default async function Classes() {
   const classes = await getClasses();
 
   const items = sortByOrder(classes).map((classItem: any) =>
-  mapToCardItem(classItem, {
-    basePath: "/classes",
-    badge: classItem.fields.ageRange,
-    ctaLabel: "View Class",
-  })
-);
+    mapToCardItem(classItem, {
+      basePath: "/classes",
+      badge: classItem.fields.ageRange,
+      ctaLabel: "View Class",
+    }),
+  );
 
   return (
     <CardGridPage

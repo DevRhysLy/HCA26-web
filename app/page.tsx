@@ -17,9 +17,10 @@ import {
   getFaqs,
   getCalendarEvents,
 } from "@/lib/contentful";
+import { sortInstructorsByRank } from "@/lib/contentfulMappers";
 
 function mapInstructors(instructorsData: any) {
-  return instructorsData.items.map((instructor: any) => {
+  return sortInstructorsByRank(instructorsData.items).map((instructor: any) => {
     const avatarUrl = getAssetUrl(
       instructorsData,
       instructor.fields.image?.sys?.id,
@@ -61,7 +62,6 @@ function mapLocations(locations: any[]) {
 }
 
 function mapTestimonials(testimonials: any[]) {
-  console.log(testimonials)
   return testimonials.map((testimonial: any) => ({
     id: testimonial.sys.id,
     name: testimonial.fields.title,
@@ -116,10 +116,7 @@ export default async function Home() {
       <HeroSection />
       <WhyChooseSection />
 
-      <ProgramsSection
-        services={mapServices(services)}
-        backgroundImage="/images/falcon-group.JPG"
-      />
+      <ProgramsSection services={mapServices(services)} />
 
       <MonthlyCalendarSection items={mapCalendarItems(calendarData)} />
 
@@ -127,10 +124,7 @@ export default async function Home() {
 
       <InstructorPreviewSection instructors={mapInstructors(instructorsData)} />
 
-      <TestimonialsSection
-        testimonials={mapTestimonials(testimonialsData)}
-        backgroundImage="/images/demo-happy.jpg"
-      />
+      <TestimonialsSection testimonials={mapTestimonials(testimonialsData)} />
 
       <FaqSection faqs={mapFaqs(faqData)} />
 

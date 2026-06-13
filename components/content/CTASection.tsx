@@ -1,4 +1,5 @@
 import Link from "next/link";
+import SectionHeader from "@/components/ui/SectionHeader";
 
 interface CTASectionProps {
   eyebrow?: string;
@@ -23,32 +24,17 @@ export default function CTASection({
     <section className="bg-[#F8FAFC] py-16 md:py-24">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="relative overflow-hidden rounded-[2rem] border border-black/10 bg-white p-8 md:p-12 shadow-sm">
-          {/* Top accent */}
           <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-[#C60C30] to-[#003478]" />
-
-          {/* Background accents */}
           <div className="absolute left-0 bottom-0 h-40 w-40 rounded-tr-full bg-[#C60C30]/5" />
           <div className="absolute right-0 top-0 h-40 w-40 rounded-bl-full bg-[#003478]/5" />
 
           <div className="relative z-10 flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
-            <div className="max-w-3xl">
-              <p className="text-xs font-bold tracking-[0.35em] uppercase text-[#C60C30] mb-3">
-                {eyebrow}
-              </p>
-
-              <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-[#111111]">
-                {title}
-              </h2>
-
-              <p className="mt-4 text-black/60 text-base md:text-lg leading-relaxed">
-                {description}
-              </p>
-
-              <div className="mt-6 flex h-1 w-40 overflow-hidden rounded-full">
-                <div className="w-1/2 bg-[#C60C30]" />
-                <div className="w-1/2 bg-[#003478]" />
-              </div>
-            </div>
+            <SectionHeader
+              eyebrow={eyebrow}
+              title={title}
+              description={description}
+              align="left"
+            />
 
             <div className="flex flex-col sm:flex-row md:flex-col lg:flex-row gap-4 shrink-0">
               <Link
