@@ -116,10 +116,7 @@ export default async function Home() {
       <HeroSection />
       <WhyChooseSection />
 
-      <ProgramsSection
-        services={mapServices(services)}
-        backgroundImage="/images/falcon-group.JPG"
-      />
+      <ProgramsSection services={mapServices(services)} />
 
       <MonthlyCalendarSection items={mapCalendarItems(calendarData)} />
 
@@ -127,10 +124,7 @@ export default async function Home() {
 
       <InstructorPreviewSection instructors={mapInstructors(instructorsData)} />
 
-      <TestimonialsSection
-        testimonials={mapTestimonials(testimonialsData)}
-        backgroundImage="/images/demo-happy.jpg"
-      />
+      <TestimonialsSection testimonials={mapTestimonials(testimonialsData)} />
 
       <FaqSection faqs={mapFaqs(faqData)} />
 

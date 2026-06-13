@@ -1,4 +1,5 @@
 import Link from "next/link";
+import SectionHeader from "@/components/ui/SectionHeader";
 import HorizontalScrollCarousel from "@/components/ui/HorizontalScrollCarousel";
 
 interface Service {
@@ -12,7 +13,6 @@ interface Service {
 
 interface ServiceSectionProps {
   services: Service[];
-  backgroundImage?: string;
 }
 
 export default function ServiceSection({ services }: ServiceSectionProps) {
@@ -23,25 +23,12 @@ export default function ServiceSection({ services }: ServiceSectionProps) {
           ariaLabel="programs"
           scrollAmount={360}
           header={
-            <div className="max-w-3xl">
-              <p className="text-xs font-bold tracking-[0.35em] uppercase text-[#C60C30] mb-3">
-                Our Programs
-              </p>
-
-              <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-[#111111]">
-                Classes for Every Stage of the Journey
-              </h2>
-
-              <p className="mt-4 text-black/60 text-base md:text-lg leading-relaxed">
-                Explore our martial arts classes and find the program that best
-                supports your child’s growth, confidence, and development.
-              </p>
-
-              <div className="mt-6 flex h-1 w-40 overflow-hidden rounded-full">
-                <div className="w-1/2 bg-[#C60C30]" />
-                <div className="w-1/2 bg-[#003478]" />
-              </div>
-            </div>
+            <SectionHeader
+              eyebrow="Our Programs"
+              title="Classes for Every Stage of the Journey"
+              description="Explore our martial arts classes and find the program that best supports your child's growth, confidence, and development."
+              align="left"
+            />
           }
         >
           {services.map((service) => (

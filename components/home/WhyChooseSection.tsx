@@ -1,3 +1,5 @@
+import SectionHeader from "@/components/ui/SectionHeader";
+
 const reasons = [
   {
     title: "Confidence",
@@ -25,26 +27,11 @@ export default function WhyChooseSection() {
   return (
     <section className="bg-white py-16 md:py-24">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-14">
-          <p className="text-xs font-bold tracking-[0.35em] uppercase text-[#C60C30] mb-3">
-            Why Parents Choose HCA
-          </p>
-
-          <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-[#111111]">
-            More Than Martial Arts
-          </h2>
-
-          <p className="mt-4 text-black/60 text-base md:text-lg leading-relaxed">
-            Hapkido College of Australia helps children develop confidence,
-            discipline, respect, and practical skills in a safe and supportive
-            traditional martial arts environment.
-          </p>
-
-          <div className="mt-6 mx-auto flex h-1 w-40 overflow-hidden rounded-full">
-            <div className="w-1/2 bg-[#C60C30]" />
-            <div className="w-1/2 bg-[#003478]" />
-          </div>
-        </div>
+        <SectionHeader
+          eyebrow="Why Parents Choose HCA"
+          title="More Than Martial Arts"
+          description="Hapkido College of Australia helps children develop confidence, discipline, respect, and practical skills in a safe and supportive traditional martial arts environment."
+        />
 
         <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
           {reasons.map((reason, index) => (

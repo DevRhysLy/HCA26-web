@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import SectionHeader from "@/components/ui/SectionHeader";
 
 export interface CardGridItem {
   id: string;
@@ -8,8 +9,6 @@ export interface CardGridItem {
   href: string;
   badge?: string;
   ctaLabel?: string;
-
-  /** Optional image */
   image?: {
     src: string;
     alt?: string;
@@ -32,70 +31,34 @@ export default function CardGridPage({
   return (
     <section className="bg-[#F8FAFC] min-h-screen">
       <div className="max-w-7xl mx-auto px-6 py-16">
-        <div className="text-center mb-14">
-          <p className="text-xs font-bold tracking-[0.35em] uppercase text-[#C60C30] mb-3">
-            {eyebrow}
-          </p>
-
-          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-[#111111]">
-            {title}
-          </h1>
-
-          {description && (
-            <p className="mt-4 text-black/60 max-w-2xl mx-auto">
-              {description}
-            </p>
-          )}
-
-          <div className="mt-6 mx-auto flex h-1 w-40 overflow-hidden rounded-full">
-            <div className="w-1/2 bg-[#C60C30]" />
-            <div className="w-1/2 bg-[#003478]" />
-          </div>
-        </div>
+        <SectionHeader
+          as="h1"
+          eyebrow={eyebrow}
+          title={title}
+          description={description}
+          className="text-center mb-14"
+        />
 
         <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
           {items.map((item) => (
             <Link key={item.id} href={item.href} className="group">
-              <div
-                className="
-  relative
-  h-full
-  overflow-hidden
-  rounded-3xl
-  border
-  border-black/10
-  bg-white
-  p-8
-  text-center
-  shadow-sm
-  transition-all
-  duration-300
-  hover:-translate-y-1
-  hover:border-[#003478]/20
-  hover:shadow-[0_18px_45px_rgba(0,52,120,0.10)]
-"
-              >
+              <div className="relative h-full overflow-hidden rounded-3xl border border-black/10 bg-white p-8 text-center shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#003478]/20 hover:shadow-[0_18px_45px_rgba(0,52,120,0.10)]">
                 {!item.image && (
                   <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-[#C60C30] to-[#003478]" />
                 )}
 
-                {/* Optional Circular Instructor Image */}
                 {item.image && (
                   <div className="mb-6 flex justify-center">
-                    <div className="relative">
-                      <div className="rounded-full bg-gradient-to-br from-[#C60C30] via-white to-[#003478] p-[3px]">
-                        <div className="relative h-32 w-32 overflow-hidden rounded-full bg-white p-1 shadow-md">
-                          <Image
-                            src={item.image.src}
-                            alt={item.image.alt ?? item.title}
-                            fill
-                            sizes="128px"
-                            className="rounded-full object-cover object-top transition-transform duration-300 group-hover:scale-[1.03]"
-                          />
-                        </div>
+                    <div className="rounded-full bg-gradient-to-br from-[#C60C30] via-white to-[#003478] p-[3px]">
+                      <div className="relative h-32 w-32 overflow-hidden rounded-full bg-white p-1 shadow-md">
+                        <Image
+                          src={item.image.src}
+                          alt={item.image.alt ?? item.title}
+                          fill
+                          sizes="128px"
+                          className="rounded-full object-cover object-top transition-transform duration-300 group-hover:scale-[1.03]"
+                        />
                       </div>
-
-                      {/* {/* this is a dot (maybe add)* <div className="absolute bottom-1 right-1 h-4 w-4 rounded-full border-2 border-white bg-[#003478]" /> */}
                     </div>
                   </div>
                 )}

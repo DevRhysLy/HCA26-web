@@ -1,13 +1,32 @@
 import Link from "next/link";
 import { getClasses } from "@/lib/contentful";
 import { navItems } from "@/config/navigation";
+import SectionDivider from "@/components/ui/SectionDivider";
 import { FaInstagram, FaFacebookF, FaYoutube } from "react-icons/fa";
+
+const socialLinks = [
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/hapkido_college_of_australia/",
+    icon: FaInstagram,
+  },
+  {
+    label: "Facebook",
+    href: "https://www.facebook.com/HapkidoCollegeofAustralia/",
+    icon: FaFacebookF,
+  },
+  {
+    label: "YouTube",
+    href: "https://www.youtube.com/@HapkidoCollegeofAustralia",
+    icon: FaYoutube,
+  },
+];
 
 export default async function Footer() {
   const classes = await getClasses();
+
   return (
     <footer className="relative overflow-hidden border-t border-black/10 bg-[#F8FAFC]">
-      {/* Background accents */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute left-0 top-0 h-64 w-64 rounded-br-full bg-[#C60C30]/5" />
         <div className="absolute right-0 bottom-0 h-64 w-64 rounded-tl-full bg-[#003478]/5" />
@@ -48,9 +67,7 @@ export default async function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-lg font-bold text-[#111111] mb-5">
-              Quick Links
-            </h3>
+            <h3 className="text-lg font-bold text-[#111111] mb-5">Quick Links</h3>
 
             <ul className="space-y-3">
               {navItems.map((link) => (
@@ -111,79 +128,26 @@ export default async function Footer() {
                 </a>
               </p>
 
-              <p>
-                Follow us on social media for updates, events, and training
-                highlights.
-              </p>
+              <p>Follow us for updates, events, and training highlights.</p>
+
               <div className="flex items-center gap-3 pt-2">
-                <Link
-                  href="https://www.instagram.com/hapkido_college_of_australia/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Instagram"
-                  className="
-      flex h-11 w-11 items-center justify-center
-      rounded-2xl
-      border border-black/10
-      bg-white
-      text-[#003478]
-      shadow-sm
-      transition-all duration-200
-      hover:-translate-y-0.5
-      hover:border-[#C60C30]/30
-      hover:text-[#C60C30]
-    "
-                >
-                  <FaInstagram size={20} />
-                </Link>
-
-                <Link
-                  href="https://www.facebook.com/HapkidoCollegeofAustralia/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Facebook"
-                  className="
-      flex h-11 w-11 items-center justify-center
-      rounded-2xl
-      border border-black/10
-      bg-white
-      text-[#003478]
-      shadow-sm
-      transition-all duration-200
-      hover:-translate-y-0.5
-      hover:border-[#C60C30]/30
-      hover:text-[#C60C30]
-    "
-                >
-                  <FaFacebookF size={20} />
-                </Link>
-
-                <Link
-                  href="https://www.youtube.com/@HapkidoCollegeofAustralia"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="YouTube"
-                  className="
-      flex h-11 w-11 items-center justify-center
-      rounded-2xl
-      border border-black/10
-      bg-white
-      text-[#003478]
-      shadow-sm
-      transition-all duration-200
-      hover:-translate-y-0.5
-      hover:border-[#C60C30]/30
-      hover:text-[#C60C30]
-    "
-                >
-                  <FaYoutube size={20} />
-                </Link>
+                {socialLinks.map(({ label, href, icon: Icon }) => (
+                  <Link
+                    key={label}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={label}
+                    className="flex h-11 w-11 items-center justify-center rounded-2xl border border-black/10 bg-white text-[#003478] shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-[#C60C30]/30 hover:text-[#C60C30]"
+                  >
+                    <Icon size={20} />
+                  </Link>
+                ))}
               </div>
             </div>
           </div>
         </div>
 
-        {/* Bottom bar */}
         <div className="mt-14 border-t border-black/10 pt-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <p className="text-sm text-black/50">
             © {new Date().getFullYear()} Hapkido College of Australia. All

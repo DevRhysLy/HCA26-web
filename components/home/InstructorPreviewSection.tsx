@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import SectionHeader from "@/components/ui/SectionHeader";
 import HorizontalScrollCarousel from "@/components/ui/HorizontalScrollCarousel";
 
 interface InstructorPreviewItem {
@@ -28,25 +29,12 @@ export default function InstructorPreviewSection({
           ariaLabel="instructors"
           scrollAmount={340}
           header={
-            <div className="max-w-3xl">
-              <p className="text-xs font-bold tracking-[0.35em] uppercase text-[#C60C30] mb-3">
-                Our Instructors
-              </p>
-
-              <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-[#111111]">
-                Learn From Experienced Martial Artists
-              </h2>
-
-              <p className="mt-4 text-black/60 text-base md:text-lg leading-relaxed">
-                Meet the instructors guiding our students with patience,
-                discipline, and traditional Hapkido values.
-              </p>
-
-              <div className="mt-6 flex h-1 w-40 overflow-hidden rounded-full">
-                <div className="w-1/2 bg-[#C60C30]" />
-                <div className="w-1/2 bg-[#003478]" />
-              </div>
-            </div>
+            <SectionHeader
+              eyebrow="Our Instructors"
+              title="Learn From Experienced Martial Artists"
+              description="Meet the instructors guiding our students with patience, discipline, and traditional Hapkido values."
+              align="left"
+            />
           }
         >
           {instructors.map((instructor) => (
