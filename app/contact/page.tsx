@@ -1,5 +1,6 @@
 import Link from "next/link";
 import ContactForm from "@/components/contact/ContactForm";
+import SectionHeader from "@/components/ui/SectionHeader";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -33,26 +34,13 @@ export default function ContactPage() {
       />
 
       <section className="max-w-6xl mx-auto px-6 py-16 md:py-24">
-        <div className="text-center mb-12">
-          <p className="text-xs font-bold tracking-[0.35em] uppercase text-[#C60C30] mb-3">
-            Book a Free Trial
-          </p>
-
-          <h1 className="text-4xl md:text-5xl font-extrabold text-[#111111]">
-            Start Your Hapkido Journey
-          </h1>
-
-          <p className="mt-4 text-black/60 max-w-2xl mx-auto leading-relaxed">
-            Send us your details and our team will contact you about trial class
-            availability, suitable programs, and the best location for your
-            family.
-          </p>
-
-          <div className="mt-6 mx-auto flex h-1 w-40 overflow-hidden rounded-full">
-            <div className="w-1/2 bg-[#C60C30]" />
-            <div className="w-1/2 bg-[#003478]" />
-          </div>
-        </div>
+        <SectionHeader
+          as="h1"
+          eyebrow="Book a Free Trial"
+          title="Start Your Hapkido Journey"
+          description="Send us your details and our team will contact you about trial class availability, suitable programs, and the best location for your family."
+          className="text-center mb-12"
+        />
 
         <div className="grid gap-4 md:grid-cols-3 mb-10">
           <a
