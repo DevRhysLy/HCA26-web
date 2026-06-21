@@ -62,6 +62,10 @@ export default async function InstructorPage({ params }: PageProps) {
   const { entry, imageUrl } = await getSlugPageData({
     slug,
     fetcher: getInstructorBySlug,
+    imageOptions: {
+      width: 800,
+      quality: 85,
+    },
   });
 
   if (!entry) return notFound();

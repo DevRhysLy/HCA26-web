@@ -38,6 +38,7 @@ export default function GoogleMapSection({
         <div className="overflow-hidden rounded-2xl border border-black/10">
           <iframe
             src={googleMapsEmbedUrl}
+            title={`${locationName} location map`}
             width="100%"
             height="420"
             loading="lazy"

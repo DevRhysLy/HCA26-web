@@ -1,36 +1,240 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Hapkido College of Australia
 
-## Getting Started
+Official website for [Hapkido College of Australia](https://www.hapkidocollege.com.au) — traditional martial arts training for children, youth, and adults across Sydney.
 
-First, run the development server:
+Built with **Next.js 16**, **React 19**, **TypeScript**, **Tailwind CSS 4**, and **Contentful CMS**. Designed to be fast, SEO-friendly, and easy for staff to update without touching code.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+---
+
+## Features
+
+| Area | Details |
+|------|---------|
+| **Home** | Hero, programs carousel, member calendar, locations, instructors, testimonials, FAQ preview |
+| **Schedule** | Interactive weekly timetable (Croydon, Ermington, Belrose) with mobile day view |
+| **Classes & Instructors** | CMS-driven detail pages with server-rendered markdown |
+| **Locations** | Address, Google Maps embed, and location content |
+| **Contact** | Trial booking form with email delivery via Resend |
+| **SEO** | Metadata, Open Graph, Twitter cards, sitemap, and robots.txt |
+
+Most content is managed in Contentful. The class timetable is maintained in `data/scheduleData.ts`.
+
+---
+
+## Design
+
+The UI uses a **Korean flag–inspired palette** defined in `app/globals.css`:
+
+| Token | Value | Usage |
+|-------|-------|-------|
+| Primary red | `#C60C30` | Accents, eyebrows, youth program cards |
+| Primary blue | `#003478` | Headings, CTAs, kids program cards |
+| Background | `#F8FAFC` | Page sections |
+| Foreground | `#111111` | Body text |
+
+Recurring patterns across the site:
+
+- Uppercase red eyebrow labels with wide letter-spacing
+- Red/blue split divider bars under section titles
+- Rounded cards (`rounded-2xl` / `rounded-3xl`) with subtle borders and hover lift
+- Sticky header with mobile hamburger nav and bottom trial CTA bar
+
+---
+
+## Tech stack
+
+**Frontend:** Next.js 16 (App Router) · React 19 · TypeScript · Tailwind CSS 4
+
+**CMS:** Contentful (CDN API, 60s revalidation)
+
+**Email:** Resend (contact form)
+
+**Hosting:** Vercel (recommended)
+
+---
+
+## Architecture
+
+The app follows a **server-first** component model:
+
+```
+Server components (default)     Client components ("use client")
+─────────────────────────────   ───────────────────────────────
+Page layouts & data fetching    Navbar (pathname-aware)
+Markdown rendering              Timetable (location/day state)
+Homepage sections               Contact form
+Card grids                      Monthly calendar navigation
+                                Horizontal scroll carousels
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Key conventions:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Contentful data** is fetched in async server pages/components via `lib/contentful.ts`
+- **Markdown** is rendered on the server with `react-markdown` (`MarkdownContent.tsx`)
+- **Static config** (nav, timetable) lives in `config/` and `data/`
+- **Shared mappers** for sorting and card shapes are in `lib/contentfulMappers.ts`
+- **Calendar date indexing** is precomputed on the server in `lib/calendarUtils.ts`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## Project structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+app/
+├── page.tsx                 # Home (parallel Contentful fetches)
+├── layout.tsx               # Root layout, metadata, header/footer
+├── schedule/page.tsx        # Weekly timetable
+├── contact/page.tsx         # Contact + trial form
+├── faq/page.tsx
+├── about/                   # About index + [slug] pages
+├── classes/                 # Programs index + [slug] pages
+├── instructors/             # Instructors index + [slug] pages
+├── locations/               # Locations index + [slug] pages
+├── api/contact/route.ts     # POST handler (Resend)
+├── sitemap.ts
+└── robots.ts
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+components/
+├── content/                 # MarkdownPage, FaqSection, CardGridPage, CTASection
+├── contact/                 # ContactForm
+├── home/                    # Homepage sections
+├── layout/                  # Header, Footer, StickyMobileCTA
+├── location/                # GoogleMapSection
+├── navigation/              # Navbar
+├── timetable/               # Timetable grid + entry cards
+└── ui/                      # HorizontalScrollCarousel
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+data/
+└── scheduleData.ts          # Timetable locations, slots, class entries
 
-## Deploy on Vercel
+lib/
+├── contentful.ts            # Contentful fetch helpers
+├── contentfulMappers.ts     # Sort/map utilities
+├── contentfulSlugHelpers.ts # Slug page helpers
+└── calendarUtils.ts         # Calendar date indexing
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+config/
+└── navigation.ts            # Nav items + header CTA
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+contentful/migrations/       # Content model migrations
+public/images/               # Static images (hero, etc.)
+types/                       # Shared TypeScript types
+```
+
+---
+
+## Routes
+
+| Path | Source |
+|------|--------|
+| `/` | Home |
+| `/schedule` | Static timetable data |
+| `/classes`, `/classes/[slug]` | Contentful |
+| `/instructors`, `/instructors/[slug]` | Contentful |
+| `/locations`, `/locations/[slug]` | Contentful |
+| `/about`, `/about/[slug]` | Contentful |
+| `/faq` | Contentful |
+| `/contact` | Static page + API route |
+
+---
+
+## Contentful content models
+
+| Model | ID | Key fields |
+|-------|-----|------------|
+| Location | `location` | title, slug, description, body, image, address, googleMapsEmbedUrl |
+| Instructor | `instructor` | title, slug, description, body, image, rank |
+| Martial Class | `martialClass` | title, slug, description, body, image, ageRange |
+| About Page | `aboutPage` | title, slug, description, body, image |
+| Testimonial | `testimonial` | title (reviewer name), description, rating |
+| FAQ | `faq` | question, answer |
+| Calendar Event | `calendarEvent` | title, description, type, startDate, endDate, isRecurring, recurringDay, recurringStartDate, recurringEndDate, location |
+
+Migrations live in `contentful/migrations/`. Run against your space:
+
+```bash
+contentful space migration \
+  --space-id YOUR_SPACE_ID \
+  --environment-id master \
+  ./contentful/migrations/001-create-content-models.js
+```
+
+---
+
+## Environment variables
+
+Create `.env.local`:
+
+```env
+CONTENTFUL_SPACE_ID=
+CONTENTFUL_ACCESS_TOKEN=
+CONTENTFUL_PREVIEW_ACCESS_TOKEN=
+CONTENTFUL_PREVIEW_SECRET=
+
+RESEND_API_KEY=
+CONTACT_EMAIL=
+```
+
+| Variable | Purpose |
+|----------|---------|
+| `CONTENTFUL_SPACE_ID` | Contentful space identifier |
+| `CONTENTFUL_ACCESS_TOKEN` | Delivery API token |
+| `RESEND_API_KEY` | Sends contact form emails |
+| `CONTACT_EMAIL` | Recipient for trial enquiries |
+
+---
+
+## Local development
+
+**Requirements:** Node.js 20.9+ (Next.js 16)
+
+```bash
+npm install
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000).
+
+Other scripts:
+
+```bash
+npm run build   # Production build
+npm run start   # Start production server
+npm run lint    # ESLint
+```
+
+---
+
+## Updating content
+
+### CMS content (Contentful)
+
+Edit entries in the Contentful web app. Changes appear on the site within ~60 seconds (ISR revalidation).
+
+### Class timetable
+
+Edit `data/scheduleData.ts`:
+
+- `scheduleLocations` — dojang list
+- `scheduleTimeSlotsByLocation` — time rows per location
+- `scheduleEntries` — individual class cards
+
+Each entry needs a matching `timeSlot` value that exists in its location's slot list.
+
+### Navigation
+
+Edit `config/navigation.ts` for header links and the "Book Free Trial" CTA.
+
+---
+
+## Deployment
+
+Deploy to Vercel and set the environment variables above. The site uses static generation for slug pages (`generateStaticParams`) and ISR for Contentful fetches.
+
+Production URL: `https://www.hapkidocollege.com.au`
+
+---
+
+## Hapkido College of Australia
+
+Traditional Hapkido training for children, youth, and adults — building confidence, discipline, leadership, fitness, and self-defence skills in a supportive family environment.

@@ -18,12 +18,10 @@ export default async function About() {
   );
 
   return (
-    <>
-      <CardGridPage
-        title="About Us"
-        description="Learn more about what Hapkido is and what it can do for you."
-        items={items}
-      />
-    </>
+    <CardGridPage
+      title="About Us"
+      description="Learn more about what Hapkido is and what it can do for you."
+      items={items}
+    />
   );
 }

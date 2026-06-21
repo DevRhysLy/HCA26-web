@@ -1,109 +1,28 @@
 "use client";
 
 import * as React from "react";
+import TimetableEntryCard from "@/components/timetable/TimetableEntryCard";
+import {
+  DEFAULT_DAYS,
+  type TimetableClassCard,
+  type TimetableDay,
+  type TimetableProps,
+} from "@/components/timetable/types";
 
-/** Days shown in the grid */
-export type TimetableDay =
-  | "Monday"
-  | "Tuesday"
-  | "Wednesday"
-  | "Thursday"
-  | "Friday"
-  | "Saturday";
+export type {
+  TimetableDay,
+  TimetableLocation,
+  TimetableCardVariant,
+  TimetableClassCard,
+  TimetableProps,
+} from "@/components/timetable/types";
 
-export const DEFAULT_DAYS: TimetableDay[] = [
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-];
-
-export interface TimetableLocation {
-  id: string;
-  badge: string;
-  name: string;
-  icon?: React.ReactNode;
-}
-
-export type TimetableCardVariant =
-  | "kids"
-  | "youth"
-  | "adults"
-  | "advanced"
-  | "generic";
-
-export interface TimetableClassCard {
-  id: string;
-  locationId: string;
-  day: TimetableDay;
-  timeSlot: string;
-  tag: string;
-  title: string;
-  variant?: TimetableCardVariant;
-  showTimeInsideCard?: boolean;
-  timeLabelOverride?: string;
-}
-
-export interface TimetableProps {
-  title: string;
-  subtitle?: string;
-  locations: TimetableLocation[];
-  selectedLocationId?: string;
-  defaultSelectedLocationId?: string;
-  onLocationChange?: (locationId: string) => void;
-  days?: TimetableDay[];
-  timeSlots: string[];
-  timeSlotsByLocation?: Record<string, string[]>;
-  entries: TimetableClassCard[];
-  containerClassName?: string;
-}
+export { DEFAULT_DAYS };
 
 /* ------------------------------ Helpers ------------------------------ */
 
 function cn(...classes: Array<string | undefined | false | null>) {
   return classes.filter(Boolean).join(" ");
-}
-
-function getCardStyle(variant: TimetableCardVariant) {
-  switch (variant) {
-    case "kids":
-      return {
-        wrap: "bg-[#003478]/5 border border-[#003478]/20 hover:border-[#003478]/40",
-        accent: "bg-[#003478]",
-        tag: "text-[#003478]",
-        title: "text-[#111111]",
-      };
-    case "youth":
-      return {
-        wrap: "bg-[#C60C30]/5 border border-[#C60C30]/20 hover:border-[#C60C30]/40",
-        accent: "bg-[#C60C30]",
-        tag: "text-[#C60C30]",
-        title: "text-[#111111]",
-      };
-    case "advanced":
-      return {
-        wrap: "bg-white border border-[#003478]/30 hover:border-[#003478]/50 shadow-sm",
-        accent: "bg-[#003478]",
-        tag: "text-[#003478]",
-        title: "text-[#111111]",
-      };
-    case "adults":
-      return {
-        wrap: "bg-white border border-black/10 hover:border-[#C60C30]/40 shadow-sm",
-        accent: "bg-[#C60C30]",
-        tag: "text-black/60",
-        title: "text-[#111111]",
-      };
-    default:
-      return {
-        wrap: "bg-white border border-black/10 hover:border-[#003478]/30 shadow-sm",
-        accent: "bg-black/30",
-        tag: "text-black/60",
-        title: "text-[#111111]",
-      };
-  }
 }
 
 function LocationIconFallback() {
@@ -157,7 +76,7 @@ export function Timetable(props: TimetableProps) {
 
   const filtered = React.useMemo(
     () => entries.filter((e) => e.locationId === currentLocationId),
-    [entries, currentLocationId]
+    [entries, currentLocationId],
   );
 
   const cellMap = React.useMemo(() => {
@@ -204,10 +123,9 @@ export function Timetable(props: TimetableProps) {
       <div
         className={cn(
           "mx-auto px-4 sm:px-6 py-12 md:py-16",
-          containerClassName ?? "max-w-7xl"
+          containerClassName ?? "max-w-7xl",
         )}
       >
-        {/* Title block */}
         <div className="text-center mb-8 md:mb-10">
           <p className="mb-3 text-xs font-bold uppercase tracking-[0.35em] text-[#C60C30]">
             Hapkido College of Australia
@@ -229,9 +147,7 @@ export function Timetable(props: TimetableProps) {
           </div>
         </div>
 
-        {/* Location selector */}
         <div className="mb-8 md:mb-10">
-          {/* Mobile carousel */}
           <div className="md:hidden">
             <div className="flex gap-4 overflow-x-auto pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
               {locations.map((loc) => {
@@ -241,13 +157,14 @@ export function Timetable(props: TimetableProps) {
                   <button
                     key={loc.id}
                     type="button"
+                    aria-pressed={active}
                     onClick={() => setLocation(loc.id)}
                     className={cn(
                       "group relative text-left rounded-2xl border transition-all duration-200",
                       "px-5 py-5 min-w-[280px] flex-shrink-0",
                       active
                         ? "bg-white border-[#003478] shadow-[0_12px_35px_rgba(0,52,120,0.14)]"
-                        : "bg-white/80 border-black/10 hover:border-[#C60C30]/40"
+                        : "bg-white/80 border-black/10 hover:border-[#C60C30]/40",
                     )}
                   >
                     <div className="flex items-center gap-4">
@@ -256,7 +173,7 @@ export function Timetable(props: TimetableProps) {
                           "h-12 w-12 rounded-2xl flex items-center justify-center border",
                           active
                             ? "bg-[#003478]/5 border-[#003478]/20"
-                            : "bg-white border-black/10"
+                            : "bg-white border-black/10",
                         )}
                       >
                         {loc.icon ?? <LocationIconFallback />}
@@ -266,7 +183,7 @@ export function Timetable(props: TimetableProps) {
                         <div
                           className={cn(
                             "text-xs tracking-widest font-semibold uppercase",
-                            active ? "text-[#C60C30]" : "text-black/40"
+                            active ? "text-[#C60C30]" : "text-black/40",
                           )}
                         >
                           {loc.badge}
@@ -275,7 +192,7 @@ export function Timetable(props: TimetableProps) {
                         <div
                           className={cn(
                             "text-xl font-bold",
-                            active ? "text-[#003478]" : "text-black/70"
+                            active ? "text-[#003478]" : "text-black/70",
                           )}
                         >
                           {loc.name}
@@ -292,7 +209,6 @@ export function Timetable(props: TimetableProps) {
             </div>
           </div>
 
-          {/* Desktop grid */}
           <div className="hidden md:grid grid-cols-1 md:grid-cols-3 gap-6">
             {locations.map((loc) => {
               const active = loc.id === currentLocationId;
@@ -301,13 +217,14 @@ export function Timetable(props: TimetableProps) {
                 <button
                   key={loc.id}
                   type="button"
+                  aria-pressed={active}
                   onClick={() => setLocation(loc.id)}
                   className={cn(
                     "group relative text-left rounded-2xl border transition-all duration-200",
                     "px-6 py-6 overflow-hidden",
                     active
                       ? "bg-white border-[#003478] shadow-[0_12px_35px_rgba(0,52,120,0.14)]"
-                      : "bg-white/80 border-black/10 hover:border-[#C60C30]/40 hover:bg-white"
+                      : "bg-white/80 border-black/10 hover:border-[#C60C30]/40 hover:bg-white",
                   )}
                 >
                   <div className="flex items-center gap-4">
@@ -316,7 +233,7 @@ export function Timetable(props: TimetableProps) {
                         "h-12 w-12 rounded-2xl flex items-center justify-center border",
                         active
                           ? "bg-[#003478]/5 border-[#003478]/20"
-                          : "bg-white border-black/10"
+                          : "bg-white border-black/10",
                       )}
                     >
                       {loc.icon ?? <LocationIconFallback />}
@@ -326,7 +243,7 @@ export function Timetable(props: TimetableProps) {
                       <div
                         className={cn(
                           "text-xs tracking-widest font-semibold uppercase",
-                          active ? "text-[#C60C30]" : "text-black/40"
+                          active ? "text-[#C60C30]" : "text-black/40",
                         )}
                       >
                         {loc.badge}
@@ -335,7 +252,7 @@ export function Timetable(props: TimetableProps) {
                       <div
                         className={cn(
                           "text-xl font-bold",
-                          active ? "text-[#003478]" : "text-black/70"
+                          active ? "text-[#003478]" : "text-black/70",
                         )}
                       >
                         {loc.name}
@@ -352,11 +269,13 @@ export function Timetable(props: TimetableProps) {
           </div>
         </div>
 
-        {/* MOBILE VIEW */}
         <div className="md:hidden">
-          {/* Day tabs */}
           <div className="rounded-2xl border border-black/10 bg-white shadow-sm overflow-hidden mb-4">
-            <div className="flex overflow-x-auto gap-1 p-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            <div
+              role="tablist"
+              aria-label="Select day"
+              className="flex overflow-x-auto gap-1 p-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+            >
               {days.map((d) => {
                 const active = d === activeDay;
 
@@ -364,12 +283,14 @@ export function Timetable(props: TimetableProps) {
                   <button
                     key={d}
                     type="button"
+                    role="tab"
+                    aria-selected={active}
                     onClick={() => setActiveDay(d)}
                     className={cn(
                       "px-4 py-2 rounded-xl text-sm font-semibold transition-colors flex-shrink-0 border",
                       active
                         ? "bg-[#003478] text-white border-[#003478]"
-                        : "bg-white text-black/60 border-black/10 hover:text-[#C60C30]"
+                        : "bg-white text-black/60 border-black/10 hover:text-[#C60C30]",
                     )}
                   >
                     {shortDay(d)}
@@ -379,8 +300,7 @@ export function Timetable(props: TimetableProps) {
             </div>
           </div>
 
-          {/* Day schedule list */}
-          <div className="rounded-2xl border border-black/10 bg-white shadow-sm overflow-hidden">
+          <div role="tabpanel" aria-label={activeDay} className="rounded-2xl border border-black/10 bg-white shadow-sm overflow-hidden">
             <div className="px-5 py-4 border-b border-black/10 bg-[#F8FAFC]">
               <div className="text-[#003478] font-bold">{activeDay}</div>
               <div className="text-black/45 text-xs mt-1">
@@ -404,58 +324,9 @@ export function Timetable(props: TimetableProps) {
                       <div className="text-black/35 text-sm">No classes</div>
                     ) : (
                       <div className="flex flex-col gap-3">
-                        {cards.map((c) => {
-                          const variant = c.variant ?? "generic";
-                          const style = getCardStyle(variant);
-                          const timeInside = c.showTimeInsideCard
-                            ? c.timeLabelOverride ?? c.timeSlot
-                            : null;
-
-                          return (
-                            <div
-                              key={c.id}
-                              className={cn(
-                                "relative rounded-xl px-4 py-4 transition-colors min-h-[84px]",
-                                style.wrap
-                              )}
-                            >
-                              <div
-                                className={cn(
-                                  "absolute left-0 top-3 bottom-3 w-1 rounded-full",
-                                  style.accent
-                                )}
-                              />
-
-                              <div className="pl-3">
-                                {timeInside && (
-                                  <div className="text-xs font-semibold tracking-wide text-black/50 mb-2">
-                                    {timeInside}
-                                  </div>
-                                )}
-
-                                {c.tag && (
-                                  <div
-                                    className={cn(
-                                      "text-xs font-bold tracking-wide uppercase",
-                                      style.tag
-                                    )}
-                                  >
-                                    {c.tag}
-                                  </div>
-                                )}
-
-                                <div
-                                  className={cn(
-                                    "mt-1 text-sm font-semibold",
-                                    style.title
-                                  )}
-                                >
-                                  {c.title}
-                                </div>
-                              </div>
-                            </div>
-                          );
-                        })}
+                        {cards.map((entry) => (
+                          <TimetableEntryCard key={entry.id} entry={entry} />
+                        ))}
                       </div>
                     )}
                   </div>
@@ -465,10 +336,8 @@ export function Timetable(props: TimetableProps) {
           </div>
         </div>
 
-        {/* DESKTOP VIEW */}
         <div className="hidden md:block">
           <div className="rounded-2xl border border-black/10 bg-white shadow-sm overflow-hidden">
-            {/* Header row */}
             <div
               className="grid"
               style={{
@@ -491,7 +360,6 @@ export function Timetable(props: TimetableProps) {
               ))}
             </div>
 
-            {/* Rows */}
             <div className="divide-y divide-black/10">
               {effectiveTimeSlots.map((slot) => {
                 const row = cellMap.get(slot)!;
@@ -504,72 +372,24 @@ export function Timetable(props: TimetableProps) {
                       gridTemplateColumns: `160px repeat(${days.length}, minmax(0, 1fr))`,
                     }}
                   >
-                    {/* Time cell */}
                     <div className="px-6 py-6 bg-[#F8FAFC]">
                       <div className="text-[#003478] font-bold tracking-wide">
                         {slot}
                       </div>
                     </div>
 
-                    {/* Day cells */}
                     {days.map((d) => {
                       const cards = row.get(d) ?? [];
 
                       return (
                         <div key={d} className="p-4 border-l border-black/10">
                           <div className="flex flex-col gap-3">
-                            {cards.map((c) => {
-                              const variant = c.variant ?? "generic";
-                              const style = getCardStyle(variant);
-                              const timeInside = c.showTimeInsideCard
-                                ? c.timeLabelOverride ?? c.timeSlot
-                                : null;
-
-                              return (
-                                <div
-                                  key={c.id}
-                                  className={cn(
-                                    "relative rounded-xl px-4 py-4 transition-colors min-h-[84px]",
-                                    style.wrap
-                                  )}
-                                >
-                                  <div
-                                    className={cn(
-                                      "absolute left-0 top-3 bottom-3 w-1 rounded-full",
-                                      style.accent
-                                    )}
-                                  />
-
-                                  <div className="pl-3">
-                                    {timeInside && (
-                                      <div className="text-xs font-semibold tracking-wide text-black/50 mb-2">
-                                        {timeInside}
-                                      </div>
-                                    )}
-
-                                    {c.tag && (
-                                      <div
-                                        className={cn(
-                                          "text-xs font-bold tracking-wide uppercase",
-                                          style.tag
-                                        )}
-                                      >
-                                        {c.tag}
-                                      </div>
-                                    )}
-
-                                    <div
-                                      className={cn(
-                                        "mt-1 text-sm font-semibold",
-                                        style.title
-                                      )}
-                                    >
-                                      {c.title}
-                                    </div>
-                                  </div>
-                                </div>
-                              );
-                            })}
+                            {cards.map((entry) => (
+                              <TimetableEntryCard
+                                key={entry.id}
+                                entry={entry}
+                              />
+                            ))}
 
                             {cards.length === 0 && (
                               <div className="h-[84px] rounded-xl border border-transparent" />
