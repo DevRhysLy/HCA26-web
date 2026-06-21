@@ -1,3 +1,8 @@
+"use client";
+
+import * as React from "react";
+import { createPortal } from "react-dom";
+import Image from "next/image";
 import type { TimetableCardVariant, TimetableClassCard } from "./types";
 
 function cn(...classes: Array<string | undefined | false | null>) {
@@ -44,6 +49,25 @@ function getCardStyle(variant: TimetableCardVariant) {
   }
 }
 
+function hasHoverContent(entry: TimetableClassCard) {
+  return !!(
+    entry.instructor ||
+    entry.description ||
+    entry.ageRange ||
+    entry.duration
+  );
+}
+
+const POPOVER_WIDTH = 256;
+const POPOVER_GAP = 8;
+const VIEWPORT_MARGIN = 8;
+
+interface PopoverPosition {
+  top: number;
+  left: number;
+  placement: "top" | "bottom";
+}
+
 interface TimetableEntryCardProps {
   entry: TimetableClassCard;
 }
@@ -54,43 +78,216 @@ export default function TimetableEntryCard({ entry }: TimetableEntryCardProps) {
   const timeInside = entry.showTimeInsideCard
     ? (entry.timeLabelOverride ?? entry.timeSlot)
     : null;
+  const showPopover = hasHoverContent(entry);
+
+  const triggerRef = React.useRef<HTMLDivElement>(null);
+  const popoverRef = React.useRef<HTMLDivElement>(null);
+  const [mounted, setMounted] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
+  const [isTouch, setIsTouch] = React.useState(false);
+  const [position, setPosition] = React.useState<PopoverPosition | null>(null);
+
+  React.useEffect(() => {
+    setMounted(true);
+
+    const mql = window.matchMedia("(hover: none), (pointer: coarse)");
+    const sync = () => setIsTouch(mql.matches);
+    sync();
+    mql.addEventListener("change", sync);
+
+    return () => mql.removeEventListener("change", sync);
+  }, []);
+
+  const updatePosition = React.useCallback(() => {
+    const trigger = triggerRef.current;
+    if (!trigger) return;
+
+    const rect = trigger.getBoundingClientRect();
+    const popoverHeight = popoverRef.current?.offsetHeight ?? 180;
+
+    const spaceAbove = rect.top;
+    const placement: "top" | "bottom" =
+      spaceAbove >= popoverHeight + POPOVER_GAP + VIEWPORT_MARGIN
+        ? "top"
+        : "bottom";
+
+    const top =
+      placement === "top"
+        ? rect.top - POPOVER_GAP - popoverHeight
+        : rect.bottom + POPOVER_GAP;
+
+    let left = rect.left;
+    const maxLeft = window.innerWidth - POPOVER_WIDTH - VIEWPORT_MARGIN;
+    if (left > maxLeft) left = maxLeft;
+    if (left < VIEWPORT_MARGIN) left = VIEWPORT_MARGIN;
+
+    setPosition({ top, left, placement });
+  }, []);
+
+  React.useEffect(() => {
+    if (!open) return;
+
+    updatePosition();
+
+    const handle = () => updatePosition();
+    window.addEventListener("scroll", handle, true);
+    window.addEventListener("resize", handle);
+
+    return () => {
+      window.removeEventListener("scroll", handle, true);
+      window.removeEventListener("resize", handle);
+    };
+  }, [open, updatePosition]);
+
+  React.useEffect(() => {
+    if (!open || !isTouch) return;
+
+    const handlePointerDown = (event: PointerEvent) => {
+      const target = event.target as Node;
+      if (triggerRef.current?.contains(target)) return;
+      if (popoverRef.current?.contains(target)) return;
+      setOpen(false);
+    };
+
+    document.addEventListener("pointerdown", handlePointerDown);
+    return () =>
+      document.removeEventListener("pointerdown", handlePointerDown);
+  }, [open, isTouch]);
+
+  const show = () => setOpen(true);
+  const hide = () => setOpen(false);
+  const toggle = () => setOpen((prev) => !prev);
 
   return (
     <div
-      className={cn(
-        "relative rounded-xl px-4 py-4 transition-colors min-h-[84px]",
-        style.wrap,
-      )}
+      ref={triggerRef}
+      className="relative"
+      onMouseEnter={showPopover && !isTouch ? show : undefined}
+      onMouseLeave={showPopover && !isTouch ? hide : undefined}
+      onFocus={showPopover && !isTouch ? show : undefined}
+      onBlur={showPopover && !isTouch ? hide : undefined}
+      onClick={showPopover && isTouch ? toggle : undefined}
+      role={showPopover && isTouch ? "button" : undefined}
+      aria-expanded={showPopover && isTouch ? open : undefined}
+      tabIndex={showPopover ? 0 : undefined}
     >
       <div
         className={cn(
-          "absolute left-0 top-3 bottom-3 w-1 rounded-full",
-          style.accent,
+          "relative rounded-xl px-4 py-4 transition-colors min-h-[84px]",
+          style.wrap,
         )}
-      />
+      >
+        <div
+          className={cn(
+            "absolute left-0 top-3 bottom-3 w-1 rounded-full",
+            style.accent,
+          )}
+        />
 
-      <div className="pl-3">
-        {timeInside && (
-          <div className="text-xs font-semibold tracking-wide text-black/50 mb-2">
-            {timeInside}
+        <div className="pl-3">
+          {timeInside && (
+            <div className="text-xs font-semibold tracking-wide text-black/50 mb-2">
+              {timeInside}
+            </div>
+          )}
+
+          {entry.tag && (
+            <div
+              className={cn(
+                "text-xs font-bold tracking-wide uppercase",
+                style.tag,
+              )}
+            >
+              {entry.tag}
+            </div>
+          )}
+
+          <div className={cn("mt-1 text-sm font-semibold", style.title)}>
+            {entry.title}
           </div>
-        )}
 
-        {entry.tag && (
-          <div
-            className={cn(
-              "text-xs font-bold tracking-wide uppercase",
-              style.tag,
-            )}
-          >
-            {entry.tag}
-          </div>
-        )}
-
-        <div className={cn("mt-1 text-sm font-semibold", style.title)}>
-          {entry.title}
+          {showPopover && (
+            <div className="mt-1.5 text-[10px] font-medium text-black/40 flex items-center gap-1">
+              <span className="inline-block h-1 w-1 rounded-full bg-current" />
+              {isTouch ? "Tap for details" : "Details on hover"}
+            </div>
+          )}
         </div>
       </div>
+
+      {showPopover &&
+        mounted &&
+        open &&
+        createPortal(
+          <div
+            ref={popoverRef}
+            role="tooltip"
+            style={{
+              position: "fixed",
+              top: position?.top ?? -9999,
+              left: position?.left ?? -9999,
+              width: POPOVER_WIDTH,
+              zIndex: 2147483647,
+              visibility: position ? "visible" : "hidden",
+            }}
+            className={cn(
+              "bg-white rounded-2xl border border-black/10 shadow-[0_12px_40px_rgba(0,0,0,0.18)]",
+              "p-4 pointer-events-none",
+            )}
+          >
+            {entry.instructor && (
+              <div className="flex items-center gap-3 mb-3">
+                {entry.instructor.photo ? (
+                  <Image
+                    src={entry.instructor.photo}
+                    alt={entry.instructor.name}
+                    width={40}
+                    height={40}
+                    className="h-10 w-10 rounded-full object-cover border border-black/10 flex-shrink-0"
+                  />
+                ) : (
+                  <div className="h-10 w-10 rounded-full bg-[#003478]/10 flex items-center justify-center flex-shrink-0">
+                    <span className="text-[#003478] text-sm font-bold">
+                      {entry.instructor.name.charAt(0)}
+                    </span>
+                  </div>
+                )}
+                <div>
+                  <div className="text-sm font-bold text-[#111111]">
+                    {entry.instructor.name}
+                  </div>
+                  {entry.instructor.rank && (
+                    <div className="text-xs text-[#C60C30] font-semibold">
+                      {entry.instructor.rank}
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+
+            {entry.description && (
+              <p className="text-xs text-black/60 leading-relaxed mb-3">
+                {entry.description}
+              </p>
+            )}
+
+            {(entry.ageRange || entry.duration) && (
+              <div className="flex gap-3 flex-wrap">
+                {entry.ageRange && (
+                  <span className="inline-flex items-center gap-1 text-xs font-semibold text-[#003478] bg-[#003478]/8 rounded-lg px-2.5 py-1">
+                    {entry.ageRange}
+                  </span>
+                )}
+                {entry.duration && (
+                  <span className="inline-flex items-center gap-1 text-xs font-semibold text-black/60 bg-black/6 rounded-lg px-2.5 py-1">
+                    {entry.duration}
+                  </span>
+                )}
+              </div>
+            )}
+          </div>,
+          document.body,
+        )}
     </div>
   );
 }

@@ -38,6 +38,63 @@ function shortDay(d: TimetableDay) {
   return d.slice(0, 3);
 }
 
+interface FilterPillRowProps {
+  label: string;
+  allLabel: string;
+  options: string[];
+  active: string | null;
+  onChange: (value: string | null) => void;
+}
+
+function FilterPillRow({
+  label,
+  allLabel,
+  options,
+  active,
+  onChange,
+}: FilterPillRowProps) {
+  if (options.length === 0) return null;
+
+  const pill = (selected: boolean) =>
+    cn(
+      "px-4 py-2 rounded-full text-sm font-semibold transition-colors flex-shrink-0 border whitespace-nowrap",
+      selected
+        ? "bg-[#003478] text-white border-[#003478]"
+        : "bg-white text-black/60 border-black/10 hover:border-[#003478]/40 hover:text-[#003478]",
+    );
+
+  return (
+    <div className="flex items-center gap-3">
+      <span className="hidden sm:block text-xs font-bold tracking-widest text-black/40 uppercase flex-shrink-0">
+        {label}
+      </span>
+
+      <div className="flex gap-2 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <button
+          type="button"
+          aria-pressed={active === null}
+          onClick={() => onChange(null)}
+          className={pill(active === null)}
+        >
+          {allLabel}
+        </button>
+
+        {options.map((opt) => (
+          <button
+            key={opt}
+            type="button"
+            aria-pressed={active === opt}
+            onClick={() => onChange(opt)}
+            className={pill(active === opt)}
+          >
+            {opt}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 /* ------------------------------ Component ------------------------------ */
 
 export function Timetable(props: TimetableProps) {
@@ -53,6 +110,7 @@ export function Timetable(props: TimetableProps) {
     timeSlotsByLocation,
     entries,
     containerClassName,
+    enableFilters = true,
   } = props;
 
   const isControlled = selectedLocationId !== undefined;
@@ -74,9 +132,41 @@ export function Timetable(props: TimetableProps) {
   const effectiveTimeSlots =
     timeSlotsByLocation?.[currentLocationId] ?? timeSlots;
 
+  const [activeClassFilter, setActiveClassFilter] = React.useState<
+    string | null
+  >(null);
+  const [activeTimeFilter, setActiveTimeFilter] = React.useState<string | null>(
+    null,
+  );
+
+  React.useEffect(() => {
+    setActiveClassFilter(null);
+    setActiveTimeFilter(null);
+  }, [currentLocationId]);
+
+  const availableClassTags = React.useMemo(() => {
+    const seen = new Set<string>();
+    const tags: string[] = [];
+
+    for (const e of entries) {
+      if (e.locationId !== currentLocationId) continue;
+      if (!e.tag || seen.has(e.tag)) continue;
+      seen.add(e.tag);
+      tags.push(e.tag);
+    }
+
+    return tags;
+  }, [entries, currentLocationId]);
+
   const filtered = React.useMemo(
-    () => entries.filter((e) => e.locationId === currentLocationId),
-    [entries, currentLocationId],
+    () =>
+      entries.filter((e) => {
+        if (e.locationId !== currentLocationId) return false;
+        if (activeClassFilter && e.tag !== activeClassFilter) return false;
+        if (activeTimeFilter && e.timeSlot !== activeTimeFilter) return false;
+        return true;
+      }),
+    [entries, currentLocationId, activeClassFilter, activeTimeFilter],
   );
 
   const cellMap = React.useMemo(() => {
@@ -268,6 +358,27 @@ export function Timetable(props: TimetableProps) {
             })}
           </div>
         </div>
+
+        {enableFilters &&
+          (availableClassTags.length > 0 || effectiveTimeSlots.length > 0) && (
+            <div className="mb-8 md:mb-10 flex flex-col gap-3">
+              <FilterPillRow
+                label="Class"
+                allLabel="All classes"
+                options={availableClassTags}
+                active={activeClassFilter}
+                onChange={setActiveClassFilter}
+              />
+
+              <FilterPillRow
+                label="Time"
+                allLabel="All times"
+                options={effectiveTimeSlots}
+                active={activeTimeFilter}
+                onChange={setActiveTimeFilter}
+              />
+            </div>
+          )}
 
         <div className="md:hidden">
           <div className="rounded-2xl border border-black/10 bg-white shadow-sm overflow-hidden mb-4">

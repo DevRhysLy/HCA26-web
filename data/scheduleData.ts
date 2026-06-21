@@ -14,7 +14,15 @@ export const scheduleTimeSlots = [
 ];
 
 export const scheduleTimeSlotsByLocation: Record<string, string[]> = {
-  croydon: ["04:00 PM", "05:00 PM", "06:00 PM", "07:00 PM"],
+  croydon: [
+    "09:00 AM",
+    "10:00 AM",
+    "04:00 PM",
+    "04:15 PM",
+    "05:00 PM",
+    "06:00 PM",
+    "07:00 PM",
+  ],
   ermington: ["05:00 PM", "05:50 PM", "07:00 PM"],
   belrose: ["05:30 PM", "06:45 PM"],
 };
@@ -61,7 +69,7 @@ export const scheduleEntries: TimetableClassCard[] = [
     id: "c5",
     locationId: "croydon",
     day: "Tuesday",
-    timeSlot: "04:00 PM",
+    timeSlot: "04:15 PM",
     tag: "LITTLE TIGERS",
     title: "Little Tigers",
     variant: "kids",
@@ -135,7 +143,7 @@ export const scheduleEntries: TimetableClassCard[] = [
     id: "c13",
     locationId: "croydon",
     day: "Thursday",
-    timeSlot: "04:00 PM",
+    timeSlot: "04:15 PM",
     tag: "LITTLE TIGERS",
     title: "Little Tigers",
     variant: "kids",
@@ -182,18 +190,18 @@ export const scheduleEntries: TimetableClassCard[] = [
     id: "c18",
     locationId: "croydon",
     day: "Saturday",
-    timeSlot: "04:00 PM",
+    timeSlot: "09:00 AM",
     tag: "CHILDREN",
-    title: "All Childrens (9:00 AM)",
+    title: "All Children",
     variant: "youth",
   },
   {
     id: "c19",
     locationId: "croydon",
     day: "Saturday",
-    timeSlot: "05:00 PM",
+    timeSlot: "10:00 AM",
     tag: "YOUTH & ADULTS",
-    title: "Mixed Class (10:00 AM)",
+    title: "Mixed Class",
     variant: "adults",
   },
 

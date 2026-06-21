@@ -31,6 +31,12 @@ export type TimetableCardVariant =
   | "advanced"
   | "generic";
 
+export interface TimetableInstructor {
+  name: string;
+  photo?: string;
+  rank?: string;
+}
+
 export interface TimetableClassCard {
   id: string;
   locationId: string;
@@ -41,6 +47,10 @@ export interface TimetableClassCard {
   variant?: TimetableCardVariant;
   showTimeInsideCard?: boolean;
   timeLabelOverride?: string;
+  instructor?: TimetableInstructor;
+  description?: string;
+  ageRange?: string;
+  duration?: string;
 }
 
 export interface TimetableProps {
@@ -55,4 +65,5 @@ export interface TimetableProps {
   timeSlotsByLocation?: Record<string, string[]>;
   entries: TimetableClassCard[];
   containerClassName?: string;
+  enableFilters?: boolean;
 }

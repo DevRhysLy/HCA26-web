@@ -178,3 +178,8 @@ export function getFaqs() {
 export function getCalendarEvents() {
   return getEntries("calendarEvent");
 }
+
+/* Schedule */
+export function getScheduleEntries() {
+  return getEntries("scheduleEntry", { include: 2, fullResponse: true });
+}
