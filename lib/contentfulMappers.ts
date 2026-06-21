@@ -3,6 +3,7 @@ import type {
   TimetableClassCard,
   TimetableLocation,
 } from "@/components/timetable/types";
+import { parseTimeToMinutes } from "@/components/timetable/time";
 
 export function sortByOrder<T extends { fields: { order?: number } }>(
   items: T[]
@@ -85,19 +86,16 @@ export function mapScheduleEntry(item: any, data: any): TimetableClassCard {
     description: item.fields.description,
     ageRange: item.fields.ageRange,
     duration: item.fields.duration,
+    durationMinutes:
+      typeof item.fields.durationMinutes === "number"
+        ? item.fields.durationMinutes
+        : undefined,
     instructor,
   };
 }
 
 function timeSlotToMinutes(slot: string): number {
-  const match = slot.trim().match(/^(\d{1,2}):(\d{2})\s*(AM|PM)$/i);
-  if (!match) return Number.MAX_SAFE_INTEGER;
-
-  let hours = parseInt(match[1], 10) % 12;
-  const minutes = parseInt(match[2], 10);
-  if (match[3].toUpperCase() === "PM") hours += 12;
-
-  return hours * 60 + minutes;
+  return parseTimeToMinutes(slot) ?? Number.MAX_SAFE_INTEGER;
 }
 
 export interface TimetableData {

@@ -36,6 +36,7 @@ export const scheduleEntries: TimetableClassCard[] = [
     tag: "KIDS (Beg)",
     title: "Beginner Children",
     variant: "kids",
+    durationMinutes: 60,
   },
   {
     id: "c2",
@@ -45,6 +46,7 @@ export const scheduleEntries: TimetableClassCard[] = [
     tag: "KIDS (Adv)",
     title: "Advanced Children",
     variant: "kids",
+    durationMinutes: 60,
   },
   {
     id: "c3",
@@ -54,6 +56,7 @@ export const scheduleEntries: TimetableClassCard[] = [
     tag: "YOUTH",
     title: "Youth Class",
     variant: "youth",
+    durationMinutes: 60,
   },
   {
     id: "c4",
@@ -63,6 +66,7 @@ export const scheduleEntries: TimetableClassCard[] = [
     tag: "ADULTS",
     title: "Adult Class",
     variant: "adults",
+    durationMinutes: 60,
   },
 
   {
@@ -73,6 +77,7 @@ export const scheduleEntries: TimetableClassCard[] = [
     tag: "LITTLE TIGERS",
     title: "Little Tigers",
     variant: "kids",
+    durationMinutes: 45,
   },
   {
     id: "c6",
@@ -82,6 +87,7 @@ export const scheduleEntries: TimetableClassCard[] = [
     tag: "KIDS",
     title: "All Children",
     variant: "kids",
+    durationMinutes: 60,
   },
   {
     id: "c7",
@@ -91,6 +97,7 @@ export const scheduleEntries: TimetableClassCard[] = [
     tag: "YOUTH",
     title: "Youth Class",
     variant: "youth",
+    durationMinutes: 60,
   },
   {
     id: "c8",
@@ -100,6 +107,7 @@ export const scheduleEntries: TimetableClassCard[] = [
     tag: "ADULTS",
     title: "Adult Class",
     variant: "adults",
+    durationMinutes: 60,
   },
 
   {
@@ -110,6 +118,7 @@ export const scheduleEntries: TimetableClassCard[] = [
     tag: "KIDS (Beg)",
     title: "Beginner Children",
     variant: "kids",
+    durationMinutes: 60,
   },
   {
     id: "c10",
@@ -119,6 +128,7 @@ export const scheduleEntries: TimetableClassCard[] = [
     tag: "KIDS (Adv)",
     title: "Advanced Children",
     variant: "kids",
+    durationMinutes: 60,
   },
   {
     id: "c11",
@@ -128,6 +138,7 @@ export const scheduleEntries: TimetableClassCard[] = [
     tag: "YOUTH",
     title: "Youth Class",
     variant: "youth",
+    durationMinutes: 60,
   },
   {
     id: "c12",
@@ -137,6 +148,7 @@ export const scheduleEntries: TimetableClassCard[] = [
     tag: "ADULTS",
     title: "Adult Class",
     variant: "adults",
+    durationMinutes: 60,
   },
 
   {
@@ -147,6 +159,7 @@ export const scheduleEntries: TimetableClassCard[] = [
     tag: "LITTLE TIGERS",
     title: "Little Tigers",
     variant: "kids",
+    durationMinutes: 45,
   },
   {
     id: "c14",
@@ -156,6 +169,7 @@ export const scheduleEntries: TimetableClassCard[] = [
     tag: "KIDS",
     title: "All Children",
     variant: "kids",
+    durationMinutes: 60,
   },
   {
     id: "c15",
@@ -165,6 +179,7 @@ export const scheduleEntries: TimetableClassCard[] = [
     tag: "YOUTH",
     title: "Youth Class",
     variant: "youth",
+    durationMinutes: 60,
   },
   {
     id: "c16",
@@ -174,6 +189,7 @@ export const scheduleEntries: TimetableClassCard[] = [
     tag: "ADULTS",
     title: "Adult Class",
     variant: "adults",
+    durationMinutes: 60,
   },
 
   {
@@ -184,6 +200,7 @@ export const scheduleEntries: TimetableClassCard[] = [
     tag: "TEAM",
     title: "HCA Eagles",
     variant: "advanced",
+    durationMinutes: 60,
   },
 
   {
@@ -194,6 +211,7 @@ export const scheduleEntries: TimetableClassCard[] = [
     tag: "CHILDREN",
     title: "All Children",
     variant: "youth",
+    durationMinutes: 60,
   },
   {
     id: "c19",
@@ -203,6 +221,7 @@ export const scheduleEntries: TimetableClassCard[] = [
     tag: "YOUTH & ADULTS",
     title: "Mixed Class",
     variant: "adults",
+    durationMinutes: 60,
   },
 
   {
@@ -213,6 +232,7 @@ export const scheduleEntries: TimetableClassCard[] = [
     tag: "KIDS (Beg)",
     title: "Children 1",
     variant: "kids",
+    durationMinutes: 50,
   },
   {
     id: "e2",
@@ -222,6 +242,7 @@ export const scheduleEntries: TimetableClassCard[] = [
     tag: "KIDS (Adv)",
     title: "Children 2",
     variant: "kids",
+    durationMinutes: 60,
   },
   {
     id: "e3",
@@ -231,6 +252,7 @@ export const scheduleEntries: TimetableClassCard[] = [
     tag: "YOUTH & ADULTS",
     title: "Mixed Class",
     variant: "adults",
+    durationMinutes: 60,
   },
 
   {
@@ -241,6 +263,7 @@ export const scheduleEntries: TimetableClassCard[] = [
     tag: "KIDS (Beg)",
     title: "Children 1",
     variant: "kids",
+    durationMinutes: 50,
   },
   {
     id: "e5",
@@ -250,6 +273,7 @@ export const scheduleEntries: TimetableClassCard[] = [
     tag: "KIDS (Adv)",
     title: "Children 2",
     variant: "kids",
+    durationMinutes: 60,
   },
   {
     id: "e6",
@@ -259,6 +283,7 @@ export const scheduleEntries: TimetableClassCard[] = [
     tag: "YOUTH & ADULTS",
     title: "Mixed Class",
     variant: "adults",
+    durationMinutes: 60,
   },
 
   {
@@ -269,6 +294,7 @@ export const scheduleEntries: TimetableClassCard[] = [
     tag: "KIDS",
     title: "Children Class",
     variant: "kids",
+    durationMinutes: 60,
   },
   {
     id: "b2",
@@ -278,6 +304,7 @@ export const scheduleEntries: TimetableClassCard[] = [
     tag: "YOUTH & ADULTS",
     title: "Mixed Class",
     variant: "adults",
+    durationMinutes: 60,
   },
 
   {
@@ -288,6 +315,7 @@ export const scheduleEntries: TimetableClassCard[] = [
     tag: "KIDS",
     title: "Children Class",
     variant: "kids",
+    durationMinutes: 60,
   },
   {
     id: "b4",
@@ -297,5 +325,6 @@ export const scheduleEntries: TimetableClassCard[] = [
     tag: "YOUTH & ADULTS",
     title: "Mixed Class",
     variant: "adults",
+    durationMinutes: 60,
   },
 ];

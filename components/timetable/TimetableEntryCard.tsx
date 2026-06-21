@@ -4,6 +4,7 @@ import * as React from "react";
 import { createPortal } from "react-dom";
 import Image from "next/image";
 import type { TimetableCardVariant, TimetableClassCard } from "./types";
+import { formatTime, parseTimeToMinutes } from "./time";
 
 function cn(...classes: Array<string | undefined | false | null>) {
   return classes.filter(Boolean).join(" ");
@@ -70,15 +71,27 @@ interface PopoverPosition {
 
 interface TimetableEntryCardProps {
   entry: TimetableClassCard;
+  fill?: boolean;
 }
 
-export default function TimetableEntryCard({ entry }: TimetableEntryCardProps) {
+export default function TimetableEntryCard({
+  entry,
+  fill = false,
+}: TimetableEntryCardProps) {
   const variant = entry.variant ?? "generic";
   const style = getCardStyle(variant);
   const timeInside = entry.showTimeInsideCard
     ? (entry.timeLabelOverride ?? entry.timeSlot)
     : null;
   const showPopover = hasHoverContent(entry);
+
+  const startMinutes = parseTimeToMinutes(entry.timeSlot);
+  const timeRange =
+    startMinutes !== null
+      ? `${formatTime(startMinutes)} \u2013 ${formatTime(
+          startMinutes + (entry.durationMinutes ?? 60),
+        )}`
+      : entry.timeSlot;
 
   const triggerRef = React.useRef<HTMLDivElement>(null);
   const popoverRef = React.useRef<HTMLDivElement>(null);
@@ -161,7 +174,7 @@ export default function TimetableEntryCard({ entry }: TimetableEntryCardProps) {
   return (
     <div
       ref={triggerRef}
-      className="relative"
+      className={cn("relative", fill && "h-full")}
       onMouseEnter={showPopover && !isTouch ? show : undefined}
       onMouseLeave={showPopover && !isTouch ? hide : undefined}
       onFocus={showPopover && !isTouch ? show : undefined}
@@ -173,28 +186,39 @@ export default function TimetableEntryCard({ entry }: TimetableEntryCardProps) {
     >
       <div
         className={cn(
-          "relative rounded-xl px-4 py-4 transition-colors min-h-[84px]",
+          "relative rounded-xl transition-colors",
+          fill
+            ? "h-full overflow-hidden px-3 py-2"
+            : "min-h-[84px] px-4 py-4",
           style.wrap,
         )}
       >
         <div
           className={cn(
-            "absolute left-0 top-3 bottom-3 w-1 rounded-full",
+            "absolute left-0 w-1 rounded-full",
+            fill ? "top-2 bottom-2" : "top-3 bottom-3",
             style.accent,
           )}
         />
 
         <div className="pl-3">
-          {timeInside && (
-            <div className="text-xs font-semibold tracking-wide text-black/50 mb-2">
-              {timeInside}
+          {fill ? (
+            <div className="text-[10px] font-semibold tracking-wide text-black/45 mb-0.5">
+              {timeRange}
             </div>
+          ) : (
+            timeInside && (
+              <div className="text-xs font-semibold tracking-wide text-black/50 mb-2">
+                {timeInside}
+              </div>
+            )
           )}
 
           {entry.tag && (
             <div
               className={cn(
-                "text-xs font-bold tracking-wide uppercase",
+                "font-bold tracking-wide uppercase",
+                fill ? "text-[10px]" : "text-xs",
                 style.tag,
               )}
             >
@@ -202,11 +226,17 @@ export default function TimetableEntryCard({ entry }: TimetableEntryCardProps) {
             </div>
           )}
 
-          <div className={cn("mt-1 text-sm font-semibold", style.title)}>
+          <div
+            className={cn(
+              "font-semibold",
+              fill ? "text-xs leading-snug" : "mt-1 text-sm",
+              style.title,
+            )}
+          >
             {entry.title}
           </div>
 
-          {showPopover && (
+          {showPopover && !fill && (
             <div className="mt-1.5 text-[10px] font-medium text-black/40 flex items-center gap-1">
               <span className="inline-block h-1 w-1 rounded-full bg-current" />
               {isTouch ? "Tap for details" : "Details on hover"}

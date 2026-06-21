@@ -51,6 +51,7 @@ export interface TimetableClassCard {
   description?: string;
   ageRange?: string;
   duration?: string;
+  durationMinutes?: number;
 }
 
 export interface TimetableProps {
@@ -66,4 +67,7 @@ export interface TimetableProps {
   entries: TimetableClassCard[];
   containerClassName?: string;
   enableFilters?: boolean;
+  dayStartHour?: number;
+  dayEndHour?: number;
+  hourHeight?: number;
 }
