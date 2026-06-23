@@ -1,6 +1,6 @@
 import { getClasses } from "@/lib/contentful";
 import CardGridPage from "@/components/content/CardGridPage";
-import { sortByOrder, mapToCardItem } from "@/lib/contentfulMappers";
+import { mapToCardItem } from "@/lib/contentfulMappers";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 export default async function Classes() {
   const classes = await getClasses();
 
-  const items = sortByOrder(classes).map((classItem: any) =>
+  const items = classes.map((classItem: any) =>
     mapToCardItem(classItem, {
       basePath: "/classes",
       badge: classItem.fields.ageRange,

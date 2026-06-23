@@ -93,7 +93,7 @@ export default async function Footer() {
 
           {/* Programs */}
           <div>
-            <h3 className="text-lg font-bold text-[#111111] mb-5">Programs</h3>
+            <h3 className="text-lg font-bold text-[#111111] mb-5">Classes</h3>
 
             <ul className="space-y-3">
               {classes.map((program: any) => (

@@ -1,7 +1,7 @@
 import { getLocations } from "@/lib/contentful";
 import CardGridPage from "@/components/content/CardGridPage";
 import type { Metadata } from "next";
-import { sortByOrder, mapToCardItem } from "@/lib/contentfulMappers";
+import { mapToCardItem } from "@/lib/contentfulMappers";
 
 export const metadata: Metadata = {
   title: "Locations",
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 
 export default async function Locations() {
   const locations = await getLocations();
-  const items = sortByOrder(locations).map((location: any) =>
+  const items = locations.map((location: any) =>
     mapToCardItem(location, {
       basePath: "/locations",
       badge: "Training Dojang",

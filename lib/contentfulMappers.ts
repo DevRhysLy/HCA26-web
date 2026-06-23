@@ -68,11 +68,16 @@ export function groupFaqsByCategory(
   }));
 }
 
+export function normalizeOrder(value: unknown): number {
+  return typeof value === "number" ? value : 999;
+}
+
 export function sortByOrder<T extends { fields: { order?: number } }>(
   items: T[]
 ) {
   return [...items].sort(
-    (a, b) => (a.fields.order ?? 999) - (b.fields.order ?? 999)
+    (a, b) =>
+      normalizeOrder(a.fields.order) - normalizeOrder(b.fields.order),
   );
 }
 
