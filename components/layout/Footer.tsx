@@ -80,6 +80,14 @@ export default async function Footer() {
                   </Link>
                 </li>
               ))}
+              <li>
+                <Link
+                  href="/faq"
+                  className="text-black/65 transition-colors duration-200 hover:text-[#003478]"
+                >
+                  FAQ
+                </Link>
+              </li>
             </ul>
           </div>
 

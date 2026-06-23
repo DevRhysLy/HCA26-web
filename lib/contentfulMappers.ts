@@ -1,4 +1,72 @@
+import { FAQ_DEFAULT_CATEGORY } from "@/config/faq";
 import { getAssetUrl } from "@/lib/contentful";
+
+export interface FaqItem {
+  id: string;
+  question: string;
+  answer: string;
+  category: string;
+  order?: number;
+}
+
+export function mapFaqItem(faq: any): FaqItem {
+  const categoryValue = faq.fields.category;
+  const category =
+    typeof categoryValue === "string" && categoryValue.trim()
+      ? categoryValue.trim()
+      : FAQ_DEFAULT_CATEGORY;
+
+  return {
+    id: faq.sys.id,
+    question: faq.fields.question ?? faq.fields.title ?? "",
+    answer: faq.fields.answer ?? faq.fields.description ?? "",
+    category,
+    order:
+      typeof faq.fields.order === "number" ? faq.fields.order : undefined,
+  };
+}
+
+export function mapFaqs(faqs: any[]): FaqItem[] {
+  return faqs.map(mapFaqItem);
+}
+
+export function sortFaqs(faqs: FaqItem[]): FaqItem[] {
+  return [...faqs].sort((a, b) => {
+    const orderDiff = (a.order ?? 999) - (b.order ?? 999);
+    if (orderDiff !== 0) {
+      return orderDiff;
+    }
+
+    return a.question.localeCompare(b.question);
+  });
+}
+
+export function groupFaqsByCategory(
+  faqs: FaqItem[],
+  categoryOrder: readonly string[] = [],
+): { category: string; faqs: FaqItem[] }[] {
+  const sortedFaqs = sortFaqs(faqs);
+  const grouped = new Map<string, FaqItem[]>();
+
+  for (const faq of sortedFaqs) {
+    const category = faq.category || FAQ_DEFAULT_CATEGORY;
+    const items = grouped.get(category) ?? [];
+    items.push(faq);
+    grouped.set(category, items);
+  }
+
+  const orderedCategories = [
+    ...categoryOrder.filter((category) => grouped.has(category)),
+    ...[...grouped.keys()]
+      .filter((category) => !categoryOrder.includes(category))
+      .sort((a, b) => a.localeCompare(b)),
+  ];
+
+  return orderedCategories.map((category) => ({
+    category,
+    faqs: grouped.get(category) ?? [],
+  }));
+}
 
 export function sortByOrder<T extends { fields: { order?: number } }>(
   items: T[]
