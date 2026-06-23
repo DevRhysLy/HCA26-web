@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 
+import { sortByOrder } from "@/lib/contentfulMappers";
+
 const SPACE_ID = process.env.CONTENTFUL_SPACE_ID!;
 const ACCESS_TOKEN = process.env.CONTENTFUL_ACCESS_TOKEN!;
 
@@ -110,8 +112,9 @@ export function createSeoMetadata({
 /* -------------------------------------------------------------------------- */
 
 /* Locations */
-export function getLocations() {
-  return getEntries("location");
+export async function getLocations() {
+  const items = await getEntries("location");
+  return sortByOrder(items);
 }
 
 export function getLocationBySlug(slug: string) {
@@ -139,8 +142,9 @@ export function getInstructorBySlug(slug: string) {
 }
 
 /* Classes */
-export function getClasses() {
-  return getEntries("martialClass");
+export async function getClasses() {
+  const items = await getEntries("martialClass");
+  return sortByOrder(items);
 }
 
 export function getClassBySlug(slug: string) {
