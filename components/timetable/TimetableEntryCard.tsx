@@ -72,11 +72,13 @@ interface PopoverPosition {
 interface TimetableEntryCardProps {
   entry: TimetableClassCard;
   fill?: boolean;
+  clipped?: boolean;
 }
 
 export default function TimetableEntryCard({
   entry,
   fill = false,
+  clipped = true,
 }: TimetableEntryCardProps) {
   const variant = entry.variant ?? "generic";
   const style = getCardStyle(variant);
@@ -174,7 +176,7 @@ export default function TimetableEntryCard({
   return (
     <div
       ref={triggerRef}
-      className={cn("relative", fill && "h-full")}
+      className={cn("relative", fill && clipped && "h-full")}
       onMouseEnter={showPopover && !isTouch ? show : undefined}
       onMouseLeave={showPopover && !isTouch ? hide : undefined}
       onFocus={showPopover && !isTouch ? show : undefined}
@@ -188,7 +190,7 @@ export default function TimetableEntryCard({
         className={cn(
           "relative rounded-xl transition-colors",
           fill
-            ? "h-full overflow-hidden px-3 py-2"
+            ? cn("h-full px-3 py-2", clipped && "overflow-hidden")
             : "min-h-[84px] px-4 py-4",
           style.wrap,
         )}

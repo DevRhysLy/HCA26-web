@@ -103,6 +103,7 @@ const GRID_PAD = 12;
 const DEFAULT_DURATION = 60;
 const GAP_THRESHOLD = 60;
 const GAP_HEIGHT = 36;
+const MIN_CARD_HEIGHT = 56;
 
 interface PositionedEvent {
   entry: TimetableClassCard;
@@ -389,7 +390,7 @@ function WeekCalendar({
                     <div className="flex items-center gap-2 w-full px-3">
                       <span className="h-px flex-1 bg-black/[0.07]" />
                       <span className="text-[9px] font-semibold uppercase tracking-wide text-black/30 whitespace-nowrap">
-                        {formatGapLabel(seg.endMin - seg.startMin)} break
+                        No Classes
                       </span>
                       <span className="h-px flex-1 bg-black/[0.07]" />
                     </div>
@@ -399,7 +400,8 @@ function WeekCalendar({
 
               {positioned.map(({ entry, start, end, col, cols }) => {
                 const top = toPx(start);
-                const height = toPx(end) - toPx(start);
+                const naturalHeight = toPx(end) - toPx(start);
+                const cardHeight = Math.max(naturalHeight, MIN_CARD_HEIGHT);
                 const widthPct = 100 / cols;
 
                 return (
@@ -408,12 +410,16 @@ function WeekCalendar({
                     className="absolute p-1"
                     style={{
                       top,
-                      height,
+                      height: cardHeight,
                       left: `${col * widthPct}%`,
                       width: `${widthPct}%`,
                     }}
                   >
-                    <TimetableEntryCard entry={entry} fill />
+                    <TimetableEntryCard
+                      entry={entry}
+                      fill
+                      clipped={naturalHeight >= MIN_CARD_HEIGHT}
+                    />
                   </div>
                 );
               })}
