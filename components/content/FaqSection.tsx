@@ -1,54 +1,36 @@
+import Link from "next/link";
+import FaqList from "@/components/content/FaqList";
 import SectionHeader from "@/components/ui/SectionHeader";
-
-interface FaqItem {
-  id: string;
-  question: string;
-  answer: string;
-  category?: string;
-  order?: number;
-}
+import { FAQ_HOME_PREVIEW_LIMIT } from "@/config/faq";
+import { sortFaqs, type FaqItem } from "@/lib/contentfulMappers";
 
 interface FaqSectionProps {
   faqs: FaqItem[];
 }
 
 export default function FaqSection({ faqs }: FaqSectionProps) {
-  const sortedFaqs = [...faqs].sort(
-    (a, b) => (a.order ?? 999) - (b.order ?? 999),
-  );
+  const previewFaqs = sortFaqs(faqs).slice(0, FAQ_HOME_PREVIEW_LIMIT);
 
   return (
     <section className="bg-[#F8FAFC] py-16 md:py-24">
       <div className="max-w-4xl mx-auto px-6">
         <SectionHeader
-          as="h1"
+          as="h2"
           eyebrow="Frequently Asked Questions"
           title="Questions We Get Asked Often"
           description="Learn more about trial classes, training, uniforms, safety, and what to expect when starting at Hapkido College of Australia."
           className="text-center mb-14"
         />
 
-        <div className="space-y-4">
-          {sortedFaqs.map((faq) => (
-            <details
-              key={faq.id}
-              className="group rounded-2xl border border-black/10 bg-white p-6 shadow-sm"
-            >
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-4">
-                <span className="text-lg font-bold text-[#111111] group-open:text-[#003478]">
-                  {faq.question}
-                </span>
+        <FaqList faqs={previewFaqs} />
 
-                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-black/10 text-[#003478] transition group-open:rotate-45">
-                  +
-                </span>
-              </summary>
-
-              <div className="mt-4 border-t border-black/10 pt-4">
-                <p className="text-black/65 leading-relaxed">{faq.answer}</p>
-              </div>
-            </details>
-          ))}
+        <div className="mt-12 text-center">
+          <Link
+            href="/faq"
+            className="inline-flex items-center justify-center rounded-2xl bg-[#003478] px-8 py-4 text-white font-semibold shadow-lg shadow-[#003478]/20 transition-all duration-200 hover:bg-[#002B63] hover:-translate-y-0.5"
+          >
+            View All FAQs
+          </Link>
         </div>
       </div>
     </section>

@@ -17,7 +17,7 @@ import {
   getFaqs,
   getCalendarEvents,
 } from "@/lib/contentful";
-import { sortInstructorsByRank } from "@/lib/contentfulMappers";
+import { sortInstructorsByRank, mapFaqs } from "@/lib/contentfulMappers";
 
 function mapInstructors(instructorsData: any) {
   return sortInstructorsByRank(instructorsData.items).map((instructor: any) => {
@@ -67,14 +67,6 @@ function mapTestimonials(testimonials: any[]) {
     name: testimonial.fields.title,
     rating: testimonial.fields.rating,
     testimonialDescription: testimonial.fields.description,
-  }));
-}
-
-function mapFaqs(faqs: any[]) {
-  return faqs.map((faq: any) => ({
-    id: faq.sys.id,
-    question: faq.fields.question,
-    answer: faq.fields.answer,
   }));
 }
 
