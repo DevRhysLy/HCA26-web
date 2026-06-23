@@ -17,7 +17,7 @@ Built with **Next.js 16**, **React 19**, **TypeScript**, **Tailwind CSS 4**, and
 | **Contact** | Trial booking form with email delivery via Resend |
 | **SEO** | Metadata, Open Graph, Twitter cards, sitemap, and robots.txt |
 
-Most content is managed in Contentful. The class timetable is maintained in `data/scheduleData.ts`.
+Most content is managed in Contentful, including the weekly class timetable.
 
 ---
 
@@ -71,7 +71,7 @@ Key conventions:
 
 - **Contentful data** is fetched in async server pages/components via `lib/contentful.ts`
 - **Markdown** is rendered on the server with `react-markdown` (`MarkdownContent.tsx`)
-- **Static config** (nav, timetable) lives in `config/` and `data/`
+- **Static config** (nav) lives in `config/`
 - **Shared mappers** for sorting and card shapes are in `lib/contentfulMappers.ts`
 - **Calendar date indexing** is precomputed on the server in `lib/calendarUtils.ts`
 
@@ -104,9 +104,6 @@ components/
 ├── timetable/               # Timetable grid + entry cards
 └── ui/                      # HorizontalScrollCarousel
 
-data/
-└── scheduleData.ts          # Timetable locations, slots, class entries
-
 lib/
 ├── contentful.ts            # Contentful fetch helpers
 ├── contentfulMappers.ts     # Sort/map utilities
@@ -128,7 +125,7 @@ types/                       # Shared TypeScript types
 | Path | Source |
 |------|--------|
 | `/` | Home |
-| `/schedule` | Static timetable data |
+| `/schedule` | Contentful schedule entries |
 | `/classes`, `/classes/[slug]` | Contentful |
 | `/instructors`, `/instructors/[slug]` | Contentful |
 | `/locations`, `/locations/[slug]` | Contentful |
@@ -144,7 +141,8 @@ types/                       # Shared TypeScript types
 |-------|-----|------------|
 | Location | `location` | title, slug, description, body, image, address, googleMapsEmbedUrl |
 | Instructor | `instructor` | title, slug, description, body, image, rank |
-| Martial Class | `martialClass` | title, slug, description, body, image, ageRange |
+| Martial Class | `martialClass` | title, slug, description, body, image, tag (timetable label), ageRange (popover), timetableVariant |
+| Schedule Entry | `scheduleEntry` | internalName, location, day, timeSlot, durationMinutes, classes (1+ martialClass refs), instructor, order |
 | About Page | `aboutPage` | title, slug, description, body, image |
 | Testimonial | `testimonial` | title (reviewer name), description, rating |
 | FAQ | `faq` | question, answer |
@@ -213,13 +211,20 @@ Edit entries in the Contentful web app. Changes appear on the site within ~60 se
 
 ### Class timetable
 
-Edit `data/scheduleData.ts`:
+Create **Schedule Entry** records in Contentful. Each entry defines when and where a session runs:
 
-- `scheduleLocations` — dojang list
-- `scheduleTimeSlotsByLocation` — time rows per location
-- `scheduleEntries` — individual class cards
+- **Location** — reference to a location entry (uses its slug)
+- **Day** and **Time Slot** — when the class runs
+- **Duration Minutes** — slot length on the calendar
+- **Classes** — link one `martialClass` for a single program, or multiple for mixed sessions (e.g. youth + adults)
 
-Each entry needs a matching `timeSlot` value that exists in its location's slot list.
+Card title, tag, and colours are built automatically from the linked class entries:
+
+- **Tag** on each martial class — short label shown on the timetable card (e.g. `KIDS (Beg)`)
+- **Age Range** on each martial class — shown on hover/tap only, not on the card
+- Optional **Timetable Variant** on a martial class overrides colour inference
+
+Mixed example: link both Youth and Adult martial class entries → card title becomes `Youth Class & Adult Class`, tag combines each class’s tag field, and age ranges appear in the hover popover.
 
 ### Navigation
 

@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import TimetableEntryCard from "@/components/timetable/TimetableEntryCard";
+import { formatTime, parseTimeToMinutes } from "@/components/timetable/time";
 import {
   DEFAULT_DAYS,
   type TimetableClassCard,
@@ -38,6 +39,394 @@ function shortDay(d: TimetableDay) {
   return d.slice(0, 3);
 }
 
+interface FilterPillRowProps {
+  label: string;
+  allLabel: string;
+  options: string[];
+  active: string | null;
+  onChange: (value: string | null) => void;
+}
+
+function FilterPillRow({
+  label,
+  allLabel,
+  options,
+  active,
+  onChange,
+}: FilterPillRowProps) {
+  if (options.length === 0) return null;
+
+  const pill = (selected: boolean) =>
+    cn(
+      "px-4 py-2 rounded-full text-sm font-semibold transition-colors flex-shrink-0 border whitespace-nowrap",
+      selected
+        ? "bg-[#003478] text-white border-[#003478]"
+        : "bg-white text-black/60 border-black/10 hover:border-[#003478]/40 hover:text-[#003478]",
+    );
+
+  return (
+    <div className="flex items-center gap-3">
+      <span className="hidden sm:block text-xs font-bold tracking-widest text-black/40 uppercase flex-shrink-0">
+        {label}
+      </span>
+
+      <div className="flex gap-2 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <button
+          type="button"
+          aria-pressed={active === null}
+          onClick={() => onChange(null)}
+          className={pill(active === null)}
+        >
+          {allLabel}
+        </button>
+
+        {options.map((opt) => (
+          <button
+            key={opt}
+            type="button"
+            aria-pressed={active === opt}
+            onClick={() => onChange(opt)}
+            className={pill(active === opt)}
+          >
+            {opt}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ------------------------------ Calendar ------------------------------ */
+
+const DEFAULT_HOUR_HEIGHT = 96;
+const GRID_PAD = 12;
+const DEFAULT_DURATION = 60;
+const GAP_THRESHOLD = 60;
+const GAP_HEIGHT = 36;
+const MIN_CARD_HEIGHT = 72;
+
+interface PositionedEvent {
+  entry: TimetableClassCard;
+  start: number;
+  end: number;
+  col: number;
+  cols: number;
+}
+
+interface TimeSegment {
+  type: "active" | "gap";
+  startMin: number;
+  endMin: number;
+  pxStart: number;
+  height: number;
+}
+
+function buildSegments(
+  entries: TimetableClassCard[],
+  startMin: number,
+  endMin: number,
+  pxPerMin: number,
+  gapThreshold: number,
+): TimeSegment[] {
+  const intervals = entries
+    .map((e) => {
+      const s = parseTimeToMinutes(e.timeSlot);
+      if (s === null) return null;
+      return { start: s, end: s + (e.durationMinutes ?? DEFAULT_DURATION) };
+    })
+    .filter((v): v is { start: number; end: number } => v !== null)
+    .sort((a, b) => a.start - b.start);
+
+  // Merge class intervals, keeping gaps <= threshold inside one active block.
+  const blocks: Array<{ start: number; end: number }> = [];
+  for (const iv of intervals) {
+    const last = blocks[blocks.length - 1];
+    if (last && iv.start - last.end <= gapThreshold) {
+      last.end = Math.max(last.end, iv.end);
+    } else {
+      blocks.push({ start: iv.start, end: iv.end });
+    }
+  }
+
+  // Build the raw (typed) segment list, with active blocks spanning the
+  // full grid range at the edges and compressed gaps in between.
+  const raw: Array<Pick<TimeSegment, "type" | "startMin" | "endMin">> = [];
+
+  if (blocks.length === 0) {
+    raw.push({ type: "active", startMin, endMin });
+  } else {
+    blocks[0].start = Math.min(blocks[0].start, startMin);
+    blocks[blocks.length - 1].end = Math.max(
+      blocks[blocks.length - 1].end,
+      endMin,
+    );
+
+    blocks.forEach((block, i) => {
+      if (i > 0) {
+        raw.push({
+          type: "gap",
+          startMin: blocks[i - 1].end,
+          endMin: block.start,
+        });
+      }
+      raw.push({ type: "active", startMin: block.start, endMin: block.end });
+    });
+  }
+
+  let cursor = 0;
+  return raw.map((seg) => {
+    const height =
+      seg.type === "gap" ? GAP_HEIGHT : (seg.endMin - seg.startMin) * pxPerMin;
+    const segment: TimeSegment = { ...seg, pxStart: cursor, height };
+    cursor += height;
+    return segment;
+  });
+}
+
+function minuteToPixel(min: number, segments: TimeSegment[]): number {
+  for (const seg of segments) {
+    if (min < seg.startMin) return seg.pxStart;
+    if (min <= seg.endMin) {
+      const span = seg.endMin - seg.startMin || 1;
+      return seg.pxStart + ((min - seg.startMin) / span) * seg.height;
+    }
+  }
+
+  const last = segments[segments.length - 1];
+  return last ? last.pxStart + last.height : 0;
+}
+
+function formatGapLabel(minutes: number): string {
+  const hrs = Math.floor(minutes / 60);
+  const mins = minutes % 60;
+
+  if (hrs === 0) return `${mins} min`;
+  if (mins === 0) return `${hrs} hr${hrs > 1 ? "s" : ""}`;
+  return `${hrs}h ${mins}m`;
+}
+
+function layoutDayEvents(dayEntries: TimetableClassCard[]): PositionedEvent[] {
+  const items = dayEntries
+    .map((entry) => {
+      const start = parseTimeToMinutes(entry.timeSlot) ?? 0;
+      const end = start + (entry.durationMinutes ?? DEFAULT_DURATION);
+      return { entry, start, end };
+    })
+    .sort((a, b) => a.start - b.start || a.end - b.end);
+
+  const positioned: PositionedEvent[] = [];
+  let cluster: Array<{ entry: TimetableClassCard; start: number; end: number }> =
+    [];
+  let clusterEnd = -Infinity;
+
+  const flush = () => {
+    if (cluster.length === 0) return;
+
+    const colEnds: number[] = [];
+    const assigned = cluster.map((it) => {
+      let col = colEnds.findIndex((e) => e <= it.start);
+      if (col === -1) {
+        col = colEnds.length;
+        colEnds.push(it.end);
+      } else {
+        colEnds[col] = it.end;
+      }
+      return { ...it, col };
+    });
+
+    const cols = colEnds.length;
+    for (const a of assigned) positioned.push({ ...a, cols });
+
+    cluster = [];
+    clusterEnd = -Infinity;
+  };
+
+  for (const it of items) {
+    if (cluster.length > 0 && it.start >= clusterEnd) flush();
+    cluster.push(it);
+    clusterEnd = Math.max(clusterEnd, it.end);
+  }
+  flush();
+
+  return positioned;
+}
+
+interface WeekCalendarProps {
+  days: TimetableDay[];
+  entries: TimetableClassCard[];
+  dayStartHour?: number;
+  dayEndHour?: number;
+  hourHeight?: number;
+}
+
+function WeekCalendar({
+  days,
+  entries,
+  dayStartHour,
+  dayEndHour,
+  hourHeight = DEFAULT_HOUR_HEIGHT,
+}: WeekCalendarProps) {
+  const { startMin, endMin } = React.useMemo(() => {
+    let min = Infinity;
+    let max = -Infinity;
+
+    for (const e of entries) {
+      const s = parseTimeToMinutes(e.timeSlot);
+      if (s === null) continue;
+      const en = s + (e.durationMinutes ?? DEFAULT_DURATION);
+      if (s < min) min = s;
+      if (en > max) max = en;
+    }
+
+    if (!Number.isFinite(min) || !Number.isFinite(max)) {
+      min = 9 * 60;
+      max = 21 * 60;
+    }
+
+    let startH = dayStartHour ?? Math.floor(min / 60);
+    let endH = dayEndHour ?? Math.ceil(max / 60);
+    if (endH <= startH) endH = startH + 1;
+
+    return { startMin: startH * 60, endMin: endH * 60 };
+  }, [entries, dayStartHour, dayEndHour]);
+
+  const pxPerMin = hourHeight / 60;
+
+  const segments = React.useMemo(
+    () => buildSegments(entries, startMin, endMin, pxPerMin, GAP_THRESHOLD),
+    [entries, startMin, endMin, pxPerMin],
+  );
+
+  const innerHeight = segments.reduce((sum, seg) => sum + seg.height, 0);
+  const totalHeight = innerHeight + GRID_PAD * 2;
+
+  const toPx = React.useCallback(
+    (min: number) => GRID_PAD + minuteToPixel(min, segments),
+    [segments],
+  );
+
+  const isActive = React.useCallback(
+    (min: number) =>
+      segments.some(
+        (seg) =>
+          seg.type === "active" && min >= seg.startMin && min <= seg.endMin,
+      ),
+    [segments],
+  );
+
+  const hours: number[] = [];
+  for (let h = startMin; h <= endMin; h += 60) {
+    if (isActive(h)) hours.push(h);
+  }
+
+  const gapSegments = segments.filter((seg) => seg.type === "gap");
+
+  const eventsByDay = React.useMemo(() => {
+    const map = new Map<TimetableDay, PositionedEvent[]>();
+    for (const d of days) {
+      map.set(
+        d,
+        layoutDayEvents(entries.filter((e) => e.day === d)),
+      );
+    }
+    return map;
+  }, [entries, days]);
+
+  const gridTemplate = `64px repeat(${days.length}, minmax(0, 1fr))`;
+
+  return (
+    <div className="rounded-2xl border border-black/10 bg-white shadow-sm overflow-hidden">
+      <div className="grid" style={{ gridTemplateColumns: gridTemplate }}>
+        <div className="border-b border-black/10 bg-[#F8FAFC]" />
+        {days.map((d) => (
+          <div
+            key={d}
+            className="px-3 py-4 border-b border-l border-black/10 bg-[#F8FAFC] text-center"
+          >
+            <span className="text-[#003478] font-bold text-sm">{d}</span>
+          </div>
+        ))}
+      </div>
+
+      <div className="grid" style={{ gridTemplateColumns: gridTemplate }}>
+        <div className="relative bg-[#F8FAFC]" style={{ height: totalHeight }}>
+          {hours.map((h) => (
+            <div
+              key={h}
+              className="absolute right-2 -translate-y-1/2 text-[10px] font-semibold text-black/40 whitespace-nowrap"
+              style={{ top: toPx(h) }}
+            >
+              {formatTime(h)}
+            </div>
+          ))}
+        </div>
+
+        {days.map((d) => {
+          const positioned = eventsByDay.get(d) ?? [];
+
+          return (
+            <div
+              key={d}
+              className="relative overflow-visible border-l border-black/10"
+              style={{ height: totalHeight }}
+            >
+              {hours.map((h) => (
+                <div
+                  key={h}
+                  className="absolute inset-x-0 border-t border-black/[0.06]"
+                  style={{ top: toPx(h) }}
+                />
+              ))}
+
+              {gapSegments.map((seg) => {
+                const top = GRID_PAD + seg.pxStart;
+
+                return (
+                  <div
+                    key={`gap-${seg.startMin}`}
+                    className="absolute inset-x-0 flex items-center justify-center"
+                    style={{ top, height: seg.height }}
+                  >
+                    <div className="flex items-center gap-2 w-full px-3">
+                      <span className="h-px flex-1 bg-black/[0.07]" />
+                      <span className="text-[9px] font-semibold uppercase tracking-wide text-black/30 whitespace-nowrap">
+                        No Classes
+                      </span>
+                      <span className="h-px flex-1 bg-black/[0.07]" />
+                    </div>
+                  </div>
+                );
+              })}
+
+              {positioned.map(({ entry, start, end, col, cols }) => {
+                const top = toPx(start);
+                const naturalHeight = toPx(end) - toPx(start);
+                const cardHeight = Math.max(naturalHeight, MIN_CARD_HEIGHT);
+                const widthPct = 100 / cols;
+
+                return (
+                  <div
+                    key={entry.id}
+                    className="absolute z-10 p-1 hover:z-20"
+                    style={{
+                      top,
+                      height: cardHeight,
+                      left: `${col * widthPct}%`,
+                      width: `${widthPct}%`,
+                    }}
+                  >
+                    <TimetableEntryCard entry={entry} fill />
+                  </div>
+                );
+              })}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
 /* ------------------------------ Component ------------------------------ */
 
 export function Timetable(props: TimetableProps) {
@@ -53,6 +442,10 @@ export function Timetable(props: TimetableProps) {
     timeSlotsByLocation,
     entries,
     containerClassName,
+    enableFilters = true,
+    dayStartHour,
+    dayEndHour,
+    hourHeight,
   } = props;
 
   const isControlled = selectedLocationId !== undefined;
@@ -74,28 +467,42 @@ export function Timetable(props: TimetableProps) {
   const effectiveTimeSlots =
     timeSlotsByLocation?.[currentLocationId] ?? timeSlots;
 
-  const filtered = React.useMemo(
-    () => entries.filter((e) => e.locationId === currentLocationId),
-    [entries, currentLocationId],
+  const [activeClassFilter, setActiveClassFilter] = React.useState<
+    string | null
+  >(null);
+  const [activeTimeFilter, setActiveTimeFilter] = React.useState<string | null>(
+    null,
   );
 
-  const cellMap = React.useMemo(() => {
-    const map = new Map<string, Map<TimetableDay, TimetableClassCard[]>>();
+  React.useEffect(() => {
+    setActiveClassFilter(null);
+    setActiveTimeFilter(null);
+  }, [currentLocationId]);
 
-    for (const slot of effectiveTimeSlots) {
-      map.set(slot, new Map<TimetableDay, TimetableClassCard[]>());
-      for (const d of days) map.get(slot)!.set(d, []);
+  const availableClassTags = React.useMemo(() => {
+    const seen = new Set<string>();
+    const tags: string[] = [];
+
+    for (const e of entries) {
+      if (e.locationId !== currentLocationId) continue;
+      if (!e.tag || seen.has(e.tag)) continue;
+      seen.add(e.tag);
+      tags.push(e.tag);
     }
 
-    for (const e of filtered) {
-      if (!map.has(e.timeSlot)) continue;
-      const row = map.get(e.timeSlot)!;
-      if (!row.has(e.day)) continue;
-      row.get(e.day)!.push(e);
-    }
+    return tags;
+  }, [entries, currentLocationId]);
 
-    return map;
-  }, [filtered, effectiveTimeSlots, days]);
+  const filtered = React.useMemo(
+    () =>
+      entries.filter((e) => {
+        if (e.locationId !== currentLocationId) return false;
+        if (activeClassFilter && e.tag !== activeClassFilter) return false;
+        if (activeTimeFilter && e.timeSlot !== activeTimeFilter) return false;
+        return true;
+      }),
+    [entries, currentLocationId, activeClassFilter, activeTimeFilter],
+  );
 
   const [activeDay, setActiveDay] = React.useState<TimetableDay>(() => days[0]);
 
@@ -269,6 +676,27 @@ export function Timetable(props: TimetableProps) {
           </div>
         </div>
 
+        {enableFilters &&
+          (availableClassTags.length > 0 || effectiveTimeSlots.length > 0) && (
+            <div className="mb-8 md:mb-10 flex flex-col gap-3">
+              <FilterPillRow
+                label="Class"
+                allLabel="All classes"
+                options={availableClassTags}
+                active={activeClassFilter}
+                onChange={setActiveClassFilter}
+              />
+
+              <FilterPillRow
+                label="Time"
+                allLabel="All times"
+                options={effectiveTimeSlots}
+                active={activeTimeFilter}
+                onChange={setActiveTimeFilter}
+              />
+            </div>
+          )}
+
         <div className="md:hidden">
           <div className="rounded-2xl border border-black/10 bg-white shadow-sm overflow-hidden mb-4">
             <div
@@ -337,72 +765,13 @@ export function Timetable(props: TimetableProps) {
         </div>
 
         <div className="hidden md:block">
-          <div className="rounded-2xl border border-black/10 bg-white shadow-sm overflow-hidden">
-            <div
-              className="grid"
-              style={{
-                gridTemplateColumns: `160px repeat(${days.length}, minmax(0, 1fr))`,
-              }}
-            >
-              <div className="px-6 py-5 border-b border-black/10 bg-[#F8FAFC]">
-                <span className="text-xs font-bold tracking-widest text-black/50 uppercase">
-                  Time Slot
-                </span>
-              </div>
-
-              {days.map((d) => (
-                <div
-                  key={d}
-                  className="px-6 py-5 border-b border-l border-black/10 bg-[#F8FAFC] text-center"
-                >
-                  <span className="text-[#003478] font-bold">{d}</span>
-                </div>
-              ))}
-            </div>
-
-            <div className="divide-y divide-black/10">
-              {effectiveTimeSlots.map((slot) => {
-                const row = cellMap.get(slot)!;
-
-                return (
-                  <div
-                    key={slot}
-                    className="grid"
-                    style={{
-                      gridTemplateColumns: `160px repeat(${days.length}, minmax(0, 1fr))`,
-                    }}
-                  >
-                    <div className="px-6 py-6 bg-[#F8FAFC]">
-                      <div className="text-[#003478] font-bold tracking-wide">
-                        {slot}
-                      </div>
-                    </div>
-
-                    {days.map((d) => {
-                      const cards = row.get(d) ?? [];
-
-                      return (
-                        <div key={d} className="p-4 border-l border-black/10">
-                          <div className="flex flex-col gap-3">
-                            {cards.map((entry) => (
-                              <TimetableEntryCard
-                                key={entry.id}
-                                entry={entry}
-                              />
-                            ))}
-
-                            {cards.length === 0 && (
-                              <div className="h-[84px] rounded-xl border border-transparent" />
-                            )}
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                );
-              })}
-            </div>
-          </div>
+          <WeekCalendar
+            days={days}
+            entries={filtered}
+            dayStartHour={dayStartHour}
+            dayEndHour={dayEndHour}
+            hourHeight={hourHeight}
+          />
         </div>
       </div>
     </section>
