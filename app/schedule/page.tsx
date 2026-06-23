@@ -1,34 +1,54 @@
 import { Timetable } from "@/components/timetable/Timetable";
 import { getScheduleEntries } from "@/lib/contentful";
 import { buildTimetableData } from "@/lib/contentfulMappers";
-import {
-  scheduleEntries,
-  scheduleLocations,
-  scheduleTimeSlots,
-  scheduleTimeSlotsByLocation,
-} from "@/data/scheduleData";
 
-async function getTimetableData() {
+export default async function Schedule() {
+  let locations: Awaited<ReturnType<typeof buildTimetableData>>["locations"] =
+    [];
+  let entries: Awaited<ReturnType<typeof buildTimetableData>>["entries"] = [];
+  let timeSlots: Awaited<ReturnType<typeof buildTimetableData>>["timeSlots"] =
+    [];
+  let timeSlotsByLocation: Awaited<
+    ReturnType<typeof buildTimetableData>
+  >["timeSlotsByLocation"] = {};
+  let loadError = false;
+
   try {
     const data = await getScheduleEntries();
     const built = buildTimetableData(data);
-
-    if (built.entries.length > 0) return built;
+    locations = built.locations;
+    entries = built.entries;
+    timeSlots = built.timeSlots;
+    timeSlotsByLocation = built.timeSlotsByLocation;
   } catch (error) {
     console.error("Failed to load schedule from Contentful:", error);
+    loadError = true;
   }
 
-  return {
-    locations: scheduleLocations,
-    entries: scheduleEntries,
-    timeSlots: scheduleTimeSlots,
-    timeSlotsByLocation: scheduleTimeSlotsByLocation,
-  };
-}
-
-export default async function Schedule() {
-  const { locations, entries, timeSlots, timeSlotsByLocation } =
-    await getTimetableData();
+  if (loadError || entries.length === 0) {
+    return (
+      <div>
+        <section className="mx-auto max-w-7xl px-4 sm:px-6 py-16 md:py-24">
+          <div className="rounded-3xl border border-black/10 bg-white p-8 md:p-10 text-center shadow-sm">
+            <h1 className="text-3xl font-extrabold tracking-tight text-[#111111]">
+              Weekly Class Timetable
+            </h1>
+            <p className="mt-4 text-black/60 leading-relaxed">
+              {loadError
+                ? "We could not load the timetable right now. Please try again shortly or contact us for class times."
+                : "The timetable is being updated in Contentful. Please check back soon or contact us for class availability."}
+            </p>
+            <a
+              href="/contact"
+              className="mt-8 inline-flex items-center justify-center rounded-2xl bg-[#003478] px-8 py-4 text-white font-semibold shadow-lg shadow-[#003478]/20 transition-all duration-200 hover:bg-[#002B63]"
+            >
+              Contact Us
+            </a>
+          </div>
+        </section>
+      </div>
+    );
+  }
 
   return (
     <div>

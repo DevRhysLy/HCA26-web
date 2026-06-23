@@ -181,5 +181,5 @@ export function getCalendarEvents() {
 
 /* Schedule */
 export function getScheduleEntries() {
-  return getEntries("scheduleEntry", { include: 2, fullResponse: true });
+  return getEntries("scheduleEntry", { include: 3, fullResponse: true });
 }

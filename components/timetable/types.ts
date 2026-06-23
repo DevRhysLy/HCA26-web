@@ -37,6 +37,16 @@ export interface TimetableInstructor {
   rank?: string;
 }
 
+export interface TimetableLinkedClass {
+  id: string;
+  slug: string;
+  title: string;
+  tag?: string;
+  ageRange?: string;
+  description?: string;
+  href: string;
+}
+
 export interface TimetableClassCard {
   id: string;
   locationId: string;
@@ -52,6 +62,7 @@ export interface TimetableClassCard {
   ageRange?: string;
   duration?: string;
   durationMinutes?: number;
+  linkedClasses?: TimetableLinkedClass[];
 }
 
 export interface TimetableProps {

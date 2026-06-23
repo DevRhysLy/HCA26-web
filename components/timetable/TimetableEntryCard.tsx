@@ -3,6 +3,7 @@
 import * as React from "react";
 import { createPortal } from "react-dom";
 import Image from "next/image";
+import Link from "next/link";
 import type { TimetableCardVariant, TimetableClassCard } from "./types";
 import { formatTime, parseTimeToMinutes } from "./time";
 
@@ -52,6 +53,7 @@ function getCardStyle(variant: TimetableCardVariant) {
 
 function hasHoverContent(entry: TimetableClassCard) {
   return !!(
+    entry.linkedClasses?.length ||
     entry.instructor ||
     entry.description ||
     entry.ageRange ||
@@ -72,20 +74,19 @@ interface PopoverPosition {
 interface TimetableEntryCardProps {
   entry: TimetableClassCard;
   fill?: boolean;
-  clipped?: boolean;
 }
 
 export default function TimetableEntryCard({
   entry,
   fill = false,
-  clipped = true,
 }: TimetableEntryCardProps) {
   const variant = entry.variant ?? "generic";
   const style = getCardStyle(variant);
   const timeInside = entry.showTimeInsideCard
     ? (entry.timeLabelOverride ?? entry.timeSlot)
     : null;
-  const showPopover = hasHoverContent(entry);
+  const showPopover = fill || hasHoverContent(entry);
+  const hasMultipleClasses = (entry.linkedClasses?.length ?? 0) > 1;
 
   const startMinutes = parseTimeToMinutes(entry.timeSlot);
   const timeRange =
@@ -176,7 +177,7 @@ export default function TimetableEntryCard({
   return (
     <div
       ref={triggerRef}
-      className={cn("relative", fill && clipped && "h-full")}
+      className={cn("relative", fill && "h-full")}
       onMouseEnter={showPopover && !isTouch ? show : undefined}
       onMouseLeave={showPopover && !isTouch ? hide : undefined}
       onFocus={showPopover && !isTouch ? show : undefined}
@@ -189,9 +190,7 @@ export default function TimetableEntryCard({
       <div
         className={cn(
           "relative rounded-xl transition-colors",
-          fill
-            ? cn("h-full px-3 py-2", clipped && "overflow-hidden")
-            : "min-h-[84px] px-4 py-4",
+          fill ? "h-full overflow-visible px-3 py-2" : "min-h-[84px] px-4 py-4",
           style.wrap,
         )}
       >
@@ -230,7 +229,7 @@ export default function TimetableEntryCard({
 
           <div
             className={cn(
-              "font-semibold",
+              "font-semibold break-words",
               fill ? "text-xs leading-snug" : "mt-1 text-sm",
               style.title,
             )}
@@ -264,9 +263,69 @@ export default function TimetableEntryCard({
             }}
             className={cn(
               "bg-white rounded-2xl border border-black/10 shadow-[0_12px_40px_rgba(0,0,0,0.18)]",
-              "p-4 pointer-events-none",
+              "p-4",
+              hasMultipleClasses || (entry.linkedClasses?.length ?? 0) > 0
+                ? "pointer-events-auto"
+                : "pointer-events-none",
             )}
           >
+            <div className="text-xs font-semibold tracking-wide text-black/50 mb-3">
+              {timeRange}
+            </div>
+
+            {fill && (
+              <div className="mb-3">
+                {entry.tag && (
+                  <div
+                    className={cn(
+                      "text-[10px] font-bold tracking-wide uppercase mb-1",
+                      style.tag,
+                    )}
+                  >
+                    {entry.tag}
+                  </div>
+                )}
+                <div className="text-sm font-bold text-[#111111]">{entry.title}</div>
+              </div>
+            )}
+
+            {hasMultipleClasses && entry.linkedClasses && (
+              <div className="space-y-3 mb-3">
+                {entry.linkedClasses.map((linkedClass) => (
+                  <div
+                    key={linkedClass.id}
+                    className="border-t border-black/10 pt-3 first:border-0 first:pt-0"
+                  >
+                    <Link
+                      href={linkedClass.href}
+                      className="text-sm font-bold text-[#003478] transition-colors hover:text-[#C60C30]"
+                    >
+                      {linkedClass.title}
+                    </Link>
+                    {linkedClass.ageRange && (
+                      <div className="mt-1 text-xs font-semibold text-[#003478]">
+                        {linkedClass.ageRange}
+                      </div>
+                    )}
+                    {linkedClass.description && (
+                      <p className="mt-2 text-xs text-black/60 leading-relaxed">
+                        {linkedClass.description}
+                      </p>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {entry.linkedClasses?.length === 1 && entry.linkedClasses[0].href && (
+              <Link
+                href={entry.linkedClasses[0].href}
+                className="mb-3 inline-flex text-xs font-semibold text-[#003478] transition-colors hover:text-[#C60C30]"
+              >
+                View class details
+              </Link>
+            )}
+
             {entry.instructor && (
               <div className="flex items-center gap-3 mb-3">
                 {entry.instructor.photo ? (

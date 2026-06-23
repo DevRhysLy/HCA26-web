@@ -98,12 +98,12 @@ function FilterPillRow({
 
 /* ------------------------------ Calendar ------------------------------ */
 
-const DEFAULT_HOUR_HEIGHT = 80;
+const DEFAULT_HOUR_HEIGHT = 96;
 const GRID_PAD = 12;
 const DEFAULT_DURATION = 60;
 const GAP_THRESHOLD = 60;
 const GAP_HEIGHT = 36;
-const MIN_CARD_HEIGHT = 56;
+const MIN_CARD_HEIGHT = 72;
 
 interface PositionedEvent {
   entry: TimetableClassCard;
@@ -367,7 +367,7 @@ function WeekCalendar({
           return (
             <div
               key={d}
-              className="relative border-l border-black/10"
+              className="relative overflow-visible border-l border-black/10"
               style={{ height: totalHeight }}
             >
               {hours.map((h) => (
@@ -407,7 +407,7 @@ function WeekCalendar({
                 return (
                   <div
                     key={entry.id}
-                    className="absolute p-1"
+                    className="absolute z-10 p-1 hover:z-20"
                     style={{
                       top,
                       height: cardHeight,
@@ -415,11 +415,7 @@ function WeekCalendar({
                       width: `${widthPct}%`,
                     }}
                   >
-                    <TimetableEntryCard
-                      entry={entry}
-                      fill
-                      clipped={naturalHeight >= MIN_CARD_HEIGHT}
-                    />
+                    <TimetableEntryCard entry={entry} fill />
                   </div>
                 );
               })}
