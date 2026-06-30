@@ -16,8 +16,14 @@ import {
   getTestimonials,
   getFaqs,
   getCalendarEvents,
+  getWeeklyThemes,
 } from "@/lib/contentful";
-import { sortInstructorsByRank, mapFaqs } from "@/lib/contentfulMappers";
+import {
+  sortInstructorsByRank,
+  mapFaqs,
+  mapCalendarEvents,
+  mapWeeklyThemes,
+} from "@/lib/contentfulMappers";
 
 function mapInstructors(instructorsData: any) {
   return sortInstructorsByRank(instructorsData.items).map((instructor: any) => {
@@ -70,22 +76,6 @@ function mapTestimonials(testimonials: any[]) {
   }));
 }
 
-function mapCalendarItems(items: any[]) {
-  return items.map((item: any) => ({
-    id: item.sys.id,
-    title: item.fields.title,
-    startDate: item.fields.startDate,
-    endDate: item.fields.endDate,
-    type: item.fields.type,
-    description: item.fields.description,
-    location: item.fields.location,
-    isRecurring: item.fields.isRecurring,
-    recurringDay: item.fields.recurringDay,
-    recurringStartDate: item.fields.recurringStartDate,
-    recurringEndDate: item.fields.recurringEndDate,
-  }));
-}
-
 export default async function Home() {
   const [
     services,
@@ -94,6 +84,7 @@ export default async function Home() {
     testimonialsData,
     faqData,
     calendarData,
+    themesData,
   ] = await Promise.all([
     getClasses(),
     getInstructors(),
@@ -101,6 +92,7 @@ export default async function Home() {
     getTestimonials(),
     getFaqs(),
     getCalendarEvents(),
+    getWeeklyThemes(),
   ]);
 
   return (
@@ -110,7 +102,10 @@ export default async function Home() {
 
       <ProgramsSection services={mapServices(services)} />
 
-      <MonthlyCalendarSection items={mapCalendarItems(calendarData)} />
+      <MonthlyCalendarSection
+        themes={mapWeeklyThemes(themesData)}
+        events={mapCalendarEvents(calendarData)}
+      />
 
       <LocationPreviewSection locations={mapLocations(studioLocationsData)} />
 

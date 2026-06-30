@@ -1,5 +1,12 @@
 import { FAQ_DEFAULT_CATEGORY } from "@/config/faq";
 import { getAssetUrl } from "@/lib/contentful";
+import {
+  formatDateKey,
+  WEEKLY_THEME_COLORS,
+  type CalendarItem,
+  type WeeklyTheme,
+  type WeeklyThemeColor,
+} from "@/lib/calendarUtils";
 import type {
   TimetableCardVariant,
   TimetableClassCard,
@@ -397,6 +404,69 @@ export function buildTimetableData(data: any): TimetableData {
     timeSlots: sortSlots(allTimeSlots),
     timeSlotsByLocation: mappedTimeSlotsByLocation,
   };
+}
+
+function normalizeContentfulDate(value?: string) {
+  if (!value) return "";
+  return value.slice(0, 10);
+}
+
+function addDaysToDateKey(dateKey: string, days: number) {
+  const [year, month, day] = dateKey.split("-").map(Number);
+  const date = new Date(year, month - 1, day);
+  date.setDate(date.getDate() + days);
+  return formatDateKey(date);
+}
+
+function parseWeeklyThemeColor(value: unknown): WeeklyThemeColor {
+  if (
+    typeof value === "string" &&
+    WEEKLY_THEME_COLORS.includes(value as WeeklyThemeColor)
+  ) {
+    return value as WeeklyThemeColor;
+  }
+
+  return "blue";
+}
+
+export function mapWeeklyTheme(item: any): WeeklyTheme {
+  const weekStartDate = normalizeContentfulDate(item.fields.weekStartDate);
+
+  return {
+    id: item.sys.id,
+    title: item.fields.title ?? "",
+    description: item.fields.description,
+    weekStartDate,
+    weekEndDate: addDaysToDateKey(weekStartDate, 5),
+    location: item.fields.location,
+    themeColor: parseWeeklyThemeColor(item.fields.themeColor),
+  };
+}
+
+export function mapWeeklyThemes(items: any[]): WeeklyTheme[] {
+  return items.map(mapWeeklyTheme);
+}
+
+export function mapCalendarEvent(item: any): CalendarItem {
+  return {
+    id: item.sys.id,
+    title: item.fields.title,
+    startDate: item.fields.startDate,
+    endDate: item.fields.endDate,
+    type: item.fields.type,
+    description: item.fields.description,
+    location: item.fields.location,
+    isRecurring: item.fields.isRecurring,
+    recurringDay: item.fields.recurringDay,
+    recurringStartDate: item.fields.recurringStartDate,
+    recurringEndDate: item.fields.recurringEndDate,
+  };
+}
+
+export function mapCalendarEvents(items: any[]): CalendarItem[] {
+  return items
+    .map(mapCalendarEvent)
+    .filter((item) => item.type !== "weekly-theme" && !item.isRecurring);
 }
 
 export function sortInstructorsByRank(items: any[]) {

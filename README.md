@@ -146,7 +146,8 @@ types/                       # Shared TypeScript types
 | About Page | `aboutPage` | title, slug, description, body, image |
 | Testimonial | `testimonial` | title (reviewer name), description, rating |
 | FAQ | `faq` | question, answer |
-| Calendar Event | `calendarEvent` | title, description, type, startDate, endDate, isRecurring, recurringDay, recurringStartDate, recurringEndDate, location |
+| Calendar Event | `calendarEvent` | title, description, type, startDate, endDate, location |
+| Weekly Theme | `weeklyTheme` | title, description, weekStartDate (Monday), location, themeColor |
 
 Migrations live in `contentful/migrations/`. Run against your space:
 
@@ -225,6 +226,51 @@ Card title, tag, and colours are built automatically from the linked class entri
 - Optional **Timetable Variant** on a martial class overrides colour inference
 
 Mixed example: link both Youth and Adult martial class entries → card title becomes `Youth Class & Adult Class`, tag combines each class’s tag field, and age ranges appear in the hover popover.
+
+### Member calendar
+
+The home page calendar shows **weekly themes** (Mon–Sat training weeks), **one-off events** (gradings, camps, etc.), and **closed Sundays** (always closed on the site — no CMS entry needed).
+
+#### Weekly themes
+
+Create one **Weekly Theme** entry per training week:
+
+1. Set **Week Start Date** to the **Monday** of that week.
+2. The site automatically spans the theme across Monday through Saturday.
+3. Optional **Description** and **Location** appear in the sidebar.
+4. Optional **Theme Color** tints the week card header and weekday cells in the calendar grid, and adds a matching accent in the sidebar. Leave blank for brand blue (`#003478`).
+
+**Theme Color** options:
+
+| Value | Accent | Use |
+|-------|--------|-----|
+| `blue` (default) | `#003478` | Brand primary |
+| `red` | `#C60C30` | Brand accent |
+| `teal` | `#0F766E` | Alternate week |
+| `amber` | `#B45309` | Alternate week |
+| `purple` | `#6D28D9` | Alternate week |
+| `slate` | `#475569` | Neutral weeks |
+
+Run migration `007-create-weekly-theme.js` before creating weekly theme entries:
+
+```bash
+contentful space migration \
+  --space-id YOUR_SPACE_ID \
+  --environment-id master \
+  ./contentful/migrations/007-create-weekly-theme.js
+```
+
+Older **Calendar Event** entries with type `weekly-theme` or recurring day fields are no longer used for the calendar grid. You can leave them in Contentful or remove them manually.
+
+#### Event days
+
+Add **Calendar Event** entries for gradings, camps, performances, and other one-off dates:
+
+- Set **Type** (e.g. `grading`, `event`, `camp`) — not `weekly-theme`.
+- Set **Start Date**; add **End Date** for multi-day events.
+- Do **not** use recurring fields for new entries.
+
+Event pills appear on weekday cells only (Monday–Saturday).
 
 ### Navigation
 

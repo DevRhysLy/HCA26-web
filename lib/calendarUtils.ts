@@ -172,3 +172,244 @@ export const calendarDayLabels = [
   "Fri",
   "Sat",
 ];
+
+export const SUNDAY_INDEX = 0;
+
+export type WeeklyThemeColor =
+  | "blue"
+  | "red"
+  | "teal"
+  | "amber"
+  | "purple"
+  | "slate";
+
+export const WEEKLY_THEME_COLORS: WeeklyThemeColor[] = [
+  "blue",
+  "red",
+  "teal",
+  "amber",
+  "purple",
+  "slate",
+];
+
+export interface WeeklyThemeStyles {
+  accent: string;
+  headerBg: string;
+  cellBg: string;
+  cellBorder: string;
+  sidebarBorder: string;
+  sidebarBadge: string;
+}
+
+const weeklyThemePalette: Record<WeeklyThemeColor, WeeklyThemeStyles> = {
+  blue: {
+    accent: "#004AAD",
+    headerBg: "bg-[#004AAD] text-white",
+    cellBg: "bg-[#EEF5FF]",
+    cellBorder: "border-[#BFD6F8]",
+    sidebarBorder: "border-l-4 border-l-[#004AAD]",
+    sidebarBadge: "text-[#004AAD]",
+  },
+  
+  red: {
+    accent: "#E7343E",
+    headerBg: "bg-[#E7343E] text-white",
+    cellBg: "bg-[#FFF1F2]",
+    cellBorder: "border-[#F7B9BD]",
+    sidebarBorder: "border-l-4 border-l-[#E7343E]",
+    sidebarBadge: "text-[#E7343E]",
+  },
+  
+  teal: {
+    accent: "#459863",
+    headerBg: "bg-[#459863] text-white",
+    cellBg: "bg-[#F2FAF5]",
+    cellBorder: "border-[#B8DFC4]",
+    sidebarBorder: "border-l-4 border-l-[#459863]",
+    sidebarBadge: "text-[#459863]",
+  },
+  
+  amber: {
+    accent: "#FFBD59",
+    headerBg: "bg-[#FFBD59] text-[#434343]",
+    cellBg: "bg-[#FFF9ED]",
+    cellBorder: "border-[#FFE0A6]",
+    sidebarBorder: "border-l-4 border-l-[#FFBD59]",
+    sidebarBadge: "text-[#C98600]",
+  },
+  
+  purple: {
+    accent: "#6D28D9",
+    headerBg: "bg-[#6D28D9] text-white",
+    cellBg: "bg-[#F5F0FF]",
+    cellBorder: "border-[#D8C6FA]",
+    sidebarBorder: "border-l-4 border-l-[#6D28D9]",
+    sidebarBadge: "text-[#6D28D9]",
+  },
+  
+  slate: {
+    accent: "#434343",
+    headerBg: "bg-[#434343] text-white",
+    cellBg: "bg-[#F5F5F5]",
+    cellBorder: "border-[#D4D4D4]",
+    sidebarBorder: "border-l-4 border-l-[#434343]",
+    sidebarBadge: "text-[#434343]",
+  },
+};
+
+export function getWeeklyThemeStyles(
+  color?: WeeklyThemeColor,
+): WeeklyThemeStyles {
+  if (color && color in weeklyThemePalette) {
+    return weeklyThemePalette[color];
+  }
+
+  return weeklyThemePalette.blue;
+}
+
+export interface WeeklyTheme {
+  id: string;
+  title: string;
+  weekStartDate: string;
+  weekEndDate: string;
+  description?: string;
+  location?: string;
+  themeColor?: WeeklyThemeColor;
+}
+
+export interface CalendarDay {
+  date: Date;
+  dateKey: string;
+  dayNumber: number | null;
+  isSunday: boolean;
+  isClosed: boolean;
+  events: CalendarItem[];
+}
+
+export interface CalendarWeek {
+  weekIndex: number;
+  days: CalendarDay[];
+  theme?: WeeklyTheme;
+}
+
+export function isSunday(date: Date) {
+  return date.getDay() === SUNDAY_INDEX;
+}
+
+function createCalendarDay(
+  date: Date,
+  dayNumber: number | null,
+  eventsByDate: ItemsByDate,
+): CalendarDay {
+  const dateKey = formatDateKey(date);
+  const closed = isSunday(date);
+
+  return {
+    date,
+    dateKey,
+    dayNumber,
+    isSunday: closed,
+    isClosed: closed,
+    events: closed ? [] : (eventsByDate[dateKey] ?? []),
+  };
+}
+
+function findThemeForWeek(
+  weekSunday: Date,
+  themes: WeeklyTheme[],
+): WeeklyTheme | undefined {
+  const weekMonday = new Date(weekSunday);
+  weekMonday.setDate(weekMonday.getDate() + 1);
+  const weekSaturday = new Date(weekSunday);
+  weekSaturday.setDate(weekSaturday.getDate() + 6);
+  const mondayKey = formatDateKey(weekMonday);
+
+  const exact = themes.find((theme) => theme.weekStartDate === mondayKey);
+  if (exact) return exact;
+
+  return themes.find((theme) => {
+    const themeStart = new Date(theme.weekStartDate);
+    const themeEnd = new Date(theme.weekEndDate);
+    return themeStart <= weekSaturday && themeEnd >= weekMonday;
+  });
+}
+
+/** Split a month into Sun-start week rows with themes and one-off events. */
+export function buildMonthWeeks(
+  year: number,
+  month: number,
+  themes: WeeklyTheme[],
+  eventsByDate: ItemsByDate,
+): CalendarWeek[] {
+  const { blanks, daysInMonth } = getMonthDays(new Date(year, month, 1));
+  const cells: CalendarDay[] = [];
+
+  for (let i = 0; i < blanks; i++) {
+    const date = new Date(year, month, 1 - (blanks - i));
+    cells.push(createCalendarDay(date, null, eventsByDate));
+  }
+
+  for (let day = 1; day <= daysInMonth; day++) {
+    const date = new Date(year, month, day);
+    cells.push(createCalendarDay(date, day, eventsByDate));
+  }
+
+  while (cells.length % 7 !== 0) {
+    const lastDate = cells[cells.length - 1].date;
+    const next = new Date(lastDate);
+    next.setDate(next.getDate() + 1);
+    cells.push(createCalendarDay(next, null, eventsByDate));
+  }
+
+  const weeks: CalendarWeek[] = [];
+
+  for (let i = 0; i < cells.length; i += 7) {
+    const days = cells.slice(i, i + 7);
+    weeks.push({
+      weekIndex: i / 7,
+      days,
+      theme: findThemeForWeek(days[0].date, themes),
+    });
+  }
+
+  return weeks;
+}
+
+/** Weekly themes whose Mon–Sat span overlaps the given month. */
+export function getThemesForMonth(
+  themes: WeeklyTheme[],
+  year: number,
+  month: number,
+) {
+  const monthStart = new Date(year, month, 1);
+  const monthEnd = new Date(year, month + 1, 0);
+
+  return themes
+    .filter((theme) => {
+      const start = new Date(theme.weekStartDate);
+      const end = new Date(theme.weekEndDate);
+      return start <= monthEnd && end >= monthStart;
+    })
+    .sort(
+      (a, b) =>
+        new Date(a.weekStartDate).getTime() -
+        new Date(b.weekStartDate).getTime(),
+    );
+}
+
+export function formatThemeDateRange(theme: WeeklyTheme) {
+  const start = new Date(theme.weekStartDate);
+  const end = new Date(theme.weekEndDate);
+
+  const startLabel = start.toLocaleDateString("en-AU", {
+    weekday: "short",
+    day: "numeric",
+  });
+  const endLabel = end.toLocaleDateString("en-AU", {
+    weekday: "short",
+    day: "numeric",
+    month: "short",
+  });
+
+  return `${startLabel} – ${endLabel}`;
+}
