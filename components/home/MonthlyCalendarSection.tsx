@@ -1,6 +1,12 @@
 import dynamic from "next/dynamic";
 import SectionHeader from "@/components/ui/SectionHeader";
-import { buildItemsByDate, type CalendarItem } from "@/lib/calendarUtils";
+import {
+  buildItemsByDate,
+  buildMonthWeeks,
+  getMonthStart,
+  type CalendarItem,
+  type WeeklyTheme,
+} from "@/lib/calendarUtils";
 import MonthlyCalendarSkeleton from "@/components/home/MonthlyCalendarSkeleton";
 
 const MonthlyCalendarClient = dynamic(
@@ -9,13 +15,24 @@ const MonthlyCalendarClient = dynamic(
 );
 
 interface MonthlyCalendarSectionProps {
-  items: CalendarItem[];
+  themes: WeeklyTheme[];
+  events: CalendarItem[];
 }
 
 export default function MonthlyCalendarSection({
-  items,
+  themes,
+  events,
 }: MonthlyCalendarSectionProps) {
-  const itemsByDate = buildItemsByDate(items);
+  const eventsByDate = buildItemsByDate(events);
+  const initialMonth = getMonthStart(new Date());
+  const initialYear = initialMonth.getFullYear();
+  const initialMonthIndex = initialMonth.getMonth();
+  const initialWeeks = buildMonthWeeks(
+    initialYear,
+    initialMonthIndex,
+    themes,
+    eventsByDate,
+  );
 
   return (
     <section className="bg-[#F8FAFC] py-16 md:py-24">
@@ -26,7 +43,14 @@ export default function MonthlyCalendarSection({
           description="View weekly themes, gradings, demonstrations, events, and important HCA community updates."
         />
 
-        <MonthlyCalendarClient items={items} itemsByDate={itemsByDate} />
+        <MonthlyCalendarClient
+          themes={themes}
+          events={events}
+          eventsByDate={eventsByDate}
+          initialYear={initialYear}
+          initialMonthIndex={initialMonthIndex}
+          initialWeeks={initialWeeks}
+        />
       </div>
     </section>
   );

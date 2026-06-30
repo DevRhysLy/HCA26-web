@@ -183,6 +183,10 @@ export function getCalendarEvents() {
   return getEntries("calendarEvent");
 }
 
+export function getWeeklyThemes() {
+  return getEntries("weeklyTheme");
+}
+
 /* Schedule */
 export function getScheduleEntries() {
   return getEntries("scheduleEntry", { include: 3, fullResponse: true });
