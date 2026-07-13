@@ -1,35 +1,222 @@
 "use client";
 
 import * as React from "react";
+import HoverTooltip from "@/components/ui/HoverTooltip";
 import {
+  buildMonthWeeks,
   calendarDayLabels,
   calendarTypeLabels,
-  formatDateKey,
+  formatThemeDateRange,
   getEventsForMonth,
   getMonthDays,
   getMonthStart,
+  getThemesForMonth,
+  getWeeklyThemeStyles,
+  type CalendarDay,
   type CalendarItem,
+  type CalendarWeek,
   type ItemsByDate,
+  type WeeklyTheme,
+  type WeeklyThemeStyles,
 } from "@/lib/calendarUtils";
 
 interface MonthlyCalendarClientProps {
-  items: CalendarItem[];
-  itemsByDate: ItemsByDate;
+  themes: WeeklyTheme[];
+  events: CalendarItem[];
+  eventsByDate: ItemsByDate;
+  initialYear: number;
+  initialMonthIndex: number;
+  initialWeeks: CalendarWeek[];
+}
+
+function eventPillClass(type: CalendarItem["type"]) {
+  if (type === "grading") {
+    return "bg-[#C60C30]/10 text-[#C60C30]";
+  }
+
+  if (type === "event") {
+    return "bg-[#003478]/10 text-[#003478]";
+  }
+
+  return "bg-[#003478]/10 text-[#003478]";
+}
+
+function MonthNav({
+  currentMonth,
+  onPrevious,
+  onNext,
+}: {
+  currentMonth: Date;
+  onPrevious: () => void;
+  onNext: () => void;
+}) {
+  return (
+    <div className="flex items-center justify-between gap-4">
+      <button
+        type="button"
+        onClick={onPrevious}
+        className="h-10 w-10 rounded-full border border-black/10 text-[#003478] hover:text-[#C60C30] transition"
+        aria-label="Previous month"
+      >
+        ←
+      </button>
+
+      <h3 className="text-2xl font-extrabold text-[#111111]">
+        {currentMonth.toLocaleDateString("en-AU", {
+          month: "long",
+          year: "numeric",
+        })}
+      </h3>
+
+      <button
+        type="button"
+        onClick={onNext}
+        className="h-10 w-10 rounded-full border border-black/10 bg-[#003478] text-white hover:bg-[#002B63] transition"
+        aria-label="Next month"
+      >
+        →
+      </button>
+    </div>
+  );
+}
+
+function DayCell({
+  day,
+  themeStyles,
+}: {
+  day: CalendarDay;
+  themeStyles?: WeeklyThemeStyles;
+}) {
+  const isEmpty = day.dayNumber === null;
+  const isThemed = !!themeStyles && !day.isClosed;
+
+  return (
+    <div
+      className={`min-h-[88px] rounded-2xl border p-2 ${
+        isEmpty
+          ? "border-transparent bg-transparent"
+          : day.isClosed
+            ? "border-black/10 bg-black/[0.03]"
+            : isThemed
+              ? `${themeStyles.cellBg} ${themeStyles.cellBorder}`
+              : "border-black/10 bg-[#F8FAFC]"
+      }`}
+    >
+      {!isEmpty && (
+        <>
+          <div
+            className={`font-bold ${
+              day.isClosed ? "text-black/45" : "text-[#111111]"
+            }`}
+          >
+            {day.dayNumber}
+          </div>
+
+          {day.isClosed ? (
+            <div className="mt-1 text-[10px] font-semibold uppercase tracking-wide text-black/40">
+              Closed
+            </div>
+          ) : (
+            <div className="mt-2 space-y-1">
+              {day.events.slice(0, 2).map((item) => (
+                <HoverTooltip
+                  key={item.id}
+                  content={item.description}
+                  className="block min-w-0"
+                >
+                  <div
+                    className={`truncate rounded-full px-2 py-1 text-[10px] font-semibold ${eventPillClass(item.type)}`}
+                  >
+                    {item.title}
+                  </div>
+                </HoverTooltip>
+              ))}
+
+              {day.events.length > 2 && (
+                <div className="text-[10px] font-semibold text-[#C60C30]">
+                  +{day.events.length - 2} more
+                </div>
+              )}
+            </div>
+          )}
+        </>
+      )}
+    </div>
+  );
+}
+
+function WeekRow({ week }: { week: CalendarWeek }) {
+  const themeStyles = week.theme
+    ? getWeeklyThemeStyles(week.theme.themeColor)
+    : undefined;
+  const sunday = week.days[0];
+  const weekdays = week.days.slice(1);
+
+  return (
+    <div className="grid grid-cols-7 gap-2">
+      <DayCell day={sunday} />
+
+      <div
+        className={`col-span-6 overflow-hidden rounded-2xl border ${
+          themeStyles ? themeStyles.cellBorder : "border-black/10 bg-[#F8FAFC]"
+        }`}
+      >
+        {week.theme && themeStyles && (
+          <HoverTooltip content={week.theme.description}>
+            <div className={`px-3 py-1.5 ${themeStyles.headerBg}`}>
+              <p className="truncate font-semibold">{week.theme.title}</p>
+            </div>
+          </HoverTooltip>
+        )}
+
+        <div className="grid grid-cols-6 gap-2 p-2">
+          {weekdays.map((day) => (
+            <DayCell key={day.dateKey} day={day} themeStyles={themeStyles} />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default function MonthlyCalendarClient({
-  items,
-  itemsByDate,
+  themes,
+  events,
+  eventsByDate,
+  initialYear,
+  initialMonthIndex,
+  initialWeeks,
 }: MonthlyCalendarClientProps) {
   const [currentMonth, setCurrentMonth] = React.useState(() =>
     getMonthStart(new Date()),
   );
 
-  const { blanks, daysInMonth, year, month } = getMonthDays(currentMonth);
+  const { year, month } = getMonthDays(currentMonth);
 
-  const selectedMonthItems = React.useMemo(
-    () => getEventsForMonth(items, year, month),
-    [items, year, month],
+  const weeks = React.useMemo(() => {
+    if (year === initialYear && month === initialMonthIndex) {
+      return initialWeeks;
+    }
+
+    return buildMonthWeeks(year, month, themes, eventsByDate);
+  }, [
+    year,
+    month,
+    themes,
+    eventsByDate,
+    initialYear,
+    initialMonthIndex,
+    initialWeeks,
+  ]);
+
+  const selectedMonthThemes = React.useMemo(
+    () => getThemesForMonth(themes, year, month),
+    [themes, year, month],
+  );
+
+  const selectedMonthEvents = React.useMemo(
+    () => getEventsForMonth(events, year, month),
+    [events, year, month],
   );
 
   const goToPreviousMonth = () => {
@@ -41,36 +228,17 @@ export default function MonthlyCalendarClient({
   };
 
   return (
-    <div className="grid gap-8 lg:grid-cols-[1.4fr_0.8fr]">
-      <div className="hidden lg:block rounded-3xl border border-black/10 bg-white p-5 md:p-7 shadow-sm">
-        <div className="mb-6 flex items-center justify-between gap-4">
-          <button
-            type="button"
-            onClick={goToPreviousMonth}
-            className="h-10 w-10 rounded-full border border-black/10 text-[#003478] hover:text-[#C60C30] transition"
-            aria-label="Previous month"
-          >
-            ←
-          </button>
-
-          <h3 className="text-2xl font-extrabold text-[#111111]">
-            {currentMonth.toLocaleDateString("en-AU", {
-              month: "long",
-              year: "numeric",
-            })}
-          </h3>
-
-          <button
-            type="button"
-            onClick={goToNextMonth}
-            className="h-10 w-10 rounded-full border border-black/10 bg-[#003478] text-white hover:bg-[#002B63] transition"
-            aria-label="Next month"
-          >
-            →
-          </button>
+    <div className="space-y-8">
+      <div className="hidden lg:block w-full rounded-3xl border border-black/10 bg-white p-5 md:p-7 shadow-sm">
+        <div className="mb-6">
+          <MonthNav
+            currentMonth={currentMonth}
+            onPrevious={goToPreviousMonth}
+            onNext={goToNextMonth}
+          />
         </div>
 
-        <div className="grid grid-cols-7 gap-2">
+        <div className="grid grid-cols-7 gap-2 mb-3">
           {calendarDayLabels.map((day) => (
             <div
               key={day}
@@ -79,107 +247,137 @@ export default function MonthlyCalendarClient({
               {day}
             </div>
           ))}
+        </div>
 
-          {Array.from({ length: blanks }).map((_, index) => (
-            <div key={`blank-${index}`} />
+        <div className="space-y-3">
+          {weeks.map((week) => (
+            <WeekRow key={week.weekIndex} week={week} />
           ))}
-
-          {Array.from({ length: daysInMonth }).map((_, index) => {
-            const dayNumber = index + 1;
-            const date = new Date(year, month, dayNumber);
-            const key = formatDateKey(date);
-            const dayItems = itemsByDate[key] ?? [];
-
-            return (
-              <div
-                key={key}
-                className="min-h-[88px] rounded-2xl border border-black/10 bg-[#F8FAFC] p-2"
-              >
-                <div className="font-bold text-[#111111]">{dayNumber}</div>
-
-                <div className="mt-2 space-y-1">
-                  {dayItems.slice(0, 2).map((item) => (
-                    <div
-                      key={item.id}
-                      className="truncate rounded-full bg-[#003478]/10 px-2 py-1 text-[10px] font-semibold text-[#003478]"
-                      title={item.title}
-                    >
-                      {item.title}
-                    </div>
-                  ))}
-
-                  {dayItems.length > 2 && (
-                    <div className="text-[10px] font-semibold text-[#C60C30]">
-                      +{dayItems.length - 2} more
-                    </div>
-                  )}
-                </div>
-              </div>
-            );
-          })}
         </div>
       </div>
 
-      <aside className="rounded-3xl border border-black/10 bg-white p-6 md:p-7 shadow-sm">
-        <h3 className="text-2xl font-extrabold text-[#111111]">This Month</h3>
+      <aside className="lg:hidden rounded-3xl border border-black/10 bg-white p-6 md:p-7 shadow-sm">
+        <MonthNav
+          currentMonth={currentMonth}
+          onPrevious={goToPreviousMonth}
+          onNext={goToNextMonth}
+        />
 
         <div className="mt-5 flex h-1 w-32 overflow-hidden rounded-full">
           <div className="w-1/2 bg-[#C60C30]" />
           <div className="w-1/2 bg-[#003478]" />
         </div>
 
-        <div className="mt-6 space-y-4">
-          {selectedMonthItems.length === 0 ? (
-            <p className="text-black/55">
-              No events have been added for this month yet.
-            </p>
-          ) : (
-            selectedMonthItems.map((item) => {
-              const start = new Date(item.startDate!);
-              const end = new Date(item.endDate ?? item.startDate!);
+        <div className="mt-8">
+          <h4 className="text-sm font-bold uppercase tracking-wide text-[#003478]">
+            Weekly Themes
+          </h4>
 
-              return (
-                <div
-                  key={item.id}
-                  className="rounded-2xl border border-black/10 bg-[#F8FAFC] p-4"
-                >
-                  <div className="flex items-center justify-between gap-3">
-                    <span className="rounded-full bg-[#003478]/10 px-3 py-1 text-xs font-bold uppercase tracking-wide text-[#003478]">
-                      {calendarTypeLabels[item.type]}
+          <div className="mt-4 space-y-4">
+            {selectedMonthThemes.length === 0 ? (
+              <p className="text-sm text-black/55">
+                No weekly themes have been added for this month yet.
+              </p>
+            ) : (
+              selectedMonthThemes.map((theme) => {
+                const themeStyles = getWeeklyThemeStyles(theme.themeColor);
+
+                return (
+                  <div
+                    key={theme.id}
+                    className={`rounded-2xl border border-black/10 bg-[#F8FAFC] p-4 ${themeStyles.sidebarBorder}`}
+                  >
+                    <span
+                      className={`text-sm font-semibold ${themeStyles.sidebarBadge}`}
+                    >
+                      {formatThemeDateRange(theme)}
                     </span>
 
-                    <span className="text-sm font-semibold text-[#C60C30]">
-                      {`${start.toLocaleDateString("en-AU", {
-                        day: "numeric",
-                        month: "short",
-                      })}${
-                        item.endDate
-                          ? ` - ${end.toLocaleDateString("en-AU", {
-                              day: "numeric",
-                              month: "short",
-                            })}`
-                          : ""
-                      }`}
-                    </span>
+                    <h5 className="mt-2 font-bold text-[#111111]">
+                      {theme.title}
+                    </h5>
+
+                    {theme.description && (
+                      <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-black/60">
+                        {theme.description}
+                      </p>
+                    )}
+
+                    {theme.location && (
+                      <p
+                        className="mt-3 text-sm font-semibold"
+                        style={{ color: themeStyles.accent }}
+                      >
+                        {theme.location}
+                      </p>
+                    )}
                   </div>
+                );
+              })
+            )}
+          </div>
+        </div>
 
-                  <h4 className="mt-3 font-bold text-[#111111]">{item.title}</h4>
+        <div className="mt-8">
+          <h4 className="text-sm font-bold uppercase tracking-wide text-[#003478]">
+            Events
+          </h4>
 
-                  {item.description && (
-                    <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-black/60">
-                      {item.description}
-                    </p>
-                  )}
+          <div className="mt-4 space-y-4">
+            {selectedMonthEvents.length === 0 ? (
+              <p className="text-sm text-black/55">
+                No events have been added for this month yet.
+              </p>
+            ) : (
+              selectedMonthEvents.map((item) => {
+                const start = new Date(item.startDate!);
+                const end = new Date(item.endDate ?? item.startDate!);
 
-                  {item.location && (
-                    <p className="mt-3 text-sm font-semibold text-[#003478]">
-                      {item.location}
-                    </p>
-                  )}
-                </div>
-              );
-            })
-          )}
+                return (
+                  <div
+                    key={item.id}
+                    className="rounded-2xl border border-black/10 bg-[#F8FAFC] p-4"
+                  >
+                    <div className="flex items-center justify-between gap-3">
+                      <span className="rounded-full bg-[#003478]/10 px-3 py-1 text-xs font-bold uppercase tracking-wide text-[#003478]">
+                        {calendarTypeLabels[item.type]}
+                      </span>
+
+                      <span className="text-sm font-semibold text-[#C60C30]">
+                        {`${start.toLocaleDateString("en-AU", {
+                          day: "numeric",
+                          month: "short",
+                        })}${
+                          item.endDate
+                            ? ` - ${end.toLocaleDateString("en-AU", {
+                                day: "numeric",
+                                month: "short",
+                              })}`
+                            : ""
+                        }`}
+                      </span>
+                    </div>
+
+                    <h5 className="mt-3 font-bold text-[#111111]">
+                      {item.title}
+                    </h5>
+
+                    {item.description && (
+                      <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-black/60">
+                        {item.description}
+                      </p>
+                    )}
+
+                    {item.location && (
+                      <p className="mt-3 text-sm font-semibold text-[#003478]">
+                        {item.location}
+                      </p>
+                    )}
+                  </div>
+                );
+              })
+            )}
+          </div>
         </div>
       </aside>
     </div>

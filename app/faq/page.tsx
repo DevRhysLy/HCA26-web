@@ -1,23 +1,50 @@
-import FaqSection from "@/components/content/FaqSection";
+import FaqPageContent from "@/components/content/FaqPageContent";
 import { getFaqs } from "@/lib/contentful";
+import { mapFaqs } from "@/lib/contentfulMappers";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "FAQ",
   description:
-    "Get answers about commonly asked questions at Hapkido College of Australia",
+    "Find answers about trial classes, training, uniforms, safety, and what to expect at Hapkido College of Australia.",
+  openGraph: {
+    title: "FAQ",
+    description:
+      "Find answers about trial classes, training, uniforms, safety, and what to expect at Hapkido College of Australia.",
+  },
 };
 
 export const revalidate = 60;
 
+function buildFaqJsonLd(faqs: ReturnType<typeof mapFaqs>) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  };
+}
+
 export default async function FaqPage() {
   const faqData = await getFaqs();
+  const faqs = mapFaqs(faqData);
+  const jsonLd = buildFaqJsonLd(faqs);
 
-  const faqs = faqData.map((faq: any) => ({
-    id: faq.sys.id,
-    question: faq.fields.question,
-    answer: faq.fields.answer,
-  }));
-
-  return <FaqSection faqs={faqs} />;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(jsonLd),
+        }}
+      />
+      <FaqPageContent faqs={faqs} />
+    </>
+  );
 }

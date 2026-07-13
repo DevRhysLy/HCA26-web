@@ -80,12 +80,20 @@ export default async function Footer() {
                   </Link>
                 </li>
               ))}
+              <li>
+                <Link
+                  href="/faq"
+                  className="text-black/65 transition-colors duration-200 hover:text-[#003478]"
+                >
+                  FAQ
+                </Link>
+              </li>
             </ul>
           </div>
 
           {/* Programs */}
           <div>
-            <h3 className="text-lg font-bold text-[#111111] mb-5">Programs</h3>
+            <h3 className="text-lg font-bold text-[#111111] mb-5">Classes</h3>
 
             <ul className="space-y-3">
               {classes.map((program: any) => (
