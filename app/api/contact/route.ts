@@ -36,7 +36,7 @@ export async function POST(request: Request) {
 
     // 1. Send enquiry to HCA
     await resend.emails.send({
-      from: "HCA Website <onboarding@resend.dev>",
+      from: "HCA Website <train@hapkidocollege.com.au>",
       to: process.env.CONTACT_EMAIL!,
       replyTo: email,
       subject: `New Free Trial Enquiry from ${name}`,
@@ -56,7 +56,7 @@ ${message}
 
     // 2. Send confirmation email to user
     await resend.emails.send({
-      from: "HCA Website <onboarding@resend.dev>",
+      from: "HCA Website <train@hapkidocollege.com.au>",
       to: email,
       subject: "We've Received Your HCA Enquiry",
       text: `
