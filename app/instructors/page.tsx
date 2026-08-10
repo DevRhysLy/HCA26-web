@@ -32,8 +32,8 @@ export default async function InstructorsPage() {
 
   return (
     <CardGridPage
-      title="Our Instructors"
-      description="Meet the instructors guiding our students."
+      title="Our Faculty"
+      description="Founded by Master Young Kil Kim, an 8th Dan Master with 40+ years preserving traditional Korean Hapkido. Meet the ranked faculty carrying that curriculum forward today."
       items={items}
     />
   );

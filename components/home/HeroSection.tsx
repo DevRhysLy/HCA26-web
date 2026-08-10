@@ -40,19 +40,34 @@ export default function HeroSection() {
 
             {/* Heading */}
             <h1 className="mt-8 text-5xl lg:text-6xl font-extrabold tracking-tight text-[#111111] leading-[1.05]">
-              Helping Children Build
+              A Traditional Dojang for
               <span className="block text-[#003478]">
-                Confidence & Discipline
+                Every Age, Every Family
               </span>
-              Through Hapkido
             </h1>
 
             {/* Supporting Text */}
             <p className="mt-6 text-lg leading-relaxed text-black/65 max-w-2xl">
-              Traditional martial arts training in a safe, structured, and
-              supportive environment where children develop confidence,
-              discipline, respect, and real self-defence skills.
+              Hapkido College of Australia welcomes children, youth, and
+              adults into one traditional martial arts family. This is
+              personal development and real self-defence, not sport
+              competition — confidence, discipline, and respect, built
+              together in a safe, structured, and supportive environment.
             </p>
+
+            {/* Age groups */}
+            <div className="mt-6 flex flex-wrap gap-2">
+              {["Little Tigers 4–6", "Kids 6–11", "Youth 12–17", "Adults 18+"].map(
+                (band) => (
+                  <span
+                    key={band}
+                    className="inline-flex items-center rounded-full border border-[#003478]/15 bg-white px-3.5 py-1.5 text-xs font-semibold text-[#003478]"
+                  >
+                    {band}
+                  </span>
+                ),
+              )}
+            </div>
 
             {/* Korean flag accent */}
             <div className="mt-8 flex h-1 w-40 overflow-hidden rounded-full">
@@ -75,6 +90,26 @@ export default function HeroSection() {
               >
                 Find a Location
               </Link>
+            </div>
+
+            <p className="mt-4 text-sm text-black/50">
+              Your first class is free — no experience needed, no obligation.
+            </p>
+
+            {/* Trust badges — visible on every breakpoint, not just desktop */}
+            <div className="mt-8 flex flex-wrap gap-x-6 gap-y-3">
+              {[
+                "Safe & Structured",
+                "Traditional Martial Arts",
+                "Beginner Friendly",
+              ].map((label) => (
+                <div key={label} className="flex items-center gap-2">
+                  <span className="h-1.5 w-1.5 rounded-full bg-[#C60C30]" />
+                  <span className="text-sm font-semibold text-black/70">
+                    {label}
+                  </span>
+                </div>
+              ))}
             </div>
 
             {/* Stats / Trust Indicators */}
@@ -152,7 +187,7 @@ export default function HeroSection() {
                 <div className="h-3 w-3 rounded-full bg-[#C60C30]" />
 
                 <span className="text-sm font-semibold text-[#111111]">
-                  Traditional Martial Arts
+                  All Ages Welcome
                 </span>
               </div>
             </div>

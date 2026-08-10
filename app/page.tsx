@@ -3,6 +3,7 @@ import WhyChooseSection from "@/components/home/WhyChooseSection";
 import ProgramsSection from "@/components/home/ServiceSection";
 import InstructorPreviewSection from "@/components/home/InstructorPreviewSection";
 import LocationPreviewSection from "@/components/home/LocationPreviewSection";
+import CommunityShowcaseSection from "@/components/home/CommunityShowcaseSection";
 import TestimonialsSection from "@/components/home/TestimonialsSection";
 import MonthlyCalendarSection from "@/components/home/MonthlyCalendarSection";
 import FaqSection from "@/components/content/FaqSection";
@@ -102,16 +103,18 @@ export default async function Home() {
 
       <ProgramsSection services={mapServices(services)} />
 
-      <MonthlyCalendarSection
-        themes={mapWeeklyThemes(themesData)}
-        events={mapCalendarEvents(calendarData)}
-      />
-
       <LocationPreviewSection locations={mapLocations(studioLocationsData)} />
 
       <InstructorPreviewSection instructors={mapInstructors(instructorsData)} />
 
+      <CommunityShowcaseSection />
+
       <TestimonialsSection testimonials={mapTestimonials(testimonialsData)} />
+
+      <MonthlyCalendarSection
+        themes={mapWeeklyThemes(themesData)}
+        events={mapCalendarEvents(calendarData)}
+      />
 
       <FaqSection faqs={mapFaqs(faqData)} />
 

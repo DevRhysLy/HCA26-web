@@ -4,22 +4,22 @@ const reasons = [
   {
     title: "Confidence",
     description:
-      "Helping children build self-belief through structured training, achievable goals, and positive reinforcement.",
+      "Every student builds self-belief through structured training, achievable goals, and positive reinforcement — whether they're 5 or 55.",
   },
   {
     title: "Discipline & Respect",
     description:
-      "Students learn focus, manners, responsibility, and respect for instructors, parents, and peers.",
+      "Students learn focus, manners, responsibility, and respect for instructors, training partners, and family.",
   },
   {
     title: "Real Self-Defence",
     description:
-      "Practical Hapkido skills taught safely, with an emphasis on control, awareness, and confidence.",
+      "Practical skills to stand your ground and protect yourself, taught with control and awareness — personal development, not competition.",
   },
   {
     title: "Family Community",
     description:
-      "A welcoming environment where children, parents, and instructors grow together as part of the HCA family.",
+      "Many HCA families train side by side — ask us about scheduling children and parents together in the same session.",
   },
 ];
 
@@ -28,9 +28,9 @@ export default function WhyChooseSection() {
     <section className="bg-white py-16 md:py-24">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <SectionHeader
-          eyebrow="Why Parents Choose HCA"
+          eyebrow="Why Families Choose HCA"
           title="More Than Martial Arts"
-          description="Hapkido College of Australia helps children develop confidence, discipline, respect, and practical skills in a safe and supportive traditional martial arts environment."
+          description="Hapkido College of Australia is a traditional martial arts school for children, youth, and adults — built around personal development and real self-defence, not sport competition."
         />
 
         <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">

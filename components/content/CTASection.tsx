@@ -13,8 +13,8 @@ interface CTASectionProps {
 
 export default function CTASection({
   eyebrow = "Start Your Journey",
-  title = "Ready to Begin Training?",
-  description = "Book a free trial class and experience traditional Hapkido training in a safe, structured, and family-friendly environment.",
+  title = "Ready to Enrol?",
+  description = "Book a free trial class and experience traditional Hapkido training in a safe, structured, family-friendly environment — no experience needed, no obligation.",
   primaryLabel = "Book Free Trial",
   primaryHref = "/contact",
   secondaryLabel = "View Classes",

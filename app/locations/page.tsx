@@ -24,8 +24,8 @@ export default async function Locations() {
 
   return (
     <CardGridPage
-      title="Studio Locations"
-      description="Discover our training locations across Australia and find the dojang that best suits your journey."
+      title="Our Dojang Locations"
+      description="Find the HCA dojang nearest you — every location teaches the same traditional curriculum, for every age, side by side."
       items={items}
     />
   );

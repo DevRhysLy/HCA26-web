@@ -28,8 +28,8 @@ export default async function Classes() {
 
   return (
     <CardGridPage
-      title="Our Classes"
-      description="Explore our traditional Hapkido programs designed to support students of all ages in a safe and welcoming environment."
+      title="Our Curriculum"
+      description="A structured Hapkido curriculum for every age, from Little Tigers through Adults — 35+ years of one traditional system, built for personal development and real self-defence, not competition."
       items={items}
     />
   );

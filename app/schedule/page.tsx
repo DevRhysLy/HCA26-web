@@ -54,7 +54,7 @@ export default async function Schedule() {
     <div>
       <Timetable
         title="WEEKLY CLASS TIMETABLE"
-        subtitle="Select a location to view its specific training hours and program availability."
+        subtitle="Select a location to view its specific training hours and curriculum availability."
         locations={locations}
         timeSlots={timeSlots}
         entries={entries}

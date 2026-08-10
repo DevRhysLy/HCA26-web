@@ -18,6 +18,8 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "SportsActivityLocation",
   name: "Hapkido College of Australia",
+  description:
+    "Traditional Hapkido martial arts training focused on personal development and self-defence for children, youth, and adults — not sport competition.",
   telephone: "+61-2-9747-0822",
   email: "train@hapkidocollege.com.au",
   url: "https://www.hapkidocollege.com.au/contact",
@@ -37,8 +39,8 @@ export default function ContactPage() {
         <SectionHeader
           as="h1"
           eyebrow="Book a Free Trial"
-          title="Start Your Hapkido Journey"
-          description="Send us your details and our team will contact you about trial class availability, suitable programs, and the best location for your family."
+          title="Enrol in Your Free Trial"
+          description="Send us your details and our team will contact you about trial class availability, the right curriculum for your age group, and the best location for your family — no experience needed, no obligation."
           className="text-center mb-12"
         />
 

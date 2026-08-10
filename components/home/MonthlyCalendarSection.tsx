@@ -38,9 +38,9 @@ export default function MonthlyCalendarSection({
     <section className="bg-[#F8FAFC] py-16 md:py-24">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <SectionHeader
-          eyebrow="Member Calendar"
-          title="Monthly Training Calendar"
-          description="View weekly themes, gradings, demonstrations, events, and important HCA community updates."
+          eyebrow="Life at HCA"
+          title="What's Happening This Month"
+          description="Weekly themes, gradings, demonstrations, and community events — a look at the active, everyday life of our dojang community."
         />
 
         <MonthlyCalendarClient

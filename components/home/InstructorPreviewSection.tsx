@@ -30,14 +30,14 @@ export default function InstructorPreviewSection({
           scrollAmount={340}
           header={
             <SectionHeader
-              eyebrow="Our Instructors"
-              title="Learn From Experienced Martial Artists"
-              description="Meet the instructors guiding our students with patience, discipline, and traditional Hapkido values."
+              eyebrow="Our Faculty"
+              title="Learn From a Ranked Faculty"
+              description="Founded by Master Young Kil Kim, an 8th Dan Master with 40+ years of martial arts experience preserving traditional Korean Hapkido — every class today carries his tradition forward, led by a senior-ranked faculty."
               align="left"
             />
           }
         >
-          {instructors.map((instructor) => (
+          {instructors.map((instructor, index) => (
             <Link
               key={instructor.id}
               href={instructor.href}
@@ -45,6 +45,12 @@ export default function InstructorPreviewSection({
             >
               <div className="relative h-full overflow-hidden rounded-3xl border border-black/10 bg-[#F8FAFC] p-8 text-center shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#003478]/25 hover:bg-white hover:shadow-[0_18px_45px_rgba(0,52,120,0.10)]">
                 <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-[#C60C30] to-[#003478]" />
+
+                {index === 0 && (
+                  <div className="absolute top-4 right-4 rounded-full bg-[#003478] px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-white">
+                    Senior Instructor
+                  </div>
+                )}
 
                 {instructor.image && (
                   <div className="mb-6 flex justify-center">

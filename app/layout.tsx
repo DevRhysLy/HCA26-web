@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   },
 
   description:
-    "Traditional Hapkido training for children, youth, and adults across Australia. Build confidence, discipline, fitness, and self-defence skills in a supportive family environment.",
+    "Sydney's traditional Hapkido college — a structured curriculum for children, youth, and adults, built for personal development and real self-defence, not sport competition.",
 
   keywords: [
     "Hapkido",

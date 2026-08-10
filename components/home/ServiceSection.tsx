@@ -24,9 +24,9 @@ export default function ServiceSection({ services }: ServiceSectionProps) {
           scrollAmount={360}
           header={
             <SectionHeader
-              eyebrow="Our Programs"
-              title="Classes for Every Stage of the Journey"
-              description="Explore our martial arts classes and find the program that best supports your child's growth, confidence, and development."
+              eyebrow="Our Curriculum"
+              title="A Curriculum for Every Stage, Every Age"
+              description="35+ years of one traditional Hapkido curriculum, structured from Little Tigers through Adults — personal development and real self-defence, not sport competition."
               align="left"
             />
           }
@@ -89,7 +89,7 @@ export default function ServiceSection({ services }: ServiceSectionProps) {
             href="/classes"
             className="inline-flex items-center justify-center rounded-2xl bg-[#003478] px-8 py-4 text-white font-semibold shadow-lg shadow-[#003478]/20 transition-all duration-200 hover:bg-[#002B63] hover:-translate-y-0.5"
           >
-            View All Programs
+            View Full Curriculum
           </Link>
         </div>
       </div>

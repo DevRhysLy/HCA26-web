@@ -58,14 +58,21 @@ export default function TestimonialsSection({ testimonials }: TestimonialsSectio
           ))}
         </div>
 
-        <div className="mt-12 text-center">
+        <div className="mt-12 flex flex-col items-center gap-4">
+          <Link
+            href="/contact"
+            className="inline-flex items-center justify-center rounded-2xl bg-[#003478] px-8 py-4 text-white font-semibold shadow-lg shadow-[#003478]/20 transition-all duration-200 hover:bg-[#002B63] hover:-translate-y-0.5"
+          >
+            Book Your Free Trial
+          </Link>
+
           <Link
             href="https://www.google.com/search?q=Hapkido+College+of+Australia+Reviews"
-            className="inline-flex items-center justify-center rounded-2xl bg-[#003478] px-8 py-4 text-white font-semibold shadow-lg shadow-[#003478]/20 transition-all duration-200 hover:bg-[#002B63] hover:-translate-y-0.5"
+            className="text-sm font-semibold text-[#003478] hover:text-[#C60C30] transition-colors"
             target="_blank"
             rel="noopener noreferrer"
           >
-            View More Reviews
+            Read more reviews on Google →
           </Link>
         </div>
       </div>

@@ -14,7 +14,7 @@ export const navItems: NavItem[] = [
     href: "/about",
   },
   {
-    label: "Classes",
+    label: "Curriculum",
     href: "/classes",
   },
   {
@@ -22,8 +22,12 @@ export const navItems: NavItem[] = [
     href: "/locations",
   },
   {
-    label: "Instructors",
+    label: "Faculty",
     href: "/instructors",
+  },
+  {
+    label: "FAQ",
+    href: "/faq",
   },
 ];
 
