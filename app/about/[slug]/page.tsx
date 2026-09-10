@@ -21,9 +21,9 @@ interface PageProps {
 }
 
 export async function generateStaticParams() {
-  const aboutPages = await getAbout();
+  const aboutData = await getAbout();
 
-  return aboutPages.map((page: any) => ({
+  return aboutData.items.map((page: any) => ({
     slug: page.fields.slug,
   }));
 }
@@ -67,14 +67,26 @@ export default async function AboutPage({ params }: PageProps) {
   if (!entry) return notFound();
 
   return (
-    <main className="bg-[#F8FAFC] min-h-screen">
+    <div className="min-h-screen bg-hca-cream">
       <MarkdownPage
+        eyebrow="About"
         title={entry.fields.title}
+        description={
+          typeof entry.fields.description === "string"
+            ? entry.fields.description
+            : undefined
+        }
         body={entry.fields.body ?? ""}
         heroImage={createHeroImage(entry, imageUrl)}
+        primaryCta={null}
+        breadcrumbs={[
+          { label: "Home", href: "/" },
+          { label: "About", href: "/about" },
+          { label: entry.fields.title },
+        ]}
       />
 
       <CTASection />
-    </main>
+    </div>
   );
 }

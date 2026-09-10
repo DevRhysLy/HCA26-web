@@ -31,14 +31,14 @@ interface MonthlyCalendarClientProps {
 
 function eventPillClass(type: CalendarItem["type"]) {
   if (type === "grading") {
-    return "bg-[#C60C30]/10 text-[#C60C30]";
+    return "bg-hca-red/10 text-hca-red";
   }
 
   if (type === "event") {
-    return "bg-[#003478]/10 text-[#003478]";
+    return "bg-hca-blue/10 text-hca-blue";
   }
 
-  return "bg-[#003478]/10 text-[#003478]";
+  return "bg-hca-blue/10 text-hca-blue";
 }
 
 function MonthNav({
@@ -55,13 +55,13 @@ function MonthNav({
       <button
         type="button"
         onClick={onPrevious}
-        className="h-10 w-10 rounded-full border border-black/10 text-[#003478] hover:text-[#C60C30] transition"
+        className="h-10 w-10 rounded-full border border-black/10 text-hca-blue hover:text-hca-red transition"
         aria-label="Previous month"
       >
         ←
       </button>
 
-      <h3 className="text-2xl font-extrabold text-[#111111]">
+      <h3 className="text-2xl font-extrabold text-hca-ink">
         {currentMonth.toLocaleDateString("en-AU", {
           month: "long",
           year: "numeric",
@@ -71,7 +71,7 @@ function MonthNav({
       <button
         type="button"
         onClick={onNext}
-        className="h-10 w-10 rounded-full border border-black/10 bg-[#003478] text-white hover:bg-[#002B63] transition"
+        className="h-10 w-10 rounded-full border border-black/10 bg-hca-blue text-white hover:bg-hca-blue-hover transition"
         aria-label="Next month"
       >
         →
@@ -99,14 +99,14 @@ function DayCell({
             ? "border-black/10 bg-black/[0.03]"
             : isThemed
               ? `${themeStyles.cellBg} ${themeStyles.cellBorder}`
-              : "border-black/10 bg-[#F8FAFC]"
+              : "border-black/10 bg-hca-cream"
       }`}
     >
       {!isEmpty && (
         <>
           <div
             className={`font-bold ${
-              day.isClosed ? "text-black/45" : "text-[#111111]"
+              day.isClosed ? "text-black/45" : "text-hca-ink"
             }`}
           >
             {day.dayNumber}
@@ -133,7 +133,7 @@ function DayCell({
               ))}
 
               {day.events.length > 2 && (
-                <div className="text-[10px] font-semibold text-[#C60C30]">
+                <div className="text-[10px] font-semibold text-hca-red">
                   +{day.events.length - 2} more
                 </div>
               )}
@@ -158,7 +158,7 @@ function WeekRow({ week }: { week: CalendarWeek }) {
 
       <div
         className={`col-span-6 overflow-hidden rounded-2xl border ${
-          themeStyles ? themeStyles.cellBorder : "border-black/10 bg-[#F8FAFC]"
+          themeStyles ? themeStyles.cellBorder : "border-black/10 bg-hca-cream"
         }`}
       >
         {week.theme && themeStyles && (
@@ -229,7 +229,7 @@ export default function MonthlyCalendarClient({
 
   return (
     <div className="space-y-8">
-      <div className="hidden lg:block w-full rounded-3xl border border-black/10 bg-white p-5 md:p-7 shadow-sm">
+      <div className="hidden w-full rounded-2xl border border-hca-border bg-hca-surface p-6 md:p-8 shadow-sm lg:block">
         <div className="mb-6">
           <MonthNav
             currentMonth={currentMonth}
@@ -256,7 +256,7 @@ export default function MonthlyCalendarClient({
         </div>
       </div>
 
-      <aside className="lg:hidden rounded-3xl border border-black/10 bg-white p-6 md:p-7 shadow-sm">
+      <aside className="rounded-2xl border border-hca-border bg-hca-surface p-6 md:p-8 lg:hidden">
         <MonthNav
           currentMonth={currentMonth}
           onPrevious={goToPreviousMonth}
@@ -264,12 +264,12 @@ export default function MonthlyCalendarClient({
         />
 
         <div className="mt-5 flex h-1 w-32 overflow-hidden rounded-full">
-          <div className="w-1/2 bg-[#C60C30]" />
-          <div className="w-1/2 bg-[#003478]" />
+          <div className="w-1/2 bg-hca-red" />
+          <div className="w-1/2 bg-hca-blue" />
         </div>
 
         <div className="mt-8">
-          <h4 className="text-sm font-bold uppercase tracking-wide text-[#003478]">
+          <h4 className="text-sm font-bold uppercase tracking-wide text-hca-blue">
             Weekly Themes
           </h4>
 
@@ -285,7 +285,7 @@ export default function MonthlyCalendarClient({
                 return (
                   <div
                     key={theme.id}
-                    className={`rounded-2xl border border-black/10 bg-[#F8FAFC] p-4 ${themeStyles.sidebarBorder}`}
+                    className={`rounded-2xl border border-black/10 bg-hca-cream p-4 ${themeStyles.sidebarBorder}`}
                   >
                     <span
                       className={`text-sm font-semibold ${themeStyles.sidebarBadge}`}
@@ -293,7 +293,7 @@ export default function MonthlyCalendarClient({
                       {formatThemeDateRange(theme)}
                     </span>
 
-                    <h5 className="mt-2 font-bold text-[#111111]">
+                    <h5 className="mt-2 font-bold text-hca-ink">
                       {theme.title}
                     </h5>
 
@@ -319,7 +319,7 @@ export default function MonthlyCalendarClient({
         </div>
 
         <div className="mt-8">
-          <h4 className="text-sm font-bold uppercase tracking-wide text-[#003478]">
+          <h4 className="text-sm font-bold uppercase tracking-wide text-hca-blue">
             Events
           </h4>
 
@@ -336,14 +336,14 @@ export default function MonthlyCalendarClient({
                 return (
                   <div
                     key={item.id}
-                    className="rounded-2xl border border-black/10 bg-[#F8FAFC] p-4"
+                    className="rounded-2xl border border-black/10 bg-hca-cream p-4"
                   >
                     <div className="flex items-center justify-between gap-3">
-                      <span className="rounded-full bg-[#003478]/10 px-3 py-1 text-xs font-bold uppercase tracking-wide text-[#003478]">
+                      <span className="rounded-full bg-hca-blue/10 px-3 py-1 text-xs font-bold uppercase tracking-wide text-hca-blue">
                         {calendarTypeLabels[item.type]}
                       </span>
 
-                      <span className="text-sm font-semibold text-[#C60C30]">
+                      <span className="text-sm font-semibold text-hca-red">
                         {`${start.toLocaleDateString("en-AU", {
                           day: "numeric",
                           month: "short",
@@ -358,7 +358,7 @@ export default function MonthlyCalendarClient({
                       </span>
                     </div>
 
-                    <h5 className="mt-3 font-bold text-[#111111]">
+                    <h5 className="mt-3 font-bold text-hca-ink">
                       {item.title}
                     </h5>
 
@@ -369,7 +369,7 @@ export default function MonthlyCalendarClient({
                     )}
 
                     {item.location && (
-                      <p className="mt-3 text-sm font-semibold text-[#003478]">
+                      <p className="mt-3 text-sm font-semibold text-hca-blue">
                         {item.location}
                       </p>
                     )}

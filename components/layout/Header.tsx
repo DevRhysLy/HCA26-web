@@ -1,16 +1,17 @@
 import Link from "next/link";
 import type { HeaderProps } from "@/types/navigation";
 import Navbar from "@/components/navigation/Navbar";
+import { ButtonLink } from "@/components/ui/Button";
 
 export default function Header({ navItems, cta }: HeaderProps) {
   return (
-    <header className="bg-white border-b border-black/10 sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
-          <Link href="/" className="flex items-center gap-4">
-            <span className="text-xl lg:text-2xl font-bold tracking-tight text-black">
+    <header className="sticky top-0 z-50 border-b border-hca-border bg-hca-surface">
+      <div className="hca-container">
+        <div className="flex h-20 items-center justify-between">
+          <Link href="/" className="flex items-center gap-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-hca-blue focus-visible:ring-offset-2">
+            <span className="font-serif text-xl font-semibold tracking-tight text-hca-ink lg:text-2xl">
               Hapkido College of{" "}
-              <span className="text-[#003478]">Australia</span>
+              <span className="text-hca-blue">Australia</span>
             </span>
           </Link>
 
@@ -18,38 +19,21 @@ export default function Header({ navItems, cta }: HeaderProps) {
             <Navbar navItems={navItems} />
 
             {cta && (
-              <Link
+              <ButtonLink
                 href={cta.href}
-                className="
-  hidden lg:inline-flex
-  items-center justify-center
-  whitespace-nowrap
-
-  rounded-xl
-  bg-[#003478]
-  hover:bg-[#002B63]
-
-  text-white
-  font-semibold
-  transition-all duration-200
-
-  px-4 py-2 text-sm
-  xl:px-6 xl:py-2.5 xl:text-base
-
-  shadow-md shadow-[#003478]/20
-  border border-[#003478]
-"
+                size="sm"
+                className="hidden shadow-none lg:inline-flex"
               >
                 {cta.label}
-              </Link>
+              </ButtonLink>
             )}
           </div>
         </div>
       </div>
 
-      <div className="flex h-1 w-full">
-        <div className="w-1/2 bg-[#C60C30]" />
-        <div className="w-1/2 bg-[#003478]" />
+      <div className="flex h-1 w-full" aria-hidden="true">
+        <div className="w-1/2 bg-hca-red" />
+        <div className="w-1/2 bg-hca-blue" />
       </div>
     </header>
   );

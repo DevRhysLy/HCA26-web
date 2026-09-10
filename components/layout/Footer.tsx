@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { getClasses } from "@/lib/contentful";
 import { navItems } from "@/config/navigation";
-import SectionDivider from "@/components/ui/SectionDivider";
 import { FaInstagram, FaFacebookF, FaYoutube } from "react-icons/fa";
+import { ButtonLink } from "@/components/ui/Button";
 
 const socialLinks = [
   {
@@ -23,58 +23,49 @@ const socialLinks = [
 ];
 
 export default async function Footer() {
-  const classes = await getClasses();
+  const classesData = await getClasses();
 
   return (
-    <footer className="relative overflow-hidden border-t border-black/10 bg-[#F8FAFC]">
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute left-0 top-0 h-64 w-64 rounded-br-full bg-[#C60C30]/5" />
-        <div className="absolute right-0 bottom-0 h-64 w-64 rounded-tl-full bg-[#003478]/5" />
+    <footer className="relative overflow-hidden border-t border-hca-border bg-hca-cream">
+      <div className="flex h-1 w-full overflow-hidden" aria-hidden="true">
+        <div className="w-1/2 bg-hca-red" />
+        <div className="w-1/2 bg-hca-blue" />
       </div>
 
-      {/* Korean flag top accent */}
-      <div className="relative z-10 flex h-1 w-full overflow-hidden">
-        <div className="w-1/2 bg-[#C60C30]" />
-        <div className="w-1/2 bg-[#003478]" />
-      </div>
-
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-14">
+      <div className="hca-container relative z-10 py-16">
         <div className="grid gap-12 md:grid-cols-2 xl:grid-cols-4">
-          {/* Brand */}
           <div>
-            <p className="text-xs font-bold tracking-[0.35em] uppercase text-[#C60C30] mb-3">
+            <p className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-hca-red">
               Hapkido College of Australia
             </p>
 
-            <h2 className="text-2xl font-extrabold tracking-tight text-[#111111]">
-              Traditional Martial Arts.
+            <h2 className="font-serif text-2xl font-semibold tracking-tight text-hca-ink">
+              Traditional martial arts.
               <br />
-              Family & Community Focused.
+              Family and community focused.
             </h2>
 
-            <p className="mt-4 text-black/60 leading-relaxed">
+            <p className="mt-4 leading-relaxed text-hca-ink/60">
               Building confidence, discipline, respect, and community through
               traditional Hapkido training for all ages.
             </p>
 
-            <Link
-              href="/contact"
-              className="mt-6 inline-flex items-center justify-center rounded-2xl bg-[#003478] px-6 py-3 text-white font-semibold shadow-lg shadow-[#003478]/20 transition-all duration-200 hover:bg-[#002B63] hover:-translate-y-0.5"
-            >
+            <ButtonLink href="/contact" className="mt-6">
               Book Free Trial
-            </Link>
+            </ButtonLink>
           </div>
 
-          {/* Quick Links */}
           <div>
-            <h3 className="text-lg font-bold text-[#111111] mb-5">Quick Links</h3>
+            <h3 className="mb-4 font-serif text-lg font-semibold text-hca-ink">
+              Quick Links
+            </h3>
 
-            <ul className="space-y-3">
+            <ul className="space-y-4">
               {navItems.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-black/65 transition-colors duration-200 hover:text-[#003478]"
+                    className="hca-color-shift text-hca-ink/65 hover:text-hca-blue focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-hca-blue"
                   >
                     {link.label}
                   </Link>
@@ -82,8 +73,16 @@ export default async function Footer() {
               ))}
               <li>
                 <Link
+                  href="/calendar"
+                  className="hca-color-shift text-hca-ink/65 hover:text-hca-blue focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-hca-blue"
+                >
+                  Calendar
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/faq"
-                  className="text-black/65 transition-colors duration-200 hover:text-[#003478]"
+                  className="hca-color-shift text-hca-ink/65 hover:text-hca-blue focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-hca-blue"
                 >
                   FAQ
                 </Link>
@@ -91,16 +90,17 @@ export default async function Footer() {
             </ul>
           </div>
 
-          {/* Programs */}
           <div>
-            <h3 className="text-lg font-bold text-[#111111] mb-5">Classes</h3>
+            <h3 className="mb-4 font-serif text-lg font-semibold text-hca-ink">
+              Classes
+            </h3>
 
-            <ul className="space-y-3">
-              {classes.map((program: any) => (
+            <ul className="space-y-4">
+              {classesData.items.map((program: any) => (
                 <li key={program.sys.id}>
                   <Link
                     href={`/classes/${program.fields.slug}`}
-                    className="text-black/65 transition-colors duration-200 hover:text-[#C60C30]"
+                    className="hca-color-shift text-hca-ink/65 hover:text-hca-red focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-hca-blue"
                   >
                     {program.fields.title}
                   </Link>
@@ -109,17 +109,18 @@ export default async function Footer() {
             </ul>
           </div>
 
-          {/* Contact */}
           <div>
-            <h3 className="text-lg font-bold text-[#111111] mb-5">Contact</h3>
+            <h3 className="mb-4 font-serif text-lg font-semibold text-hca-ink">
+              Contact
+            </h3>
 
-            <div className="space-y-4 text-black/65">
+            <div className="space-y-4 text-hca-ink/65">
               <p>
                 Email:
                 <br />
                 <a
                   href="mailto:train@hapkidocollege.com.au"
-                  className="font-medium text-[#003478] hover:text-[#C60C30]"
+                  className="font-medium text-hca-blue hover:text-hca-red"
                 >
                   train@hapkidocollege.com.au
                 </a>
@@ -130,7 +131,7 @@ export default async function Footer() {
                 <br />
                 <a
                   href="tel:+61297470822"
-                  className="font-medium text-[#003478] hover:text-[#C60C30]"
+                  className="font-medium text-hca-blue hover:text-hca-red"
                 >
                   (02) 9747 0822
                 </a>
@@ -138,7 +139,7 @@ export default async function Footer() {
 
               <p>Follow us for updates, events, and training highlights.</p>
 
-              <div className="flex items-center gap-3 pt-2">
+              <div className="flex items-center gap-4 pt-2">
                 {socialLinks.map(({ label, href, icon: Icon }) => (
                   <Link
                     key={label}
@@ -146,9 +147,9 @@ export default async function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={label}
-                    className="flex h-11 w-11 items-center justify-center rounded-2xl border border-black/10 bg-white text-[#003478] shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-[#C60C30]/30 hover:text-[#C60C30]"
+                    className="hca-icon flex h-11 w-11 items-center justify-center rounded-2xl border border-hca-border bg-hca-surface text-hca-blue hover:text-hca-red focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-hca-blue"
                   >
-                    <Icon size={20} />
+                    <Icon size={20} aria-hidden="true" />
                   </Link>
                 ))}
               </div>
@@ -156,8 +157,8 @@ export default async function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 border-t border-black/10 pt-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-          <p className="text-sm text-black/50">
+        <div className="mt-16 flex flex-col gap-4 border-t border-hca-border pt-6 md:flex-row md:items-center md:justify-between">
+          <p className="text-sm text-hca-ink/50">
             © {new Date().getFullYear()} Hapkido College of Australia. All
             rights reserved.
           </p>

@@ -55,6 +55,26 @@ async function getEntries(
   return options?.fullResponse ? data : data.items;
 }
 
+export const FALLBACK_IMAGES = {
+  class: "/images/hero-img.jpg",
+  location: "/images/hero-img.jpg",
+  about: "/images/hero-img.jpg",
+  instructor: "/images/khlock.webp",
+  header: "/images/hero-img.jpg",
+} as const;
+
+export type FallbackImageKind = keyof typeof FALLBACK_IMAGES;
+
+export function getFallbackImageSrc(
+  fallback: FallbackImageKind | string = "header",
+) {
+  if (fallback in FALLBACK_IMAGES) {
+    return FALLBACK_IMAGES[fallback as FallbackImageKind];
+  }
+
+  return fallback;
+}
+
 export function getAssetUrl(
   data: any,
   assetId?: string,
@@ -77,6 +97,21 @@ export function getAssetUrl(
   const quality = options?.quality ?? 80;
 
   return `https:${url}?w=${width}&q=${quality}&fm=webp`;
+}
+
+export function resolveEntryImage(
+  data: any,
+  item: any,
+  fallback: FallbackImageKind | string = "header",
+  options?: {
+    width?: number;
+    quality?: number;
+  },
+) {
+  return (
+    getAssetUrl(data, item?.fields?.image?.sys?.id, options) ??
+    getFallbackImageSrc(fallback)
+  );
 }
 
 export function createSeoMetadata({
@@ -111,10 +146,21 @@ export function createSeoMetadata({
 /* Content Models                                                             */
 /* -------------------------------------------------------------------------- */
 
+async function getSortedEntries(contentType: string) {
+  const data = await getEntries(contentType, {
+    include: 2,
+    fullResponse: true,
+  });
+
+  return {
+    ...data,
+    items: sortByOrder(data.items ?? []),
+  };
+}
+
 /* Locations */
-export async function getLocations() {
-  const items = await getEntries("location");
-  return sortByOrder(items);
+export function getLocations() {
+  return getSortedEntries("location");
 }
 
 export function getLocationBySlug(slug: string) {
@@ -142,9 +188,8 @@ export function getInstructorBySlug(slug: string) {
 }
 
 /* Classes */
-export async function getClasses() {
-  const items = await getEntries("martialClass");
-  return sortByOrder(items);
+export function getClasses() {
+  return getSortedEntries("martialClass");
 }
 
 export function getClassBySlug(slug: string) {
@@ -157,7 +202,7 @@ export function getClassBySlug(slug: string) {
 
 /* About */
 export function getAbout() {
-  return getEntries("aboutPage");
+  return getSortedEntries("aboutPage");
 }
 
 export function getAboutPageBySlug(slug: string) {

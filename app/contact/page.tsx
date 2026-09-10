@@ -1,14 +1,15 @@
 import ContactForm from "@/components/contact/ContactForm";
 import ContactInfoCards from "@/components/contact/ContactInfoCards";
+import RevealOnView from "@/components/ui/RevealOnView";
 import SectionHeader from "@/components/ui/SectionHeader";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Book a Free Trial",
+  title: "Book Free Trial",
   description:
     "Contact Hapkido College of Australia to book a free trial class and learn more about our martial arts programs for children, youth, and adults.",
   openGraph: {
-    title: "Book a Free Trial",
+    title: "Book Free Trial",
     description:
       "Contact Hapkido College of Australia to book a free trial class and learn more about our martial arts programs.",
   },
@@ -25,7 +26,7 @@ const jsonLd = {
 
 export default function ContactPage() {
   return (
-    <main className="bg-[#F8FAFC] min-h-screen">
+    <div className="min-h-screen bg-hca-cream">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -33,27 +34,29 @@ export default function ContactPage() {
         }}
       />
 
-      <section className="max-w-6xl mx-auto px-6 py-16 md:py-24">
+      <section className="hca-container hca-section">
         <SectionHeader
           as="h1"
-          eyebrow="Book a Free Trial"
-          title="Start Your Hapkido Journey"
+          eyebrow="Book Free Trial"
+          title="Book a free trial class"
           description="Send us your details and our team will contact you about trial class availability, suitable programs, and the best location for your family."
-          className="text-center mb-12"
+          className="mb-8 text-center"
         />
 
-        <ContactInfoCards
-          className="mb-10"
-          thirdCard={{
-            eyebrow: "Find a Dojang",
-            title: "View Locations",
-            description: "Find the studio location that best suits your family.",
-            href: "/locations",
-          }}
-        />
+        <RevealOnView>
+          <ContactInfoCards
+            className="mb-8"
+            thirdCard={{
+              eyebrow: "Find a Dojang",
+              title: "View Locations",
+              description: "Find the studio location that best suits your family.",
+              href: "/locations",
+            }}
+          />
 
-        <ContactForm />
+          <ContactForm />
+        </RevealOnView>
       </section>
-    </main>
+    </div>
   );
 }

@@ -1,4 +1,5 @@
 import { Timetable } from "@/components/timetable/Timetable";
+import { ButtonLink } from "@/components/ui/Button";
 import { getScheduleEntries } from "@/lib/contentful";
 import { buildTimetableData } from "@/lib/contentfulMappers";
 
@@ -28,22 +29,19 @@ export default async function Schedule() {
   if (loadError || entries.length === 0) {
     return (
       <div>
-        <section className="mx-auto max-w-7xl px-4 sm:px-6 py-16 md:py-24">
-          <div className="rounded-3xl border border-black/10 bg-white p-8 md:p-10 text-center shadow-sm">
-            <h1 className="text-3xl font-extrabold tracking-tight text-[#111111]">
+        <section className="hca-container hca-section">
+          <div className="rounded-2xl border border-hca-border bg-hca-surface p-8 text-center">
+            <h1 className="font-serif text-3xl font-semibold tracking-tight text-hca-ink">
               Weekly Class Timetable
             </h1>
-            <p className="mt-4 text-black/60 leading-relaxed">
+            <p className="mt-4 leading-relaxed text-hca-ink/60">
               {loadError
                 ? "We could not load the timetable right now. Please try again shortly or contact us for class times."
                 : "The timetable is being updated in Contentful. Please check back soon or contact us for class availability."}
             </p>
-            <a
-              href="/contact"
-              className="mt-8 inline-flex items-center justify-center rounded-2xl bg-[#003478] px-8 py-4 text-white font-semibold shadow-lg shadow-[#003478]/20 transition-all duration-200 hover:bg-[#002B63]"
-            >
-              Contact Us
-            </a>
+            <ButtonLink href="/contact" className="mt-8">
+              Book Free Trial
+            </ButtonLink>
           </div>
         </section>
       </div>
@@ -59,27 +57,24 @@ export default async function Schedule() {
         timeSlots={timeSlots}
         entries={entries}
         timeSlotsByLocation={timeSlotsByLocation}
-        containerClassName="max-w-7xl"
       />
-      <section className="mx-auto max-w-7xl px-4 sm:px-6 pb-12 md:pb-16">
-        <div className="rounded-3xl border border-[#003478]/10 bg-white p-6 md:p-8 shadow-sm">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#003478]/10">
-              <span className="h-3 w-3 rounded-full bg-[#C60C30]" />
-            </div>
-
-            <h3 className="text-xl font-bold text-[#111111]">Schedule Notes</h3>
+      <section className="hca-container pb-16 md:pb-24">
+        <div className="rounded-2xl border border-hca-blue/10 bg-hca-surface p-6 md:p-8">
+          <div className="mb-4 flex items-center gap-3">
+            <h3 className="font-serif text-xl font-semibold text-hca-ink">
+              Schedule Notes
+            </h3>
           </div>
 
-          <div className="mb-5 flex h-1 w-28 overflow-hidden rounded-full">
-            <div className="w-1/2 bg-[#C60C30]" />
-            <div className="w-1/2 bg-[#003478]" />
+          <div className="korea-bar mb-4 w-28" aria-hidden="true">
+            <span />
+            <span />
           </div>
 
-          <div className="space-y-4 text-black/70 leading-relaxed">
+          <div className="space-y-4 leading-relaxed text-hca-ink/70">
             <p>
               Every second Saturday, our Youth and Adult Class begins at{" "}
-              <span className="font-semibold text-[#003478]">9:00 AM</span> due
+              <span className="font-semibold text-hca-blue">9:00 AM</span> due
               to grading sessions.
             </p>
 

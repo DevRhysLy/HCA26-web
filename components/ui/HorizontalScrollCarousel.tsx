@@ -26,14 +26,14 @@ export default function HorizontalScrollCarousel({
 
   return (
     <>
-      <div className="mb-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+      <div className="mb-8 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
         {header}
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-4">
           <button
             type="button"
             onClick={() => scroll("left")}
-            className="h-11 w-11 rounded-full border border-black/10 bg-white text-[#003478] shadow-sm hover:border-[#C60C30]/30 hover:text-[#C60C30] transition"
+            className="hca-press h-11 w-11 rounded-full border border-hca-border bg-hca-surface text-hca-blue hover:border-hca-red/30 hover:text-hca-red focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-hca-blue"
             aria-label={`Scroll ${ariaLabel} left`}
           >
             ←
@@ -42,7 +42,7 @@ export default function HorizontalScrollCarousel({
           <button
             type="button"
             onClick={() => scroll("right")}
-            className="h-11 w-11 rounded-full border border-black/10 bg-[#003478] text-white shadow-sm hover:bg-[#002B63] transition"
+            className="hca-press h-11 w-11 rounded-full border border-hca-blue bg-hca-blue text-white hover:bg-hca-blue-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-hca-blue"
             aria-label={`Scroll ${ariaLabel} right`}
           >
             →

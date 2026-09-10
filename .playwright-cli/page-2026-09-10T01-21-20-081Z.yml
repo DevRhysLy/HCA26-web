@@ -1,0 +1,357 @@
+- generic [active] [ref=f9e1]:
+  - link "Skip to content" [ref=f9e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=f9e3]:
+    - generic [ref=f9e5]:
+      - link "Hapkido College of Australia" [ref=f9e6] [cursor=pointer]:
+        - /url: /
+      - generic [ref=f9e8]:
+        - button "Open navigation menu" [ref=f9e10]
+        - link "Book Free Trial" [ref=f9e12] [cursor=pointer]:
+          - /url: /contact
+  - main [ref=f9e16]:
+    - generic [ref=f9e20]:
+      - paragraph [ref=f9e21]: Hapkido College of Australia
+      - heading "Confidence and discipline through Hapkido" [level=1] [ref=f9e22]:
+        - text: Confidence and discipline
+        - generic [ref=f9e23]: through Hapkido
+      - paragraph [ref=f9e24]: Traditional training in a safe, structured dojang where children grow with their family.
+      - generic [ref=f9e28]:
+        - link "Book a Free Trial" [ref=f9e29] [cursor=pointer]:
+          - /url: /contact
+        - link "Find a Location" [ref=f9e30] [cursor=pointer]:
+          - /url: /locations
+      - generic [ref=f9e31]:
+        - generic [ref=f9e32]:
+          - generic [ref=f9e33]: 35+
+          - generic [ref=f9e34]: Years experience
+        - generic [ref=f9e35]:
+          - generic [ref=f9e36]: 1500+
+          - generic [ref=f9e37]: Students trained
+        - generic [ref=f9e38]:
+          - generic [ref=f9e39]: Family
+          - generic [ref=f9e40]: Community focus
+    - generic [ref=f9e42]:
+      - generic [ref=f9e43]:
+        - paragraph [ref=f9e44]: Why Parents Choose HCA
+        - heading "More than martial arts" [level=2] [ref=f9e45]
+        - paragraph [ref=f9e46]: Hapkido College of Australia helps children develop confidence, discipline, respect, and practical skills in a safe traditional martial arts environment.
+      - generic [ref=f9e50]:
+        - article [ref=f9e51]:
+          - img "A young student smiling in class" [ref=f9e53]
+          - generic [ref=f9e54]:
+            - heading "Confidence" [level=3] [ref=f9e55]
+            - paragraph [ref=f9e56]: Children build self-belief through structured training, achievable goals, and positive reinforcement.
+        - article [ref=f9e57]:
+          - img "Students training together in the dojang" [ref=f9e59]
+          - generic [ref=f9e60]:
+            - heading "Discipline and respect" [level=3] [ref=f9e61]
+            - paragraph [ref=f9e62]: Students learn focus, manners, responsibility, and respect for instructors, parents, and peers.
+      - generic [ref=f9e63]:
+        - generic [ref=f9e64]:
+          - heading "Real self-defence" [level=3] [ref=f9e65]
+          - paragraph [ref=f9e66]: Practical Hapkido skills taught safely, with an emphasis on control, awareness, and confidence.
+        - generic [ref=f9e67]:
+          - heading "Family community" [level=3] [ref=f9e68]
+          - paragraph [ref=f9e69]: A welcoming environment where children, parents, and instructors grow together as part of the HCA family.
+    - generic [ref=f9e71]:
+      - generic [ref=f9e72]:
+        - generic [ref=f9e73]:
+          - paragraph [ref=f9e74]: Our Programs
+          - heading "Classes for every stage" [level=2] [ref=f9e75]
+          - paragraph [ref=f9e76]: Find the program that best supports your child's growth, confidence, and development.
+        - generic [ref=f9e77]:
+          - button "Scroll programs left" [ref=f9e78]: ←
+          - button "Scroll programs right" [ref=f9e79]: →
+      - generic [ref=f9e80]:
+        - link [ref=f9e81] [cursor=pointer]:
+          - /url: /classes/children-class
+          - generic [ref=f9e82]:
+            - img "Children Class" [ref=f9e84]
+            - generic [ref=f9e85]:
+              - heading "Children Class" [level=3] [ref=f9e86]
+              - paragraph [ref=f9e87]: 6-11 Years Old
+              - paragraph [ref=f9e88]: Build confidence, focus, and practical self-defence skills through fun and engaging martial arts training designed to help children grow both physically and mentally.
+              - paragraph [ref=f9e89]: Learn more
+        - link [ref=f9e90] [cursor=pointer]:
+          - /url: /classes/youth-class
+          - generic [ref=f9e91]:
+            - img "Youth Class" [ref=f9e93]
+            - generic [ref=f9e94]:
+              - heading "Youth Class" [level=3] [ref=f9e95]
+              - paragraph [ref=f9e96]: 12 - 17 Years Old
+              - paragraph [ref=f9e97]: Develop strength, flexibility, confidence, and resilience through dynamic martial arts training designed specifically for high school students.
+              - paragraph [ref=f9e98]: Learn more
+        - link [ref=f9e99] [cursor=pointer]:
+          - /url: /classes/adult-class
+          - generic [ref=f9e100]:
+            - img "Adult Class" [ref=f9e102]
+            - generic [ref=f9e103]:
+              - heading "Adult Class" [level=3] [ref=f9e104]
+              - paragraph [ref=f9e105]: 18 Years Old +
+              - paragraph [ref=f9e106]: Improve your fitness, learn practical self-defence, and challenge yourself through martial arts training that builds strength, confidence, flexibility, and overall wellbeing.
+              - paragraph [ref=f9e107]: Learn more
+        - link [ref=f9e108] [cursor=pointer]:
+          - /url: /classes/little-tigers
+          - generic [ref=f9e109]:
+            - img "Little Tigers" [ref=f9e111]
+            - generic [ref=f9e112]:
+              - heading "Little Tigers" [level=3] [ref=f9e113]
+              - paragraph [ref=f9e114]: 4-6 Years Old
+              - paragraph [ref=f9e115]: A fun and engaging introduction to martial arts that builds confidence, coordination, and discipline for children aged 4–6.
+              - paragraph [ref=f9e116]: Learn more
+        - link [ref=f9e117] [cursor=pointer]:
+          - /url: /classes/hca-eagles
+          - generic [ref=f9e118]:
+            - img "HCA Eagles" [ref=f9e120]
+            - generic [ref=f9e121]:
+              - heading "HCA Eagles" [level=3] [ref=f9e122]
+              - paragraph [ref=f9e123]: 12 Years Old +
+              - paragraph [ref=f9e124]: The HCA Eagles are HCA's premier demonstration team, showcasing the highest levels of skill, teamwork, leadership, and dedication through exciting martial arts performances across Australia.
+              - paragraph [ref=f9e125]: Learn more
+      - link "View All Programs" [ref=f9e127] [cursor=pointer]:
+        - /url: /classes
+    - generic [ref=f9e129]:
+      - generic [ref=f9e130]:
+        - paragraph [ref=f9e131]: Member Calendar
+        - heading "Monthly Training Calendar" [level=2] [ref=f9e132]
+        - paragraph [ref=f9e133]: View weekly themes, gradings, demonstrations, events, and important HCA community updates.
+      - complementary [ref=f9e138]
+    - generic [ref=f9e149]:
+      - generic [ref=f9e150]:
+        - paragraph [ref=f9e151]: Our Locations
+        - heading "Find your nearest dojang" [level=2] [ref=f9e152]
+        - paragraph [ref=f9e153]: Train in a welcoming, family-oriented environment across our HCA locations.
+      - generic [ref=f9e157]:
+        - link [ref=f9e158] [cursor=pointer]:
+          - /url: /locations/croydon
+          - img "Croydon HQ" [ref=f9e160]
+          - generic [ref=f9e161]:
+            - heading "Croydon HQ" [level=3] [ref=f9e162]
+            - paragraph [ref=f9e163]: Croydon is HCA's headquarters and only full-time training facility, offering martial arts programs for all ages in a modern, fully equipped, and air-conditioned training environment.
+            - paragraph [ref=f9e164]: View location
+        - link [ref=f9e165] [cursor=pointer]:
+          - /url: /locations/ermington-west
+          - img "Ermington West" [ref=f9e167]
+          - generic [ref=f9e168]:
+            - heading "Ermington West" [level=3] [ref=f9e169]
+            - paragraph [ref=f9e170]: Conveniently located in Ermington West Public School Hall, our Ermington studio offers Children's, Youth, and Adult Hapkido classes in a welcoming and community-focused environment.
+            - paragraph [ref=f9e171]: View location
+        - link [ref=f9e172] [cursor=pointer]:
+          - /url: /locations/belrose
+          - img "Belrose" [ref=f9e174]
+          - generic [ref=f9e175]:
+            - heading "Belrose" [level=3] [ref=f9e176]
+            - paragraph [ref=f9e177]: Located in the Northern Beaches, our Belrose studio offers Children's, Youth, and Adult Hapkido classes in a supportive environment focused on confidence, fitness, and practical self-defence.
+            - paragraph [ref=f9e178]: View location
+      - link "View All Locations" [ref=f9e180] [cursor=pointer]:
+        - /url: /locations
+    - generic [ref=f9e182]:
+      - generic [ref=f9e183]:
+        - generic [ref=f9e184]:
+          - paragraph [ref=f9e185]: Our Instructors
+          - heading "Learn from experienced martial artists" [level=2] [ref=f9e186]
+          - paragraph [ref=f9e187]: Meet the instructors guiding our students with patience, discipline, and traditional Hapkido values.
+        - generic [ref=f9e188]:
+          - button "Scroll instructors left" [ref=f9e189]: ←
+          - button "Scroll instructors right" [ref=f9e190]: →
+      - generic [ref=f9e191]:
+        - link [ref=f9e192] [cursor=pointer]:
+          - /url: /instructors/master-kim
+          - generic [ref=f9e193]:
+            - img "Master Kim" [ref=f9e196]
+            - paragraph [ref=f9e197]: 8th Dan Master
+            - heading "Master Kim" [level=3] [ref=f9e198]
+            - paragraph [ref=f9e199]: Master Young Kil Kim is the founder and Master of HCA, bringing over 40 years of martial arts experience and a lifelong commitment to preserving and teaching traditional Korean Hapkido.
+            - paragraph [ref=f9e200]: View profile
+        - link [ref=f9e201] [cursor=pointer]:
+          - /url: /instructors/kervin-antonio
+          - generic [ref=f9e202]:
+            - img "Kervin Antonio" [ref=f9e205]
+            - paragraph [ref=f9e206]: 4th Dan Head Instructor
+            - heading "Kervin Antonio" [level=3] [ref=f9e207]
+            - paragraph [ref=f9e208]: Kervin is a Head Instructor of HCA and looks after HCA Belrose, bringing over 20 years of martial arts experience and a student-focused approach that helps individuals of all ages achieve their full potential.
+            - paragraph [ref=f9e209]: View profile
+        - link [ref=f9e210] [cursor=pointer]:
+          - /url: /instructors/craig-mclauchlan
+          - generic [ref=f9e211]:
+            - img "Craig Mclauchlan" [ref=f9e214]
+            - paragraph [ref=f9e215]: 3rd Dan Instructor
+            - heading "Craig Mclauchlan" [level=3] [ref=f9e216]
+            - paragraph [ref=f9e217]: Craig is a dedicated HCA Instructor and 3rd Degree Black Belt who has been training at HCA since 2013, combining years of experience with a passion for helping students develop their skills, confidence, and character.
+            - paragraph [ref=f9e218]: View profile
+        - link [ref=f9e219] [cursor=pointer]:
+          - /url: /instructors/anthony-tow
+          - generic [ref=f9e220]:
+            - img "Anthony Tow" [ref=f9e223]
+            - paragraph [ref=f9e224]: 3rd Dan Instructor
+            - heading "Anthony Tow" [level=3] [ref=f9e225]
+            - paragraph [ref=f9e226]: Anthony is an HCA Instructor with over 15 years of martial arts experience, bringing expertise in Hapkido, Gumdo, and Brazilian Jiu-Jitsu to help students develop practical skills and confidence.
+            - paragraph [ref=f9e227]: View profile
+        - link [ref=f9e228] [cursor=pointer]:
+          - /url: /instructors/rhys-ly
+          - generic [ref=f9e229]:
+            - img "Rhys Ly" [ref=f9e232]
+            - paragraph [ref=f9e233]: 3rd Dan Instructor
+            - heading "Rhys Ly" [level=3] [ref=f9e234]
+            - paragraph [ref=f9e235]: Rhys Ly is an Instructor at Hapkido College of Australia who is passionate about helping students reach their full potential. He believes Hapkido is more than self-defence, it is a pathway to developing confidence, discipline, leadership, and lifelong personal growth.
+            - paragraph [ref=f9e236]: View profile
+        - link [ref=f9e237] [cursor=pointer]:
+          - /url: /instructors/bethany-ly
+          - generic [ref=f9e238]:
+            - img "Bethany Ly" [ref=f9e241]
+            - paragraph [ref=f9e242]: 2nd Dan Intern Instructor
+            - heading "Bethany Ly" [level=3] [ref=f9e243]
+            - paragraph [ref=f9e244]: Bethany is a Intern Instructor and 2nd Dan Black Belt who combines technical expertise, leadership, and a positive teaching approach to help students develop confidence and reach their full potential.
+            - paragraph [ref=f9e245]: View profile
+        - link [ref=f9e246] [cursor=pointer]:
+          - /url: /instructors/hamish-morris
+          - generic [ref=f9e247]:
+            - img "Hamish Morris" [ref=f9e250]
+            - paragraph [ref=f9e251]: 2nd Dan Intern Instructor
+            - heading "Hamish Morris" [level=3] [ref=f9e252]
+            - paragraph [ref=f9e253]: Hamish is a Certified Intern Instructor who has been training with HCA since 2015, combining his passion for martial arts and fitness to create a fun, supportive, and motivating learning environment.
+            - paragraph [ref=f9e254]: View profile
+    - generic [ref=f9e256]:
+      - generic [ref=f9e257]:
+        - paragraph [ref=f9e258]: Testimonials
+        - heading "Trusted by families and students" [level=2] [ref=f9e259]
+        - paragraph [ref=f9e260]: Hear from families and students who have experienced the confidence, discipline, and community that HCA training provides.
+      - generic [ref=f9e264]:
+        - figure "Will Hood" [ref=f9e265]:
+          - generic "5 out of 5 stars" [ref=f9e266]:
+            - generic [aria-hidden] [ref=f9e267]: ★
+            - generic [aria-hidden] [ref=f9e268]: ★
+            - generic [aria-hidden] [ref=f9e269]: ★
+            - generic [aria-hidden] [ref=f9e270]: ★
+            - generic [aria-hidden] [ref=f9e271]: ★
+          - blockquote [ref=f9e272]: “We have just started attending the college. My son is really loving it and wants to come every day. It’s definitely worth coming for a trial and seeing what it’s all about.”
+        - figure "Monica Kim" [ref=f9e274]:
+          - generic "5 out of 5 stars" [ref=f9e275]:
+            - generic [aria-hidden] [ref=f9e276]: ★
+            - generic [aria-hidden] [ref=f9e277]: ★
+            - generic [aria-hidden] [ref=f9e278]: ★
+            - generic [aria-hidden] [ref=f9e279]: ★
+            - generic [aria-hidden] [ref=f9e280]: ★
+          - blockquote [ref=f9e281]: “Master Kim and the other instructors are fabulous with my boys. They love going to hapkido.”
+        - figure "Helen Elbayeh" [ref=f9e283]:
+          - generic "5 out of 5 stars" [ref=f9e284]:
+            - generic [aria-hidden] [ref=f9e285]: ★
+            - generic [aria-hidden] [ref=f9e286]: ★
+            - generic [aria-hidden] [ref=f9e287]: ★
+            - generic [aria-hidden] [ref=f9e288]: ★
+            - generic [aria-hidden] [ref=f9e289]: ★
+          - blockquote [ref=f9e290]: “Hapkido college of Australia is an amazing place to make friends and exercise my kids have learnt so much and they have become better and have learnt respect toward me and everyone else it truely an amazing place”
+      - link "View More Reviews" [ref=f9e293] [cursor=pointer]:
+        - /url: https://www.google.com/search?q=Hapkido+College+of+Australia+Reviews
+    - generic [ref=f9e295]:
+      - generic [ref=f9e296]:
+        - paragraph [ref=f9e297]: Frequently Asked Questions
+        - heading "Questions we get asked often" [level=2] [ref=f9e298]
+        - paragraph [ref=f9e299]: Learn more about trial classes, training, uniforms, safety, and what to expect when starting at Hapkido College of Australia.
+      - generic [ref=f9e303]:
+        - group [ref=f9e304]:
+          - generic "How do I get started?" [ref=f9e305] [cursor=pointer]:
+            - generic [aria-hidden] [ref=f9e307]: +
+        - group [ref=f9e308]:
+          - generic "Are classes suitable for beginners?" [ref=f9e309] [cursor=pointer]:
+            - generic [aria-hidden] [ref=f9e311]: +
+        - group [ref=f9e312]:
+          - generic "Can I try a class before joining?" [ref=f9e313] [cursor=pointer]:
+            - generic [aria-hidden] [ref=f9e315]: +
+        - group [ref=f9e316]:
+          - generic "Do I need any previous martial arts experience?" [ref=f9e317] [cursor=pointer]:
+            - generic [aria-hidden] [ref=f9e319]: +
+        - group [ref=f9e320]:
+          - generic "Is Hapkido good for fitness?" [ref=f9e321] [cursor=pointer]:
+            - generic [aria-hidden] [ref=f9e323]: +
+      - link "View All FAQs" [ref=f9e325] [cursor=pointer]:
+        - /url: /faq
+    - generic [ref=f9e329]:
+      - generic [ref=f9e331]:
+        - paragraph [ref=f9e332]: Start Your Journey
+        - heading "Ready to begin training?" [level=2] [ref=f9e333]
+        - paragraph [ref=f9e334]: Book a free trial class and experience traditional Hapkido training in a safe, structured, family-friendly environment.
+      - generic [ref=f9e338]:
+        - link "Book Free Trial" [ref=f9e339] [cursor=pointer]:
+          - /url: /contact
+        - link "View Classes" [ref=f9e340] [cursor=pointer]:
+          - /url: /classes
+  - contentinfo [ref=f9e341]:
+    - generic [ref=f9e345]:
+      - generic [ref=f9e346]:
+        - generic [ref=f9e347]:
+          - paragraph [ref=f9e348]: Hapkido College of Australia
+          - heading "Traditional martial arts. Family and community focused." [level=2] [ref=f9e349]: Traditional martial arts.Family and community focused.
+          - paragraph [ref=f9e350]: Building confidence, discipline, respect, and community through traditional Hapkido training for all ages.
+          - link "Book Free Trial" [ref=f9e351] [cursor=pointer]:
+            - /url: /contact
+        - generic [ref=f9e352]:
+          - heading "Quick Links" [level=3] [ref=f9e353]
+          - list [ref=f9e354]:
+            - listitem [ref=f9e355]:
+              - link "Home" [ref=f9e356] [cursor=pointer]:
+                - /url: /
+            - listitem [ref=f9e357]:
+              - link "Schedule" [ref=f9e358] [cursor=pointer]:
+                - /url: /schedule
+            - listitem [ref=f9e359]:
+              - link "About" [ref=f9e360] [cursor=pointer]:
+                - /url: /about
+            - listitem [ref=f9e361]:
+              - link "Classes" [ref=f9e362] [cursor=pointer]:
+                - /url: /classes
+            - listitem [ref=f9e363]:
+              - link "Locations" [ref=f9e364] [cursor=pointer]:
+                - /url: /locations
+            - listitem [ref=f9e365]:
+              - link "Instructors" [ref=f9e366] [cursor=pointer]:
+                - /url: /instructors
+            - listitem [ref=f9e367]:
+              - link "FAQ" [ref=f9e368] [cursor=pointer]:
+                - /url: /faq
+        - generic [ref=f9e369]:
+          - heading "Classes" [level=3] [ref=f9e370]
+          - list [ref=f9e371]:
+            - listitem [ref=f9e372]:
+              - link "Children Class" [ref=f9e373] [cursor=pointer]:
+                - /url: /classes/children-class
+            - listitem [ref=f9e374]:
+              - link "Youth Class" [ref=f9e375] [cursor=pointer]:
+                - /url: /classes/youth-class
+            - listitem [ref=f9e376]:
+              - link "Adult Class" [ref=f9e377] [cursor=pointer]:
+                - /url: /classes/adult-class
+            - listitem [ref=f9e378]:
+              - link "Little Tigers" [ref=f9e379] [cursor=pointer]:
+                - /url: /classes/little-tigers
+            - listitem [ref=f9e380]:
+              - link "HCA Eagles" [ref=f9e381] [cursor=pointer]:
+                - /url: /classes/hca-eagles
+        - generic [ref=f9e382]:
+          - heading "Contact" [level=3] [ref=f9e383]
+          - generic [ref=f9e384]:
+            - paragraph [ref=f9e385]:
+              - text: "Email:"
+              - link "train@hapkidocollege.com.au" [ref=f9e386] [cursor=pointer]:
+                - /url: mailto:train@hapkidocollege.com.au
+            - paragraph [ref=f9e387]:
+              - text: "Phone:"
+              - link "(02) 9747 0822" [ref=f9e388] [cursor=pointer]:
+                - /url: tel:+61297470822
+            - paragraph [ref=f9e389]: Follow us for updates, events, and training highlights.
+            - generic [ref=f9e390]:
+              - link "Instagram" [ref=f9e391] [cursor=pointer]:
+                - /url: https://www.instagram.com/hapkido_college_of_australia/
+              - link "Facebook" [ref=f9e394] [cursor=pointer]:
+                - /url: https://www.facebook.com/HapkidoCollegeofAustralia/
+              - link "YouTube" [ref=f9e397] [cursor=pointer]:
+                - /url: https://www.youtube.com/@HapkidoCollegeofAustralia
+      - paragraph [ref=f9e401]: © 2026 Hapkido College of Australia. All rights reserved.
+  - generic [ref=f9e403]:
+    - link "Book Free Trial" [ref=f9e404] [cursor=pointer]:
+      - /url: /contact
+    - link "Locations" [ref=f9e405] [cursor=pointer]:
+      - /url: /locations
+  - button "Open Next.js Dev Tools" [ref=f9e411] [cursor=pointer]
+  - alert [ref=f9e415]

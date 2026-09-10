@@ -35,6 +35,8 @@ export interface TimetableInstructor {
   name: string;
   photo?: string;
   rank?: string;
+  slug?: string;
+  href?: string;
 }
 
 export interface TimetableLinkedClass {

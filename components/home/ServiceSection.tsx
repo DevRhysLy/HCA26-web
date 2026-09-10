@@ -1,6 +1,8 @@
+import Image from "next/image";
 import Link from "next/link";
 import SectionHeader from "@/components/ui/SectionHeader";
 import HorizontalScrollCarousel from "@/components/ui/HorizontalScrollCarousel";
+import { ButtonLink } from "@/components/ui/Button";
 
 interface Service {
   id: string;
@@ -9,6 +11,10 @@ interface Service {
   description?: string;
   href: string;
   badge?: string;
+  image: {
+    src: string;
+    alt?: string;
+  };
 }
 
 interface ServiceSectionProps {
@@ -17,17 +23,18 @@ interface ServiceSectionProps {
 
 export default function ServiceSection({ services }: ServiceSectionProps) {
   return (
-    <section className="relative overflow-hidden bg-[#F8FAFC] py-16 md:py-24">
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
+    <section className="hca-section relative overflow-hidden bg-hca-cream">
+      <div className="hca-container relative z-10">
         <HorizontalScrollCarousel
           ariaLabel="programs"
           scrollAmount={360}
           header={
             <SectionHeader
               eyebrow="Our Programs"
-              title="Classes for Every Stage of the Journey"
-              description="Explore our martial arts classes and find the program that best supports your child's growth, confidence, and development."
+              title="Classes for every stage"
+              description="Find the program that best supports your child's growth, confidence, and development."
               align="left"
+              showDivider={false}
             />
           }
         >
@@ -35,62 +42,53 @@ export default function ServiceSection({ services }: ServiceSectionProps) {
             <Link
               key={service.id}
               href={service.href}
-              className="group min-w-[280px] sm:min-w-[340px] max-w-[360px]"
+              className="group min-w-[280px] max-w-[360px] sm:min-w-[340px] focus-visible:outline-none"
             >
-              <div className="relative h-full overflow-hidden rounded-3xl border border-black/10 bg-white/95 backdrop-blur-sm p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#003478]/25 hover:shadow-[0_18px_45px_rgba(0,52,120,0.10)]">
-                <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-[#C60C30] to-[#003478]" />
+              <div className="hca-card-lift h-full overflow-hidden rounded-2xl border border-hca-border bg-hca-surface group-focus-visible:ring-2 group-focus-visible:ring-hca-blue">
+                <div className="hca-photo-zoom relative aspect-[16/10] overflow-hidden">
+                  <Image
+                    src={service.image.src}
+                    alt={service.image.alt ?? service.title}
+                    fill
+                    sizes="(max-width: 640px) 80vw, 360px"
+                    className="object-cover"
+                  />
+                </div>
 
-                <div className="relative z-10">
+                <div className="p-8">
                   {service.badge && (
-                    <div className="inline-flex items-center gap-2 rounded-full border border-[#003478]/10 bg-white px-3 py-1 text-xs font-semibold uppercase tracking-wide text-[#003478] shadow-sm">
-                      <span className="h-2 w-2 rounded-full bg-[#C60C30]" />
+                    <p className="text-xs font-semibold uppercase tracking-wide text-hca-blue">
                       {service.badge}
-                    </div>
+                    </p>
                   )}
 
-                  <h3 className="mt-5 text-2xl font-bold tracking-tight text-[#111111] transition-colors duration-200 group-hover:text-[#003478]">
+                  <h3 className="hca-color-shift font-serif text-2xl font-semibold tracking-tight text-hca-ink group-hover:text-hca-blue">
                     {service.title}
                   </h3>
 
                   {service.age && (
-                    <p className="mt-2 text-sm font-semibold text-[#C60C30]">
+                    <p className="mt-2 text-sm font-semibold text-hca-red">
                       {service.age}
                     </p>
                   )}
 
                   {service.description && (
-                    <p className="mt-4 text-black/65 leading-relaxed line-clamp-3 min-h-[72px]">
+                    <p className="mt-4 min-h-[72px] leading-relaxed text-hca-ink/65 line-clamp-3">
                       {service.description}
                     </p>
                   )}
 
-                  <div className="mt-8 flex items-center justify-between">
-                    <span className="text-sm font-semibold text-[#003478] group-hover:text-[#C60C30] transition-colors">
-                      Learn More
-                    </span>
-
-                    <div className="flex h-10 w-10 items-center justify-center rounded-full border border-black/10 bg-white transition-all duration-300 group-hover:border-[#003478]/30 group-hover:bg-[#003478]">
-                      <span className="text-[#003478] group-hover:text-white transition-colors">
-                        →
-                      </span>
-                    </div>
-                  </div>
+                  <p className="hca-color-shift mt-8 text-sm font-semibold text-hca-blue group-hover:text-hca-red">
+                    View class
+                  </p>
                 </div>
-
-                <div className="absolute bottom-0 left-0 h-20 w-20 rounded-tr-full bg-[#C60C30]/5" />
-                <div className="absolute top-0 right-0 h-20 w-20 rounded-bl-full bg-[#003478]/5" />
               </div>
             </Link>
           ))}
         </HorizontalScrollCarousel>
 
         <div className="mt-12 text-center">
-          <Link
-            href="/classes"
-            className="inline-flex items-center justify-center rounded-2xl bg-[#003478] px-8 py-4 text-white font-semibold shadow-lg shadow-[#003478]/20 transition-all duration-200 hover:bg-[#002B63] hover:-translate-y-0.5"
-          >
-            View All Programs
-          </Link>
+          <ButtonLink href="/classes">View All Programs</ButtonLink>
         </div>
       </div>
     </section>

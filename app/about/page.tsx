@@ -1,7 +1,7 @@
 import { getAbout } from "@/lib/contentful";
 import CardGridPage from "@/components/content/CardGridPage";
 import type { Metadata } from "next";
-import { mapToCardItem } from "@/lib/contentfulMappers";
+import { mapToImageCardItem } from "@/lib/contentfulMappers";
 export const metadata: Metadata = {
   title: "About",
   description:
@@ -9,18 +9,19 @@ export const metadata: Metadata = {
 };
 
 export default async function About() {
-  const aboutPages = await getAbout();
-  const items = aboutPages.map((page: any) =>
-    mapToCardItem(page, {
+  const aboutData = await getAbout();
+  const items = aboutData.items.map((page: any) =>
+    mapToImageCardItem(page, aboutData, {
       basePath: "/about",
-      ctaLabel: "Learn More",
+      ctaLabel: "Read article",
+      fallbackImage: "about",
     }),
   );
 
   return (
     <CardGridPage
       title="About Us"
-      description="Learn more about what Hapkido is and what it can do for you."
+      description="What Hapkido is, and how HCA teaches it."
       items={items}
     />
   );

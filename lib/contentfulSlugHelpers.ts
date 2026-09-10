@@ -1,9 +1,14 @@
-import { getAssetUrl } from "@/lib/contentful";
+import {
+  getAssetUrl,
+  getFallbackImageSrc,
+  type FallbackImageKind,
+} from "@/lib/contentful";
 
 export async function getSlugPageData({
   slug,
   fetcher,
   imageField = "image",
+  fallbackImage = "header",
   imageOptions = {
     width: 2400,
     quality: 90,
@@ -12,6 +17,7 @@ export async function getSlugPageData({
   slug: string;
   fetcher: (slug: string) => Promise<any>;
   imageField?: string;
+  fallbackImage?: FallbackImageKind | string;
   imageOptions?: {
     width?: number;
     quality?: number;
@@ -23,15 +29,13 @@ export async function getSlugPageData({
   if (!entry) {
     return {
       entry: null,
-      imageUrl: undefined,
+      imageUrl: getFallbackImageSrc(fallbackImage),
     };
   }
 
-  const imageUrl = getAssetUrl(
-    data,
-    entry.fields[imageField]?.sys?.id,
-    imageOptions
-  );
+  const imageUrl =
+    getAssetUrl(data, entry.fields[imageField]?.sys?.id, imageOptions) ??
+    getFallbackImageSrc(fallbackImage);
 
   return {
     entry,
@@ -50,10 +54,8 @@ export function getSeoDescription({
 }
 
 export function createHeroImage(entry: any, imageUrl?: string) {
-  return imageUrl
-    ? {
-        src: imageUrl,
-        alt: entry.fields.title,
-      }
-    : undefined;
+  return {
+    src: imageUrl ?? getFallbackImageSrc("header"),
+    alt: entry.fields.title,
+  };
 }

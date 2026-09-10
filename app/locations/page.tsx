@@ -1,7 +1,7 @@
 import { getLocations } from "@/lib/contentful";
 import CardGridPage from "@/components/content/CardGridPage";
 import type { Metadata } from "next";
-import { mapToCardItem } from "@/lib/contentfulMappers";
+import { mapToImageCardItem } from "@/lib/contentfulMappers";
 
 export const metadata: Metadata = {
   title: "Locations",
@@ -13,19 +13,20 @@ export const metadata: Metadata = {
 };
 
 export default async function Locations() {
-  const locations = await getLocations();
-  const items = locations.map((location: any) =>
-    mapToCardItem(location, {
+  const locationsData = await getLocations();
+  const items = locationsData.items.map((location: any) =>
+    mapToImageCardItem(location, locationsData, {
       basePath: "/locations",
       badge: "Training Dojang",
       ctaLabel: "View Location",
+      fallbackImage: "location",
     }),
   );
 
   return (
     <CardGridPage
       title="Studio Locations"
-      description="Discover our training locations across Australia and find the dojang that best suits your journey."
+      description="Choose the dojang closest to you."
       items={items}
     />
   );

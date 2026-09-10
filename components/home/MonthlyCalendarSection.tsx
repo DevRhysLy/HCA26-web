@@ -1,5 +1,6 @@
 import dynamic from "next/dynamic";
 import SectionHeader from "@/components/ui/SectionHeader";
+import { ButtonLink } from "@/components/ui/Button";
 import {
   buildItemsByDate,
   buildMonthWeeks,
@@ -17,11 +18,15 @@ const MonthlyCalendarClient = dynamic(
 interface MonthlyCalendarSectionProps {
   themes: WeeklyTheme[];
   events: CalendarItem[];
+  headingAs?: "h1" | "h2";
+  pageHref?: string;
 }
 
 export default function MonthlyCalendarSection({
   themes,
   events,
+  headingAs = "h2",
+  pageHref,
 }: MonthlyCalendarSectionProps) {
   const eventsByDate = buildItemsByDate(events);
   const initialMonth = getMonthStart(new Date());
@@ -35,13 +40,22 @@ export default function MonthlyCalendarSection({
   );
 
   return (
-    <section className="bg-[#F8FAFC] py-16 md:py-24">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+    <section className="hca-section bg-hca-cream">
+      <div className="hca-container">
         <SectionHeader
+          as={headingAs}
           eyebrow="Member Calendar"
           title="Monthly Training Calendar"
           description="View weekly themes, gradings, demonstrations, events, and important HCA community updates."
         />
+
+        {pageHref ? (
+          <div className="mb-8 flex justify-center">
+            <ButtonLink href={pageHref} variant="secondary">
+              Open calendar page
+            </ButtonLink>
+          </div>
+        ) : null}
 
         <MonthlyCalendarClient
           themes={themes}

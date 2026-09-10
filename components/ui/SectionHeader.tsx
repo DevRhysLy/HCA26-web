@@ -4,20 +4,11 @@ interface SectionHeaderProps {
   eyebrow: string;
   title: string;
   description?: string;
-  /**
-   * Heading level. "h1" renders at text-4xl/5xl, "h2" at text-3xl/5xl.
-   * Default "h2".
-   */
   as?: "h1" | "h2";
-  /**
-   * "center" adds text-center, max-w-3xl, mx-auto, mb-14.
-   * "left" adds max-w-3xl only.
-   * Pass className to override entirely.
-   * Default "center".
-   */
   align?: "center" | "left";
-  /** Overrides the wrapper className completely. */
   className?: string;
+  showDivider?: boolean;
+  tone?: "default" | "onDark";
 }
 
 export default function SectionHeader({
@@ -27,30 +18,47 @@ export default function SectionHeader({
   as: Tag = "h2",
   align = "center",
   className,
+  showDivider = true,
+  tone = "default",
 }: SectionHeaderProps) {
   const centered = align === "center";
   const wrapperClass =
-    className ?? (centered ? "text-center max-w-3xl mx-auto mb-14" : "max-w-3xl");
+    className ?? (centered ? "mx-auto mb-8 max-w-3xl text-center" : "max-w-3xl");
+  const onDark = tone === "onDark";
   const headingClass =
     Tag === "h1"
-      ? "text-4xl md:text-5xl font-extrabold tracking-tight text-[#111111]"
-      : "text-3xl md:text-5xl font-extrabold tracking-tight text-[#111111]";
+      ? `font-serif text-4xl md:text-5xl font-semibold tracking-tight text-pretty ${onDark ? "text-hca-cream" : "text-hca-ink"}`
+      : `font-serif text-3xl md:text-5xl font-semibold tracking-tight text-pretty ${onDark ? "text-hca-cream" : "text-hca-ink"}`;
 
   return (
     <div className={wrapperClass}>
-      <p className="text-xs font-bold tracking-[0.35em] uppercase text-[#C60C30] mb-3">
+      <p
+        className={`mb-3 font-sans text-xs font-bold uppercase tracking-[0.16em] ${
+          onDark ? "text-hca-cream/80" : "text-hca-red"
+        }`}
+      >
         {eyebrow}
       </p>
 
       <Tag className={headingClass}>{title}</Tag>
 
       {description && (
-        <p className="mt-4 text-black/60 text-base md:text-lg leading-relaxed">
+        <p
+          className={`mt-4 max-w-[42rem] text-base leading-relaxed md:text-lg ${
+            centered ? "mx-auto" : ""
+          } ${onDark ? "text-hca-cream/90" : "text-hca-ink/65"}`}
+        >
           {description}
         </p>
       )}
 
-      <SectionDivider centered={centered} className="mt-6" />
+      {showDivider && (
+        <SectionDivider
+          centered={centered}
+          tone={onDark ? "onDark" : "default"}
+          className="mt-6"
+        />
+      )}
     </div>
   );
 }

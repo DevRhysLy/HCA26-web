@@ -126,6 +126,7 @@ types/                       # Shared TypeScript types
 |------|--------|
 | `/` | Home |
 | `/schedule` | Contentful schedule entries |
+| `/calendar` | Contentful calendar events and weekly themes |
 | `/classes`, `/classes/[slug]` | Contentful |
 | `/instructors`, `/instructors/[slug]` | Contentful |
 | `/locations`, `/locations/[slug]` | Contentful |

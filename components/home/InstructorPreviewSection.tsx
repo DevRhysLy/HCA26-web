@@ -23,17 +23,18 @@ export default function InstructorPreviewSection({
   instructors,
 }: InstructorPreviewSectionProps) {
   return (
-    <section className="bg-[#F8FAFC] py-16 md:py-24">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+    <section className="hca-section bg-hca-cream">
+      <div className="hca-container">
         <HorizontalScrollCarousel
           ariaLabel="instructors"
           scrollAmount={340}
           header={
             <SectionHeader
               eyebrow="Our Instructors"
-              title="Learn From Experienced Martial Artists"
+              title="Learn from experienced martial artists"
               description="Meet the instructors guiding our students with patience, discipline, and traditional Hapkido values."
               align="left"
+              showDivider={false}
             />
           }
         >
@@ -41,48 +42,40 @@ export default function InstructorPreviewSection({
             <Link
               key={instructor.id}
               href={instructor.href}
-              className="group min-w-[280px] sm:min-w-[320px] max-w-[320px]"
+              className="group min-w-[280px] max-w-[320px] sm:min-w-[320px] focus-visible:outline-none"
             >
-              <div className="relative h-full overflow-hidden rounded-3xl border border-black/10 bg-[#F8FAFC] p-8 text-center shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#003478]/25 hover:bg-white hover:shadow-[0_18px_45px_rgba(0,52,120,0.10)]">
-                <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-[#C60C30] to-[#003478]" />
-
+              <div className="hca-card-lift h-full rounded-2xl border border-hca-border bg-hca-surface p-8 text-center group-focus-visible:ring-2 group-focus-visible:ring-hca-blue">
                 {instructor.image && (
                   <div className="mb-6 flex justify-center">
-                    <div className="rounded-full bg-gradient-to-br from-[#C60C30] via-white to-[#003478] p-[4px] shadow-md">
-                      <div className="relative h-32 w-32 overflow-hidden rounded-full">
-                        <Image
-                          src={instructor.image.src}
-                          alt={instructor.image.alt ?? instructor.name}
-                          fill
-                          sizes="128px"
-                          className="object-cover object-top transition-transform duration-300 group-hover:scale-[1.03]"
-                        />
-                      </div>
+                    <div className="hca-photo-zoom relative h-32 w-32 overflow-hidden rounded-full">
+                      <Image
+                        src={instructor.image.src}
+                        alt={instructor.image.alt ?? instructor.name}
+                        fill
+                        sizes="128px"
+                        className="object-cover object-top"
+                      />
                     </div>
                   </div>
                 )}
 
-                <div className="inline-flex items-center gap-2 rounded-full border border-[#003478]/10 bg-white px-3 py-1 text-xs font-semibold uppercase tracking-wide text-[#003478] shadow-sm">
-                  <span className="h-2 w-2 rounded-full bg-[#C60C30]" />
+                <p className="text-xs font-semibold uppercase tracking-wide text-hca-blue">
                   {instructor.rank ?? "Instructor"}
-                </div>
+                </p>
 
-                <h3 className="mt-5 text-2xl font-bold tracking-tight text-[#111111] group-hover:text-[#003478] transition-colors">
+                <h3 className="hca-color-shift mt-3 font-serif text-2xl font-semibold tracking-tight text-hca-ink group-hover:text-hca-blue">
                   {instructor.name}
                 </h3>
 
                 {instructor.bio && (
-                  <p className="mt-4 line-clamp-3 text-sm leading-relaxed text-black/60">
+                  <p className="mt-4 line-clamp-3 text-sm leading-relaxed text-hca-ink/60">
                     {instructor.bio}
                   </p>
                 )}
 
-                <div className="mt-7 text-sm font-semibold text-[#003478] group-hover:text-[#C60C30] transition-colors">
-                  View Profile →
-                </div>
-
-                <div className="absolute bottom-0 left-0 h-16 w-16 rounded-tr-full bg-[#C60C30]/5" />
-                <div className="absolute top-0 right-0 h-16 w-16 rounded-bl-full bg-[#003478]/5" />
+                <p className="hca-color-shift mt-8 text-sm font-semibold text-hca-blue group-hover:text-hca-red">
+                  View profile
+                </p>
               </div>
             </Link>
           ))}

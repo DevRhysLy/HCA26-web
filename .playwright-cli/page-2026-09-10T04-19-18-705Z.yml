@@ -1,0 +1,164 @@
+- generic [active] [ref=f5e1]:
+  - link "Skip to content" [ref=f5e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=f5e3]:
+    - generic [ref=f5e5]:
+      - link "Hapkido College of Australia" [ref=f5e6] [cursor=pointer]:
+        - /url: /
+      - generic [ref=f5e8]:
+        - button "Open navigation menu" [ref=f5e10]
+        - link "Book Free Trial" [ref=f5e12] [cursor=pointer]:
+          - /url: /contact
+  - main [ref=f5e16]:
+    - generic [ref=f5e17]:
+      - generic [ref=f5e19]:
+        - generic [ref=f5e20]:
+          - generic [ref=f5e21]:
+            - navigation "Breadcrumb" [ref=f5e22]:
+              - list [ref=f5e23]:
+                - listitem [ref=f5e24]:
+                  - link "Home" [ref=f5e25] [cursor=pointer]:
+                    - /url: /
+                - listitem [ref=f5e26]:
+                  - generic [aria-hidden] [ref=f5e27]: /
+                  - link "About" [ref=f5e28] [cursor=pointer]:
+                    - /url: /about
+                - listitem [ref=f5e29]:
+                  - generic [aria-hidden] [ref=f5e30]: /
+                  - generic [ref=f5e31]: History of Hapkido
+            - paragraph [ref=f5e32]: About
+            - heading "History of Hapkido" [level=1] [ref=f5e33]
+            - paragraph [ref=f5e34]: Hapkido is a traditional Korean martial art with roots stretching back thousands of years, combining practical self-defence techniques with principles of harmony, discipline, and personal growth.
+          - img "History of Hapkido" [ref=f5e41]
+        - article [ref=f5e43]:
+          - heading "Martial Arts Evolution" [level=1] [ref=f5e44]
+          - paragraph [ref=f5e45]: The history of martial arts, in essence, has been passed down by word of mouth, as very little was written down until recent times. Fighting styles, however, have existed since the beginning of time, and developed concurrently in many different regions all around the world. When we seek to understand the evolution of Hapkido, we must begin with the history in Korea.
+          - paragraph [ref=f5e46]: "Korea was first inhabited around 30,000 years ago. The first Korean city is thought to be that of Gojoseon, founded around 2300BC: this is known as the Dangun period. After a long history of tribal wars and conflicts with the Chinese, three powerful kingdoms emerged -- Koguryo, Silla and Paekche. This was the beginning of the Samguk period. (Three Kingdoms Period 18BC -- 668AD)"
+          - paragraph [ref=f5e47]: During this period, Korean economy, architecture, literature and the arts flourished. Chinese influences were reinterpreted in a distinctive Korean manner. Buddhism became the state religion of all three kingdoms, and was eventually transmitted to Japan, by way of the Paekche kingdom during the sixth century. Increasing contact between the cultures of Korea, Japan and China not only influenced their societies, but their native martial arts as well. As warriors met in combat, the evolution of new and superior techniques occurred.
+          - paragraph [ref=f5e48]: Evidence of native, empty-hand Korean martial arts first emerged during the three kingdoms period. Paintings and statues of warriors displaying fighting techniques are found throughout the royal tombs of Koguryo. The term "Soo Bak" was used to describe empty handed fighting techniques. Ssirum was a system of wrestling and grappling (pictured right), which still exists today as a Korean national sport.King Jin Heung came to power in Silla in 540AD, and called upon a Buddhist priest, Won Kwang Bopsa, to teach martial arts to his noblemen. Won Kwang Bopsa developed a system of martial arts based on harmony with the laws of nature and a concept to unify the opposites emodied in the Yin Yang; day and night, anger and happiness, up and down, hard and soft, linear and circular. King Jin Heung's nobles were taught these martial arts, along with the Buddhist faith, to become warrior-intellectuals known as the Hwarang Warriors (Knights of the Flower). They were the ultimate image of the true martial artist, as their dedication to duty and self sacrifice rested on something larger than themselves. Their supurb war effort defeated Koguryo and Paekche, unifying Korea in 668 and ending the Three Kingdoms Period. The Silla Kingdom grew to become the longest sustaining dynasty in Asian history (992 years).
+          - paragraph [ref=f5e49]: The Hwarang were also famous for their weapon systems in Gum (sword), Kal (knife), Jang Bong (long stick), Dan Bong (short stick), Sang Jul Bong (nunchaku), Chang (spear), Bu Chae (fan), Ji Pangee (cane) and the Gung Si (bow and arrow). The Korean sword art of Gumdo (way of the sword) is still very popular today, whilst other weapons have been integrated into various martial art systems including modern day Hapkido.
+          - paragraph [ref=f5e50]: After the fall of the Silla kingdom, Soo Bak was split into more refined technical areas. Around 1100AD, the term Yu Sool (soft art) emerged as a name for soft style techniques, such as those taught by Won Kwang Bopsa. It is said to have been described by throws, grappling, locks and attacks to vital points. Sometime after 1400, more refined empty-hand fighting systems evolved, such as Kwon Bop, which emerged us an umbrella term for hand striking techniques. Taekkyon was a system emphasising kicks. Both these ancient styles, along with others, influenced modern day Tang Soo Do (way of the hand), born around 1947, and Tae Kwon Do (way of the hand and foot), born in 1955.
+          - paragraph [ref=f5e51]: "Taekkyon still exists today with a dance like appearance. It was modified as a folk dance, during Japanese occupation in World War II, as the Japanese wanted to outlaw all Korean martial arts: the locals continued to practice it as a dance, hiding it's devastating form. This shares a similar heritage to native Brazilian Capoeira. Today, Taekkyon is considered a national Korean treasure; as the nation's longest preserved martial art, below is a picture of HCA students at the national Taekkyon headquarters in 2009."
+          - paragraph [ref=f5e52]: In 1790, King Jeongjo of Korea commissioned a book called the Muye Dobo Tongji which is an illustrated manual of native Korean martial arts. It describes in detail kicking, punching, grappling and weapon fighting techniques. It was published in four volumes written in the original Chinese characters and a fifth volume in Korean script, Hangul. It is one of the only surviving written materials depicting the existence of native Korean martial arts.
+          - paragraph [ref=f5e53]: This evolution process, as occurred in Korea, is common to the evolution process of modern martial arts in many other countries throughout the world. Today in Korea the most popular martial arts that have evolved are Taekkyon, Ssirum, Gumdo, Tangsoodo, Taekwondo, Hapkido and off-shoots such as Kuk Sool Won, Hwarang Do, Hankido, Hanmudo, Tukong Musul and Gong Kwon Yusul. In China evolved Kung Fu (Chinese Martial Arts) systems of Wing Chun, Wushu, Shaolin, Animal Styles (Dragon, Crane, Eagle, Praying Mantis, Drunken Monkey and Tiger), Bagua, Hung Ga, Jow Ga, San Shou and Tai Chi. Japan evolved the arts of Judo, Aikido, Jujitsu, Iaido, Kendo, Shooto, Ninjutsu, Kenpo, Karate and Sumo. In India developed the popular internal art of Yoga. Throughout South East Asia, the development of martial arts such as Silat from Indonesia, Eskrima and Arnis derived from the Phillipines, Viet Vo Dao from Vietnam and Muay Thai from Thailand occured. In Brazil developed Brazilian Ju Jitsu and Capoeira. In Europe and throughout the western world developed the sports of Boxing, Kickboxing, Wrestling, MMA and martial arts such as Pankration (Greece), Bartitsu (England), Savate (France), Swordsmanship (Italy), Sambo (Russia), Krav Maga (Israel), Jeet Kune Do, Small Circle Jujutsu (USA), Kajukenbo (Hawaii) and a plethora of other arts.
+          - paragraph [ref=f5e54]: "As east met west, and the martial arts became practiced by different cultures, so did the evolution of new movements occur, resulting in varied techniques. Japanese people use linear movements, as seen in Karate, Kendo and Judo; Chinese use alot of exaggerated circles as seen in Kung Fu. Koreans tend to move more like a circular wave, as seen in their folk dancing called Ch' um. This impacted their martial arts like, Taekwondo and Hapkido. When these martial arts were introduced to the western world alot of the movements were substituted with muscle, as westerners use more muscle vs muscle as found in western wrestling styles. Different cultures produce different movements, ultimately leading to new evolution in martial art techniques. Although there are many styles of martial arts today, the techniques found in all the arts are very similar if not the same: what differs are the philosophies which determine the arts range of techniques and the art's cultural heritage."
+          - heading "The Birth of Hapkido" [level=2] [ref=f5e55]
+          - paragraph [ref=f5e56]: From the late 1800's to 1945, Korea was involved in conflict with China and Japan. During this period, many Koreans learned extensively about martial arts being practiced in these countries. In 1910, Japan annexed Korea, abolished the Korean monarchy and outlawed all Korean martial arts. During this time many Koreans studied Japanese Jujutsu, Karate, Judo, Kendo as well as Chinese Kung Fu while continuing to practice native Korean martial arts in secret. Korean monasteries played an important role in preserving many of the native arts. Post World War II, many Koreans who had learnt Japanese and Chinese martial arts studied the Muye Dobo Tongji to rediscover their heritage and recreate the link to Korean martial arts.
+          - heading "\"Father of Hapkido\" Yong Sul Choi" [level=2] [ref=f5e57]
+          - paragraph [ref=f5e58]: "Known as the father of Hapkido, Yong Sul Choi (as seen above) was taken to Japan around 1912 as a child laborer. He was arranged to be cared for in a Buddhist temple in Kyoto under the care of a monk Kintaro Wadanabi. Kintaro was a good friend of a grandmaster, Sokaku Takeda, who was the head of a Japanese Jujutsu (soft art) called Daito-Ryu Aiki-Jujutsu (great eastern school art of softness). It is the oldest of all Jujutsu systems in Japan. Takeda described this art as: \"the perfect self defence art where you avoid being cut, hit or kicked while at the same time you dont hit, kick or cut. As the attack comes you handle it expediently using the power of your opponent, so even women and children can practice these techniques\" (Tokyo Asahi Newspaper, 1930)."
+          - paragraph [ref=f5e59]: It is believed that the roots of Daito-Ryu were originally transmitted to Japan by Buddhist Korean monks of the Paekche kingdom. The monks had fled Korea to escape the advancing Silla kingdom during the sixth century and set up colonies in Japan, spreading Buddhism as well as their martial arts. These roots were then reinterpreted to suit Japanese culture by Prince Teijin of the imperial palace in the eighth century. Around the year 1080, Samurai Minamoto Yoshimitsu began the scrolls of Daito-Ryu. It is said that Yoshimitsu used to dissect his victims studying joints and vital areas to further develop his art. Modern Japanese arts such as Judo, Kenpo, Jujitsu, Iaido and Aikido have their roots in Daito-Ryu Aiki-Jujutsu, Morei Ueshiba (founder of Aikido) was a direct student of Takeda.
+          - paragraph [ref=f5e60]: Yong Sul Choi displayed a fascination for the murals of battles and paintings of famous martial arts scenes displayed throughout Kintaro's temple. It was obvious what direction he wanted his life to take. Therefore Kintaro arranged for grandmaster Takeda to adopt Yong around the age of 11. He was given a Japanese name, Asao Yoshida, and trained under Takeda for the next thirty years until Takeda's death in 1943. At the time of Takeda's death, Choi made a sacred trust with his master that he would continue to teach the purest form of Daito Ryu, which he had learnt from Takeda. The basics techniques of Daito-Ryu Aiki-Jujutsu are in the form of large circles, as seen in the Daito-Ryu and its derivative Aikido in Japan today. As the practitioner gets better after years of training, the circles get smaller and the effect on the person you are working on becomes greater with less motion. The motions become so small that when performed it is very hard to notice what has just happened. This higher connection of understanding can only be developed with decades of practice, which is what Yong Sul Choi took back with him to Korea. In 1945, World War II ended and Korea regained its independence. Yong Sul Choi returned to Korea shortly after the end of the war, settling in Daegu, and began teaching his art he called Yu Sool (soft art). Even though he had studied the art of Daito-Ryu Aiki-Jujutsu, he called the art Yu Sool to make it more compatible with Koreans and to recreate the link to it's native counterpart. Yong shortly changed the name to Yu Kwon Sool (soft fist art) to distinguish it from Judo, pronounced "Yudo" in Korean, and opened his first dojang; called the Hapki Yu Kwon Sool (soft fist art of co-ordinated power) in 1951. Not wanting the name to be too long, Yong Sul Choi shortened it to Hapkido (way of co-ordinated power) in 1958, and is credited as the art's Dojunim (founder).
+          - paragraph [ref=f5e61]: Dojunim Yong Sul Choi died in 1986. His unique contribution to Martial Arts has impacted globally, resulting in thousands of practitioners visiting his grave in Daegu every year. A father of four dedicated to family values and a passion for martial arts, his legacy will live forever!
+          - heading "Innovation of Hapkido" [level=2] [ref=f5e62]
+          - paragraph [ref=f5e63]: Between the time Dojunim Yong Sul Choi taught his first lesson in 1948 up until the early 1960's, the Hapkido curriculum went through a period of innovation which completed it as a modern system. It is clear that the techniques of Yong Sul Choi make up the larger framework of techniques, and ultimately the philosophy of the Hapkido curriculum; with 3808 techniques set from Yong Sul Choi's teachings. However, in addition to Daito-Ryu Aiki-Jujutsu that Yong Sul Choi learnt in Japan, it is also clear that some 150-200 additional striking techniques were influenced by native Korean arts such as Taekkyon. These innovations are credited to Dojunim Choi's early students. Yong Sul Choi's most prominent early students were Suh Buk Sub, Ji Han Jae and Kim Moo Hong.
+          - paragraph [ref=f5e64]: Suh Buk Sub first noticed Choi at his father's brewery. Suh witnessed a fight breaking out and watched Choi easily defend himself against a group of men. He immediately wanted to learn from Choi and became his first student. The very next day they had their first lesson on Sunday, February 22nd 1948. Suh was in his early 20's and was already a black belt in Judo.
+          - paragraph [ref=f5e65]: Ji Han Jae and Kim Moo Hong, previous to Hapkido, had studied native Korean arts such as Taekkyon and contributed additional kicking innovations; greatly expanding Hapkido's foundation. Kim Moo Hong was promoted to 4th Degree by Suh Buk Sub before he left to live in isolation in a monastery, where he spent years perfecting his kicking techniques. He then travelled to Seoul in 1961 and finalised the kicking curriculum with Ji Han Jae.
+          - paragraph [ref=f5e66]: Ji Han Jae is a prominent pioneer of Hapkido. Together with his physical skill, technical contribution, promotional efforts and political connections, he is credited with popularising Hapkido through North America and Europe. He was the personal bodyguard to South Korean President Park Chung Hee (1962-1979) and has taught many Korean and US government and private law enforcement organisations, including the US Military Special Forces, FBI and CIA. He also worked extensively in Hong Kong and Hollywood cinema as a trainer/actor and fight choreographer. He had appearances in the Fist of Unicorn 1972, Lady Kung Fu (Hapkido) 1972, and co-starred with Bruce Lee in his last feature film -- The Game of Death 1978. Bruce Lee was inspired by the techniques of Hapkido. Ji Han Jae taught Bruce Lee, who then went on to incorporate many of the techniques into his evolving style of Jeet Kune Do.
+          - paragraph [ref=f5e67]: Ji Han Jae also helped form the Korea Hapkido Federation (KHF) in 1965, which has grown to become the largest federation in the world, it is the only Hapkido organisation recognised by the South Korean government; setting the standards for Hapkido throughout the world. In 1980, Oh Sei Lim (pictured below and also featured in the video below) was elected president of the Korea Hapkido Federation and under his direction it has continued to flourish.
+          - paragraph [ref=f5e68]: There are many other notable practitioners who, like their founder Dojunim Yong Sul Choi and his early students, have dedicated their lives to the development of this complete martial art system around the world; teaching the general public as well as military and revolutionising Martial Arts in Hollywood and Hong Kong cinema. Grandmaster Hwang In Shik in particular trained many masters and celebrities, such as Jackie Chan and Angela Mao; he also had appearances in Way of the Dragon1972, The Young Master 1980, Dragon Lord 1982 and more. Angela Mao was promoted to 3rd Dan by Grandmaster Hwang and starred in many films, including the legendary Enter The Dragon 1973 with Bruce Lee.
+          - paragraph [ref=f5e69]: The innovation of Hapkido has made it an eclectic martial art of extreme diversity, with thousands of variations in technique that have influenced the birth of new modern day martial arts; such as Kuk Sool Won (1950's), Hwarang Do (1960's), Tukong Mu Sool (1970's), Han Kido (1980's), Han Mu Do (1980's), Gong Kwon Yu Sool (1990's), Yong Mu Do (1990's) and Hapki Yu Sool (2000). As the unified arts including Taekwondo and Judo, have lost their flavour as martial arts and become sports like boxing, kickboxing and wrestling, Hapkido's technical nature has led to it being harder to unify, which will retain it as a martial art for a very long time to come.
+          - heading "Hapkido Today" [level=2] [ref=f5e70]
+          - paragraph [ref=f5e71]: From the late 1960s to early 1990s, Grandmaster Park Jong Kwan operated a Hapkido dojang in Incheon, South Korea. Young Kil Kim began training with him in 1979 and continued to train with Grandmaster Park for the next 20 years where he then established his dream to spread traditional Hapkido under the Korea Hapkido Federation to Australia in 1999. Today that dream is The Hapkido College of Australia. Our Grandmaster Park still resides in Incheon City where he continues to practice Hapkido and owns a Chiropractic Clinic.
+          - heading "Grandmaster and Students" [level=2] [ref=f5e72]
+          - paragraph [ref=f5e73]: Grandmaster Park Jong Kwan (Left), HCA Students with Grandmaster Park in his dojang in Incheon, South Korea Trip 2009 (Right)
+          - paragraph [ref=f5e74]: Today, Hapkido is practiced in over 100 countries, and continues to expand. The art's dynamic appearance has impacted Hollywood and Hong Kong cinema, and its devastating effectiveness influences law enforcement and military training, as well as self defence for the general public throughout the world.
+          - paragraph [ref=f5e75]: The sources of much of Hapkido's technical material also served as the foundation for many other popular arts of today; such as Taekwondo, Kickboxing, Karate, Judo, Aikido and modern Jujitsu. However, upon foundation, these arts tended to be more focused on particular technique areas. Taekwondo (Olympic sport), Kickboxing and Karate, for instance, focused primarily on hand striking and kicking; Judo (Olympic sport) on throwing and ground grappling, Aikido focused on a non-violent blending of joint locks and throws; and Jujitsu emphasized joint locks, throws, grappling and a limited number of strikes.
+          - paragraph [ref=f5e76]: "Yet change is inevitable, and the evolution process will continue. Just as the evolution of techniques occurred in ancient times as warriors met in combat, so does this evolution continue today as we witness the martial arts moving closer toward common ground. In the 1970's, Bruce Lee spread an idea that the best martial artist is not a boxer, karateka, judoka or wrestler, but one who has the ability to adapt to any style of technique. Then the world witnessed the revival of the sport of mixed martial arts (MMA) in the 1990's, with the birth of the Ultimate Fighting Championship (UFC) in the USA and the Pride Fighting Championship in Japan. With the rapid growth of complete technical systems, witnessed in martial arts sports and self defence systems such as Hapkido, the desire for other arts to create a complete system increases. We now see Taekwondo, Kickboxing and Karate schools starting to incorporate grappling into their systems: similarly Judo, Aikido and Jujitsu (Brazilian and Japanese) have incorporated more strikes. Some Masters, who prefer to preserve original systems, despised such changes to their arts. This then developed the need for the creation of new names, which has become quite popular in modern times with the birth of so many styles of martial arts around the world."
+          - paragraph [ref=f5e77]: Hapkido will always remain one of the worlds premium self defence systems, as most of its huge range of techniques are not allowed in competition, and are focused primarily against attackers in the street. Most Hapkido practitioners throughout the world today maintain this purity of the art, strictly training the techniques for self defence. However in recent years we have witnessed the innovation of Hapkido technique to be suitable for sport; with the birth of Hapkido sporting competitions throughout Korea, USA, Canada and Europe. Competition events are made up of Self Defence Demonstration, Catfalling (long and high), Patterns, Weapons, Team Demonstrations, Breaking/Ki Power Techniques and Sparring with a scoring system on strikes, throws, sweeps and submissions.
+          - paragraph [ref=f5e78]: Hapkido has existed as a complete martial art system for over 50 years, covering a wide range of kicks, hand strikes, joint locks, grappling, throws, sweeps, weapon, breathing and meditation techniques. All these aspects are taught from standing, ground, airbourne or multiple attacker situations including weapon defence such as knife, short stick, towel/belt, long stick, sword, shuriken, fan and handgun. The art was born in Korea, with a philosophical heritage linking directly to that of the Hwarang warriors, and will continue to develop as a martial art of the world.
+          - paragraph [ref=f5e79]: Understanding these historical foundations is a key aspect in your martial arts journey of discovering the complete martial art system -- Hapkido.
+          - heading "Information Courtesy Of" [level=2] [ref=f5e80]
+          - paragraph [ref=f5e81]: HCA Master Yong Kil Kim
+          - paragraph [ref=f5e82]: Interview with Yong Sul Choi in New York 1982
+          - paragraph [ref=f5e83]: Korea Hapkido Federation
+      - generic [ref=f5e87]:
+        - generic [ref=f5e89]:
+          - paragraph [ref=f5e90]: Free trial
+          - heading "Ready to begin training?" [level=2] [ref=f5e91]
+          - paragraph [ref=f5e92]: Book a free trial class and experience traditional Hapkido training in a safe, structured, family-friendly environment.
+        - generic [ref=f5e96]:
+          - link "Book Free Trial" [ref=f5e97] [cursor=pointer]:
+            - /url: /contact
+          - link "View Classes" [ref=f5e98] [cursor=pointer]:
+            - /url: /classes
+  - contentinfo [ref=f5e99]:
+    - generic [ref=f5e103]:
+      - generic [ref=f5e104]:
+        - generic [ref=f5e105]:
+          - paragraph [ref=f5e106]: Hapkido College of Australia
+          - heading "Traditional martial arts. Family and community focused." [level=2] [ref=f5e107]: Traditional martial arts.Family and community focused.
+          - paragraph [ref=f5e108]: Building confidence, discipline, respect, and community through traditional Hapkido training for all ages.
+          - link "Book Free Trial" [ref=f5e109] [cursor=pointer]:
+            - /url: /contact
+        - generic [ref=f5e110]:
+          - heading "Quick Links" [level=3] [ref=f5e111]
+          - list [ref=f5e112]:
+            - listitem [ref=f5e113]:
+              - link "Home" [ref=f5e114] [cursor=pointer]:
+                - /url: /
+            - listitem [ref=f5e115]:
+              - link "Schedule" [ref=f5e116] [cursor=pointer]:
+                - /url: /schedule
+            - listitem [ref=f5e117]:
+              - link "About" [ref=f5e118] [cursor=pointer]:
+                - /url: /about
+            - listitem [ref=f5e119]:
+              - link "Classes" [ref=f5e120] [cursor=pointer]:
+                - /url: /classes
+            - listitem [ref=f5e121]:
+              - link "Locations" [ref=f5e122] [cursor=pointer]:
+                - /url: /locations
+            - listitem [ref=f5e123]:
+              - link "Instructors" [ref=f5e124] [cursor=pointer]:
+                - /url: /instructors
+            - listitem [ref=f5e125]:
+              - link "Calendar" [ref=f5e126] [cursor=pointer]:
+                - /url: /calendar
+            - listitem [ref=f5e127]:
+              - link "FAQ" [ref=f5e128] [cursor=pointer]:
+                - /url: /faq
+        - generic [ref=f5e129]:
+          - heading "Classes" [level=3] [ref=f5e130]
+          - list [ref=f5e131]:
+            - listitem [ref=f5e132]:
+              - link "Children Class" [ref=f5e133] [cursor=pointer]:
+                - /url: /classes/children-class
+            - listitem [ref=f5e134]:
+              - link "Youth Class" [ref=f5e135] [cursor=pointer]:
+                - /url: /classes/youth-class
+            - listitem [ref=f5e136]:
+              - link "Adult Class" [ref=f5e137] [cursor=pointer]:
+                - /url: /classes/adult-class
+            - listitem [ref=f5e138]:
+              - link "Little Tigers" [ref=f5e139] [cursor=pointer]:
+                - /url: /classes/little-tigers
+            - listitem [ref=f5e140]:
+              - link "HCA Eagles" [ref=f5e141] [cursor=pointer]:
+                - /url: /classes/hca-eagles
+        - generic [ref=f5e142]:
+          - heading "Contact" [level=3] [ref=f5e143]
+          - generic [ref=f5e144]:
+            - paragraph [ref=f5e145]:
+              - text: "Email:"
+              - link "train@hapkidocollege.com.au" [ref=f5e146] [cursor=pointer]:
+                - /url: mailto:train@hapkidocollege.com.au
+            - paragraph [ref=f5e147]:
+              - text: "Phone:"
+              - link "(02) 9747 0822" [ref=f5e148] [cursor=pointer]:
+                - /url: tel:+61297470822
+            - paragraph [ref=f5e149]: Follow us for updates, events, and training highlights.
+            - generic [ref=f5e150]:
+              - link "Instagram" [ref=f5e151] [cursor=pointer]:
+                - /url: https://www.instagram.com/hapkido_college_of_australia/
+              - link "Facebook" [ref=f5e154] [cursor=pointer]:
+                - /url: https://www.facebook.com/HapkidoCollegeofAustralia/
+              - link "YouTube" [ref=f5e157] [cursor=pointer]:
+                - /url: https://www.youtube.com/@HapkidoCollegeofAustralia
+      - paragraph [ref=f5e161]: © 2026 Hapkido College of Australia. All rights reserved.
+  - generic [ref=f5e163]:
+    - link "Book Free Trial" [ref=f5e164] [cursor=pointer]:
+      - /url: /contact
+    - link "Locations" [ref=f5e165] [cursor=pointer]:
+      - /url: /locations
+  - button "Open Next.js Dev Tools" [ref=f5e171] [cursor=pointer]
+  - alert [ref=f5e175]

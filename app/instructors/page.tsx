@@ -27,6 +27,7 @@ export default async function InstructorsPage() {
         basePath: "/instructors",
         badge: instructor.fields.rank ?? "Instructor",
         ctaLabel: "View Profile",
+        fallbackImage: "instructor",
       }),
   );
 
@@ -35,6 +36,7 @@ export default async function InstructorsPage() {
       title="Our Instructors"
       description="Meet the instructors guiding our students."
       items={items}
+      imageShape="circle"
     />
   );
 }

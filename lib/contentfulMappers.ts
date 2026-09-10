@@ -1,5 +1,9 @@
 import { FAQ_DEFAULT_CATEGORY } from "@/config/faq";
-import { getAssetUrl } from "@/lib/contentful";
+import {
+  getAssetUrl,
+  resolveEntryImage,
+  type FallbackImageKind,
+} from "@/lib/contentful";
 import {
   formatDateKey,
   WEEKLY_THEME_COLORS,
@@ -127,7 +131,9 @@ export function mapToCardItem(
     description: item.fields.description,
     href: `${options.basePath}/${item.fields.slug}`,
     badge: options.badge,
-    ctaLabel: options.ctaLabel ?? "View More",
+    meta:
+      typeof item.fields.address === "string" ? item.fields.address : undefined,
+    ctaLabel: options.ctaLabel ?? "View more",
   };
 }
 
@@ -138,18 +144,19 @@ export function mapToImageCardItem(
     basePath: string;
     ctaLabel?: string;
     badge?: string;
+    fallbackImage?: FallbackImageKind | string;
   }
 ) {
-  const imageUrl = getAssetUrl(data, item.fields.image?.sys?.id);
-
   return {
     ...mapToCardItem(item, options),
-    image: imageUrl
-      ? {
-          src: imageUrl,
-          alt: item.fields.title,
-        }
-      : undefined,
+    image: {
+      src: resolveEntryImage(
+        data,
+        item,
+        options.fallbackImage ?? "header",
+      ),
+      alt: item.fields.title,
+    },
   };
 }
 
@@ -286,10 +293,13 @@ export function mapScheduleEntry(item: any, data: any): TimetableClassCard {
   let instructor: TimetableClassCard["instructor"] = undefined;
   if (instructorEntry) {
     const photoId = instructorEntry.fields.image?.sys?.id;
+    const instructorSlug = instructorEntry.fields.slug;
     instructor = {
       name: instructorEntry.fields.name ?? instructorEntry.fields.title ?? "",
       rank: instructorEntry.fields.rank,
       photo: photoId ? getAssetUrl(data, photoId, { width: 80 }) : undefined,
+      slug: instructorSlug,
+      href: instructorSlug ? `/instructors/${instructorSlug}` : undefined,
     };
   }
 

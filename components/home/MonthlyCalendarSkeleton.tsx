@@ -1,7 +1,7 @@
 export default function MonthlyCalendarSkeleton() {
   return (
     <div className="space-y-8 animate-pulse">
-      <div className="hidden lg:block w-full rounded-3xl border border-black/10 bg-white p-7 shadow-sm">
+      <div className="hidden w-full rounded-2xl border border-hca-border bg-hca-surface p-6 md:p-8 lg:block">
         <div className="mb-6 h-10 rounded-full bg-black/5" />
         <div className="mb-3 grid grid-cols-7 gap-2">
           {Array.from({ length: 7 }).map((_, index) => (
@@ -28,7 +28,7 @@ export default function MonthlyCalendarSkeleton() {
         </div>
       </div>
 
-      <aside className="lg:hidden rounded-3xl border border-black/10 bg-white p-7 shadow-sm">
+      <aside className="rounded-2xl border border-hca-border bg-hca-surface p-6 md:p-8 lg:hidden">
         <div className="mb-6 h-10 rounded-full bg-black/5" />
         <div className="h-4 w-32 rounded bg-black/5" />
         <div className="mt-4 space-y-4">

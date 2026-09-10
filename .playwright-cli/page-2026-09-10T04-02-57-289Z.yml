@@ -1,0 +1,99 @@
+- generic [active] [ref=f3e1]:
+  - link "Skip to content" [ref=f3e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=f3e3]:
+    - generic [ref=f3e5]:
+      - link "Hapkido College of Australia" [ref=f3e6] [cursor=pointer]:
+        - /url: /
+      - generic [ref=f3e8]:
+        - button "Open navigation menu" [ref=f3e10]
+        - link "Book Free Trial" [ref=f3e12] [cursor=pointer]:
+          - /url: /contact
+  - main [ref=f3e16]:
+    - generic [ref=f3e18]:
+      - generic [ref=f3e19]:
+        - paragraph [ref=f3e20]: Member Calendar
+        - heading "Monthly Training Calendar" [level=1] [ref=f3e21]
+        - paragraph [ref=f3e22]: View weekly themes, gradings, demonstrations, events, and important HCA community updates.
+      - complementary [ref=f3e27]
+  - contentinfo [ref=f3e37]:
+    - generic [ref=f3e41]:
+      - generic [ref=f3e42]:
+        - generic [ref=f3e43]:
+          - paragraph [ref=f3e44]: Hapkido College of Australia
+          - heading "Traditional martial arts. Family and community focused." [level=2] [ref=f3e45]: Traditional martial arts.Family and community focused.
+          - paragraph [ref=f3e46]: Building confidence, discipline, respect, and community through traditional Hapkido training for all ages.
+          - link "Book Free Trial" [ref=f3e47] [cursor=pointer]:
+            - /url: /contact
+        - generic [ref=f3e48]:
+          - heading "Quick Links" [level=3] [ref=f3e49]
+          - list [ref=f3e50]:
+            - listitem [ref=f3e51]:
+              - link "Home" [ref=f3e52] [cursor=pointer]:
+                - /url: /
+            - listitem [ref=f3e53]:
+              - link "Schedule" [ref=f3e54] [cursor=pointer]:
+                - /url: /schedule
+            - listitem [ref=f3e55]:
+              - link "About" [ref=f3e56] [cursor=pointer]:
+                - /url: /about
+            - listitem [ref=f3e57]:
+              - link "Classes" [ref=f3e58] [cursor=pointer]:
+                - /url: /classes
+            - listitem [ref=f3e59]:
+              - link "Locations" [ref=f3e60] [cursor=pointer]:
+                - /url: /locations
+            - listitem [ref=f3e61]:
+              - link "Instructors" [ref=f3e62] [cursor=pointer]:
+                - /url: /instructors
+            - listitem [ref=f3e63]:
+              - link "Calendar" [ref=f3e64] [cursor=pointer]:
+                - /url: /calendar
+            - listitem [ref=f3e65]:
+              - link "FAQ" [ref=f3e66] [cursor=pointer]:
+                - /url: /faq
+        - generic [ref=f3e67]:
+          - heading "Classes" [level=3] [ref=f3e68]
+          - list [ref=f3e69]:
+            - listitem [ref=f3e70]:
+              - link "Children Class" [ref=f3e71] [cursor=pointer]:
+                - /url: /classes/children-class
+            - listitem [ref=f3e72]:
+              - link "Youth Class" [ref=f3e73] [cursor=pointer]:
+                - /url: /classes/youth-class
+            - listitem [ref=f3e74]:
+              - link "Adult Class" [ref=f3e75] [cursor=pointer]:
+                - /url: /classes/adult-class
+            - listitem [ref=f3e76]:
+              - link "Little Tigers" [ref=f3e77] [cursor=pointer]:
+                - /url: /classes/little-tigers
+            - listitem [ref=f3e78]:
+              - link "HCA Eagles" [ref=f3e79] [cursor=pointer]:
+                - /url: /classes/hca-eagles
+        - generic [ref=f3e80]:
+          - heading "Contact" [level=3] [ref=f3e81]
+          - generic [ref=f3e82]:
+            - paragraph [ref=f3e83]:
+              - text: "Email:"
+              - link "train@hapkidocollege.com.au" [ref=f3e84] [cursor=pointer]:
+                - /url: mailto:train@hapkidocollege.com.au
+            - paragraph [ref=f3e85]:
+              - text: "Phone:"
+              - link "(02) 9747 0822" [ref=f3e86] [cursor=pointer]:
+                - /url: tel:+61297470822
+            - paragraph [ref=f3e87]: Follow us for updates, events, and training highlights.
+            - generic [ref=f3e88]:
+              - link "Instagram" [ref=f3e89] [cursor=pointer]:
+                - /url: https://www.instagram.com/hapkido_college_of_australia/
+              - link "Facebook" [ref=f3e92] [cursor=pointer]:
+                - /url: https://www.facebook.com/HapkidoCollegeofAustralia/
+              - link "YouTube" [ref=f3e95] [cursor=pointer]:
+                - /url: https://www.youtube.com/@HapkidoCollegeofAustralia
+      - paragraph [ref=f3e99]: © 2026 Hapkido College of Australia. All rights reserved.
+  - generic [ref=f3e101]:
+    - link "Book Free Trial" [ref=f3e102] [cursor=pointer]:
+      - /url: /contact
+    - link "Locations" [ref=f3e103] [cursor=pointer]:
+      - /url: /locations
+  - button "Open Next.js Dev Tools" [ref=f3e109] [cursor=pointer]
+  - alert [ref=f3e113]

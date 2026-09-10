@@ -7,12 +7,13 @@ import TestimonialsSection from "@/components/home/TestimonialsSection";
 import MonthlyCalendarSection from "@/components/home/MonthlyCalendarSection";
 import FaqSection from "@/components/content/FaqSection";
 import CTASection from "@/components/content/CTASection";
+import RevealOnView from "@/components/ui/RevealOnView";
 
 import {
   getClasses,
   getInstructors,
   getLocations,
-  getAssetUrl,
+  resolveEntryImage,
   getTestimonials,
   getFaqs,
   getCalendarEvents,
@@ -26,44 +27,43 @@ import {
 } from "@/lib/contentfulMappers";
 
 function mapInstructors(instructorsData: any) {
-  return sortInstructorsByRank(instructorsData.items).map((instructor: any) => {
-    const avatarUrl = getAssetUrl(
-      instructorsData,
-      instructor.fields.image?.sys?.id,
-    );
-
-    return {
-      id: instructor.sys.id,
-      name: instructor.fields.title,
-      rank: instructor.fields.rank,
-      bio: instructor.fields.description,
-      href: `/instructors/${instructor.fields.slug}`,
-      image: avatarUrl
-        ? {
-            src: avatarUrl,
-            alt: instructor.fields.title,
-          }
-        : undefined,
-    };
-  });
+  return sortInstructorsByRank(instructorsData.items).map((instructor: any) => ({
+    id: instructor.sys.id,
+    name: instructor.fields.title,
+    rank: instructor.fields.rank,
+    bio: instructor.fields.description,
+    href: `/instructors/${instructor.fields.slug}`,
+    image: {
+      src: resolveEntryImage(instructorsData, instructor, "instructor"),
+      alt: instructor.fields.title,
+    },
+  }));
 }
 
-function mapServices(services: any[]) {
-  return services.map((program: any) => ({
+function mapServices(classesData: any) {
+  return classesData.items.map((program: any) => ({
     id: program.sys.id,
     title: program.fields.title,
     age: program.fields.ageRange,
     description: program.fields.description,
     href: `/classes/${program.fields.slug}`,
+    image: {
+      src: resolveEntryImage(classesData, program, "class"),
+      alt: program.fields.title,
+    },
   }));
 }
 
-function mapLocations(locations: any[]) {
-  return locations.map((location: any) => ({
+function mapLocations(locationsData: any) {
+  return locationsData.items.map((location: any) => ({
     id: location.sys.id,
     title: location.fields.title,
     description: location.fields.description,
     href: `/locations/${location.fields.slug}`,
+    image: {
+      src: resolveEntryImage(locationsData, location, "location"),
+      alt: location.fields.title,
+    },
   }));
 }
 
@@ -78,9 +78,9 @@ function mapTestimonials(testimonials: any[]) {
 
 export default async function Home() {
   const [
-    services,
+    classesData,
     instructorsData,
-    studioLocationsData,
+    locationsData,
     testimonialsData,
     faqData,
     calendarData,
@@ -98,24 +98,41 @@ export default async function Home() {
   return (
     <>
       <HeroSection />
-      <WhyChooseSection />
+      <RevealOnView>
+        <WhyChooseSection />
+      </RevealOnView>
 
-      <ProgramsSection services={mapServices(services)} />
+      <RevealOnView>
+        <ProgramsSection services={mapServices(classesData)} />
+      </RevealOnView>
 
-      <MonthlyCalendarSection
-        themes={mapWeeklyThemes(themesData)}
-        events={mapCalendarEvents(calendarData)}
-      />
+      <RevealOnView>
+        <MonthlyCalendarSection
+          pageHref="/calendar"
+          themes={mapWeeklyThemes(themesData)}
+          events={mapCalendarEvents(calendarData)}
+        />
+      </RevealOnView>
 
-      <LocationPreviewSection locations={mapLocations(studioLocationsData)} />
+      <RevealOnView>
+        <LocationPreviewSection locations={mapLocations(locationsData)} />
+      </RevealOnView>
 
-      <InstructorPreviewSection instructors={mapInstructors(instructorsData)} />
+      <RevealOnView>
+        <InstructorPreviewSection instructors={mapInstructors(instructorsData)} />
+      </RevealOnView>
 
-      <TestimonialsSection testimonials={mapTestimonials(testimonialsData)} />
+      <RevealOnView>
+        <TestimonialsSection testimonials={mapTestimonials(testimonialsData)} />
+      </RevealOnView>
 
-      <FaqSection faqs={mapFaqs(faqData)} />
+      <RevealOnView>
+        <FaqSection faqs={mapFaqs(faqData)} />
+      </RevealOnView>
 
-      <CTASection />
+      <RevealOnView>
+        <CTASection />
+      </RevealOnView>
     </>
   );
 }

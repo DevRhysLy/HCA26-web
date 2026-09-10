@@ -25,12 +25,13 @@ function createSitemapEntry(
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const [classes, instructorsData, locations, aboutPages] = await Promise.all([
-    getClasses(),
-    getInstructors(),
-    getLocations(),
-    getAbout(),
-  ]);
+  const [classesData, instructorsData, locationsData, aboutData] =
+    await Promise.all([
+      getClasses(),
+      getInstructors(),
+      getLocations(),
+      getAbout(),
+    ]);
 
   const staticPages: MetadataRoute.Sitemap = [
     createSitemapEntry("/", {
@@ -61,9 +62,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.7,
       changeFrequency: "monthly",
     }),
+    createSitemapEntry("/calendar", {
+      priority: 0.7,
+      changeFrequency: "weekly",
+    }),
   ];
 
-  const classPages = classes.map((item: any) =>
+  const classPages = classesData.items.map((item: any) =>
     createSitemapEntry(`/classes/${item.fields.slug}`, {
       priority: 0.8,
       changeFrequency: "monthly",
@@ -77,14 +82,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }),
   );
 
-  const locationPages = locations.map((item: any) =>
+  const locationPages = locationsData.items.map((item: any) =>
     createSitemapEntry(`/locations/${item.fields.slug}`, {
       priority: 0.85,
       changeFrequency: "monthly",
     }),
   );
 
-  const aboutSlugPages = aboutPages.map((item: any) =>
+  const aboutSlugPages = aboutData.items.map((item: any) =>
     createSitemapEntry(`/about/${item.fields.slug}`, {
       priority: 0.6,
       changeFrequency: "monthly",

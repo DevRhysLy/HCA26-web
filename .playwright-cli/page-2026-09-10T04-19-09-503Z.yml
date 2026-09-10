@@ -1,0 +1,255 @@
+- generic [active] [ref=f1e1]:
+  - link "Skip to content" [ref=f1e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=f1e3]:
+    - generic [ref=f1e5]:
+      - link "Hapkido College of Australia" [ref=f1e6] [cursor=pointer]:
+        - /url: /
+      - generic [ref=f1e8]:
+        - navigation "Main navigation" [ref=f1e10]:
+          - link "Home" [ref=f1e11] [cursor=pointer]:
+            - /url: /
+          - link "Schedule" [ref=f1e12] [cursor=pointer]:
+            - /url: /schedule
+          - link "About" [ref=f1e13] [cursor=pointer]:
+            - /url: /about
+          - link "Classes" [ref=f1e14] [cursor=pointer]:
+            - /url: /classes
+          - link "Locations" [ref=f1e16] [cursor=pointer]:
+            - /url: /locations
+          - link "Instructors" [ref=f1e17] [cursor=pointer]:
+            - /url: /instructors
+        - link "Book Free Trial" [ref=f1e18] [cursor=pointer]:
+          - /url: /contact
+  - main [ref=f1e22]:
+    - generic [ref=f1e23]:
+      - generic [ref=f1e25]:
+        - generic [ref=f1e26]:
+          - generic [ref=f1e27]:
+            - navigation "Breadcrumb" [ref=f1e28]:
+              - list [ref=f1e29]:
+                - listitem [ref=f1e30]:
+                  - link "Home" [ref=f1e31] [cursor=pointer]:
+                    - /url: /
+                - listitem [ref=f1e32]:
+                  - generic [aria-hidden] [ref=f1e33]: /
+                  - link "Classes" [ref=f1e34] [cursor=pointer]:
+                    - /url: /classes
+                - listitem [ref=f1e35]:
+                  - generic [aria-hidden] [ref=f1e36]: /
+                  - generic [ref=f1e37]: Children Class
+            - paragraph [ref=f1e38]: Class
+            - heading "Children Class" [level=1] [ref=f1e39]
+            - paragraph [ref=f1e40]: Build confidence, focus, and practical self-defence skills through fun and engaging martial arts training designed to help children grow both physically and mentally.
+            - paragraph [ref=f1e42]: 6-11 Years Old Kids
+            - generic [ref=f1e46]:
+              - link "Book Free Trial" [ref=f1e47] [cursor=pointer]:
+                - /url: /contact
+              - link "View timetable" [ref=f1e48] [cursor=pointer]:
+                - /url: /schedule
+          - img "Children Class" [ref=f1e51]
+        - generic [ref=f1e52]:
+          - generic [ref=f1e54]:
+            - article [ref=f1e58]:
+              - heading "Children's Class" [level=2] [ref=f1e59]
+              - paragraph [ref=f1e60]: Our Children's Program provides students with the opportunity to develop confidence, focus, discipline, and practical self-defence skills in a fun, supportive, and engaging environment. Available at all HCA studios, this program is designed to help children build strong foundations both on and off the mats.
+              - paragraph [ref=f1e61]: Through structured Hapkido training, students learn authentic martial arts techniques while improving their coordination, balance, fitness, and overall physical wellbeing. Classes are designed to challenge students at an age-appropriate level, helping them develop perseverance, resilience, and a growth mindset as they progress through the curriculum.
+              - paragraph [ref=f1e62]:
+                - img "Child_class_img" [ref=f1e63]
+              - paragraph [ref=f1e64]: Beyond physical training, our Children's Program focuses heavily on character development. Students are encouraged to demonstrate respect, self-discipline, responsibility, and teamwork in every class. These values help children build confidence in themselves, improve their ability to concentrate, and develop positive habits that can benefit them at school, at home, and in everyday life.
+              - paragraph [ref=f1e65]: Our practical self-defence curriculum teaches children how to stay safe, respond appropriately to challenging situations, and develop greater awareness of their surroundings. Combined with regular physical activity and supportive instruction, students gain valuable life skills while having fun and making new friends.
+              - paragraph [ref=f1e66]: At HCA, we believe martial arts is about more than learning techniques—it's about helping young people become confident, capable, and respectful individuals. Our Children's Program provides a positive environment where every student can grow, learn, and reach their full potential.
+            - button "Read more" [ref=f1e67]
+          - complementary [ref=f1e69]:
+            - heading "At a glance" [level=2] [ref=f1e70]
+            - generic [ref=f1e71]:
+              - generic [ref=f1e72]:
+                - heading "Locations" [level=3] [ref=f1e73]
+                - list [ref=f1e74]:
+                  - listitem [ref=f1e75]:
+                    - link "Croydon HQ DOJANG" [ref=f1e76] [cursor=pointer]:
+                      - /url: /locations/croydon
+                      - generic [ref=f1e77]: Croydon HQ
+                      - generic [ref=f1e78]: DOJANG
+                  - listitem [ref=f1e79]:
+                    - link "Ermington West DOJANG" [ref=f1e80] [cursor=pointer]:
+                      - /url: /locations/ermington-west
+                      - generic [ref=f1e81]: Ermington West
+                      - generic [ref=f1e82]: DOJANG
+                  - listitem [ref=f1e83]:
+                    - link "Belrose DOJANG" [ref=f1e84] [cursor=pointer]:
+                      - /url: /locations/belrose
+                      - generic [ref=f1e85]: Belrose
+                      - generic [ref=f1e86]: DOJANG
+              - generic [ref=f1e87]:
+                - heading "Next sessions" [level=3] [ref=f1e88]
+                - generic [ref=f1e89]:
+                  - generic [ref=f1e90]:
+                    - paragraph [ref=f1e91]: Monday
+                    - list [ref=f1e92]:
+                      - listitem [ref=f1e93]:
+                        - generic [ref=f1e94]: 4:00 pm
+                        - link "Croydon HQ" [ref=f1e95] [cursor=pointer]:
+                          - /url: /locations/croydon
+                        - generic [ref=f1e96]: Bethany Ly
+                      - listitem [ref=f1e97]:
+                        - generic [ref=f1e98]: 5:00 pm
+                        - link "Croydon HQ" [ref=f1e99] [cursor=pointer]:
+                          - /url: /locations/croydon
+                        - generic [ref=f1e100]: Rhys Ly
+                      - listitem [ref=f1e101]:
+                        - generic [ref=f1e102]: 5:30 pm
+                        - link "Belrose" [ref=f1e103] [cursor=pointer]:
+                          - /url: /locations/belrose
+                        - generic [ref=f1e104]: Kervin Antonio
+                  - generic [ref=f1e105]:
+                    - paragraph [ref=f1e106]: Tuesday
+                    - list [ref=f1e107]:
+                      - listitem [ref=f1e108]:
+                        - generic [ref=f1e109]: 5:00 pm
+                        - link "Croydon HQ" [ref=f1e110] [cursor=pointer]:
+                          - /url: /locations/croydon
+                        - generic [ref=f1e111]: Hamish Morris
+                      - listitem [ref=f1e112]:
+                        - generic [ref=f1e113]: 5:00 pm
+                        - link "Ermington West" [ref=f1e114] [cursor=pointer]:
+                          - /url: /locations/ermington-west
+                        - generic [ref=f1e115]: Bethany Ly
+                      - listitem [ref=f1e116]:
+                        - generic [ref=f1e117]: 5:50 pm
+                        - link "Ermington West" [ref=f1e118] [cursor=pointer]:
+                          - /url: /locations/ermington-west
+                        - generic [ref=f1e119]: Bethany Ly
+                  - generic [ref=f1e120]:
+                    - paragraph [ref=f1e121]: Wednesday
+                    - list [ref=f1e122]:
+                      - listitem [ref=f1e123]:
+                        - generic [ref=f1e124]: 4:00 pm
+                        - link "Croydon HQ" [ref=f1e125] [cursor=pointer]:
+                          - /url: /locations/croydon
+                        - generic [ref=f1e126]: Bethany Ly
+                      - listitem [ref=f1e127]:
+                        - generic [ref=f1e128]: 5:00 pm
+                        - link "Croydon HQ" [ref=f1e129] [cursor=pointer]:
+                          - /url: /locations/croydon
+                        - generic [ref=f1e130]: Hamish Morris
+                      - listitem [ref=f1e131]:
+                        - generic [ref=f1e132]: 5:30 pm
+                        - link "Belrose" [ref=f1e133] [cursor=pointer]:
+                          - /url: /locations/belrose
+                        - generic [ref=f1e134]: Kervin Antonio
+                  - generic [ref=f1e135]:
+                    - paragraph [ref=f1e136]: Thursday
+                    - list [ref=f1e137]:
+                      - listitem [ref=f1e138]:
+                        - generic [ref=f1e139]: 5:00 pm
+                        - link "Croydon HQ" [ref=f1e140] [cursor=pointer]:
+                          - /url: /locations/croydon
+                        - generic [ref=f1e141]: Bethany Ly
+                      - listitem [ref=f1e142]:
+                        - generic [ref=f1e143]: 5:00 pm
+                        - link "Ermington West" [ref=f1e144] [cursor=pointer]:
+                          - /url: /locations/ermington-west
+                        - generic [ref=f1e145]: Rhys Ly
+                      - listitem [ref=f1e146]:
+                        - generic [ref=f1e147]: 5:50 pm
+                        - link "Ermington West" [ref=f1e148] [cursor=pointer]:
+                          - /url: /locations/ermington-west
+                        - generic [ref=f1e149]: Rhys Ly
+                  - generic [ref=f1e150]:
+                    - paragraph [ref=f1e151]: Saturday
+                    - list [ref=f1e152]:
+                      - listitem [ref=f1e153]:
+                        - generic [ref=f1e154]: 9:00 am
+                        - link "Croydon HQ" [ref=f1e155] [cursor=pointer]:
+                          - /url: /locations/croydon
+                        - generic [ref=f1e156]: Rhys Ly
+                - paragraph [ref=f1e157]:
+                  - link "Full timetable" [ref=f1e158] [cursor=pointer]:
+                    - /url: /schedule
+      - generic [ref=f1e162]:
+        - generic [ref=f1e164]:
+          - paragraph [ref=f1e165]: Free trial
+          - heading "Ready to begin training?" [level=2] [ref=f1e166]
+          - paragraph [ref=f1e167]: Book a free trial class and experience traditional Hapkido training in a safe, structured, family-friendly environment.
+        - generic [ref=f1e171]:
+          - link "Book Free Trial" [ref=f1e172] [cursor=pointer]:
+            - /url: /contact
+          - link "View Classes" [ref=f1e173] [cursor=pointer]:
+            - /url: /classes
+  - contentinfo [ref=f1e174]:
+    - generic [ref=f1e178]:
+      - generic [ref=f1e179]:
+        - generic [ref=f1e180]:
+          - paragraph [ref=f1e181]: Hapkido College of Australia
+          - heading "Traditional martial arts. Family and community focused." [level=2] [ref=f1e182]: Traditional martial arts.Family and community focused.
+          - paragraph [ref=f1e183]: Building confidence, discipline, respect, and community through traditional Hapkido training for all ages.
+          - link "Book Free Trial" [ref=f1e184] [cursor=pointer]:
+            - /url: /contact
+        - generic [ref=f1e185]:
+          - heading "Quick Links" [level=3] [ref=f1e186]
+          - list [ref=f1e187]:
+            - listitem [ref=f1e188]:
+              - link "Home" [ref=f1e189] [cursor=pointer]:
+                - /url: /
+            - listitem [ref=f1e190]:
+              - link "Schedule" [ref=f1e191] [cursor=pointer]:
+                - /url: /schedule
+            - listitem [ref=f1e192]:
+              - link "About" [ref=f1e193] [cursor=pointer]:
+                - /url: /about
+            - listitem [ref=f1e194]:
+              - link "Classes" [ref=f1e195] [cursor=pointer]:
+                - /url: /classes
+            - listitem [ref=f1e196]:
+              - link "Locations" [ref=f1e197] [cursor=pointer]:
+                - /url: /locations
+            - listitem [ref=f1e198]:
+              - link "Instructors" [ref=f1e199] [cursor=pointer]:
+                - /url: /instructors
+            - listitem [ref=f1e200]:
+              - link "Calendar" [ref=f1e201] [cursor=pointer]:
+                - /url: /calendar
+            - listitem [ref=f1e202]:
+              - link "FAQ" [ref=f1e203] [cursor=pointer]:
+                - /url: /faq
+        - generic [ref=f1e204]:
+          - heading "Classes" [level=3] [ref=f1e205]
+          - list [ref=f1e206]:
+            - listitem [ref=f1e207]:
+              - link "Children Class" [ref=f1e208] [cursor=pointer]:
+                - /url: /classes/children-class
+            - listitem [ref=f1e209]:
+              - link "Youth Class" [ref=f1e210] [cursor=pointer]:
+                - /url: /classes/youth-class
+            - listitem [ref=f1e211]:
+              - link "Adult Class" [ref=f1e212] [cursor=pointer]:
+                - /url: /classes/adult-class
+            - listitem [ref=f1e213]:
+              - link "Little Tigers" [ref=f1e214] [cursor=pointer]:
+                - /url: /classes/little-tigers
+            - listitem [ref=f1e215]:
+              - link "HCA Eagles" [ref=f1e216] [cursor=pointer]:
+                - /url: /classes/hca-eagles
+        - generic [ref=f1e217]:
+          - heading "Contact" [level=3] [ref=f1e218]
+          - generic [ref=f1e219]:
+            - paragraph [ref=f1e220]:
+              - text: "Email:"
+              - link "train@hapkidocollege.com.au" [ref=f1e221] [cursor=pointer]:
+                - /url: mailto:train@hapkidocollege.com.au
+            - paragraph [ref=f1e222]:
+              - text: "Phone:"
+              - link "(02) 9747 0822" [ref=f1e223] [cursor=pointer]:
+                - /url: tel:+61297470822
+            - paragraph [ref=f1e224]: Follow us for updates, events, and training highlights.
+            - generic [ref=f1e225]:
+              - link "Instagram" [ref=f1e226] [cursor=pointer]:
+                - /url: https://www.instagram.com/hapkido_college_of_australia/
+              - link "Facebook" [ref=f1e229] [cursor=pointer]:
+                - /url: https://www.facebook.com/HapkidoCollegeofAustralia/
+              - link "YouTube" [ref=f1e232] [cursor=pointer]:
+                - /url: https://www.youtube.com/@HapkidoCollegeofAustralia
+      - paragraph [ref=f1e236]: © 2026 Hapkido College of Australia. All rights reserved.
+  - button "Open Next.js Dev Tools" [ref=f1e242] [cursor=pointer]
+  - alert [ref=f1e246]

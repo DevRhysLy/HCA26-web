@@ -15,38 +15,38 @@ function getCardStyle(variant: TimetableCardVariant) {
   switch (variant) {
     case "kids":
       return {
-        wrap: "bg-[#003478]/5 border border-[#003478]/20 hover:border-[#003478]/40",
-        accent: "bg-[#003478]",
-        tag: "text-[#003478]",
-        title: "text-[#111111]",
+        wrap: "bg-hca-blue/5 border border-hca-blue/20 hover:border-hca-blue/40",
+        accent: "bg-hca-blue",
+        tag: "text-hca-blue",
+        title: "text-hca-ink",
       };
     case "youth":
       return {
-        wrap: "bg-[#C60C30]/5 border border-[#C60C30]/20 hover:border-[#C60C30]/40",
-        accent: "bg-[#C60C30]",
-        tag: "text-[#C60C30]",
-        title: "text-[#111111]",
+        wrap: "bg-hca-red/5 border border-hca-red/20 hover:border-hca-red/40",
+        accent: "bg-hca-red",
+        tag: "text-hca-red",
+        title: "text-hca-ink",
       };
     case "advanced":
       return {
-        wrap: "bg-white border border-[#003478]/30 hover:border-[#003478]/50 shadow-sm",
-        accent: "bg-[#003478]",
-        tag: "text-[#003478]",
-        title: "text-[#111111]",
+        wrap: "bg-white border border-hca-blue/30 hover:border-hca-blue/50 shadow-sm",
+        accent: "bg-hca-blue",
+        tag: "text-hca-blue",
+        title: "text-hca-ink",
       };
     case "adults":
       return {
-        wrap: "bg-white border border-black/10 hover:border-[#C60C30]/40 shadow-sm",
-        accent: "bg-[#C60C30]",
-        tag: "text-black/60",
-        title: "text-[#111111]",
+        wrap: "bg-white border border-hca-border hover:border-hca-red/40 shadow-sm",
+        accent: "bg-hca-red",
+        tag: "text-hca-ink/60",
+        title: "text-hca-ink",
       };
     default:
       return {
-        wrap: "bg-white border border-black/10 hover:border-[#003478]/30 shadow-sm",
-        accent: "bg-black/30",
-        tag: "text-black/60",
-        title: "text-[#111111]",
+        wrap: "bg-white border border-hca-border hover:border-hca-blue/30 shadow-sm",
+        accent: "bg-hca-ink/30",
+        tag: "text-hca-ink/60",
+        title: "text-hca-ink",
       };
   }
 }
@@ -285,7 +285,7 @@ export default function TimetableEntryCard({
                     {entry.tag}
                   </div>
                 )}
-                <div className="text-sm font-bold text-[#111111]">{entry.title}</div>
+                <div className="text-sm font-bold text-hca-ink">{entry.title}</div>
               </div>
             )}
 
@@ -298,12 +298,12 @@ export default function TimetableEntryCard({
                   >
                     <Link
                       href={linkedClass.href}
-                      className="text-sm font-bold text-[#003478] transition-colors hover:text-[#C60C30]"
+                      className="text-sm font-bold text-hca-blue transition-colors hover:text-hca-red"
                     >
                       {linkedClass.title}
                     </Link>
                     {linkedClass.ageRange && (
-                      <div className="mt-1 text-xs font-semibold text-[#003478]">
+                      <div className="mt-1 text-xs font-semibold text-hca-blue">
                         {linkedClass.ageRange}
                       </div>
                     )}
@@ -320,7 +320,7 @@ export default function TimetableEntryCard({
             {entry.linkedClasses?.length === 1 && entry.linkedClasses[0].href && (
               <Link
                 href={entry.linkedClasses[0].href}
-                className="mb-3 inline-flex text-xs font-semibold text-[#003478] transition-colors hover:text-[#C60C30]"
+                className="mb-3 inline-flex text-xs font-semibold text-hca-blue transition-colors hover:text-hca-red"
               >
                 View class details
               </Link>
@@ -337,18 +337,18 @@ export default function TimetableEntryCard({
                     className="h-10 w-10 rounded-full object-cover border border-black/10 flex-shrink-0"
                   />
                 ) : (
-                  <div className="h-10 w-10 rounded-full bg-[#003478]/10 flex items-center justify-center flex-shrink-0">
-                    <span className="text-[#003478] text-sm font-bold">
+                  <div className="h-10 w-10 rounded-full bg-hca-blue/10 flex items-center justify-center flex-shrink-0">
+                    <span className="text-hca-blue text-sm font-bold">
                       {entry.instructor.name.charAt(0)}
                     </span>
                   </div>
                 )}
                 <div>
-                  <div className="text-sm font-bold text-[#111111]">
+                  <div className="text-sm font-bold text-hca-ink">
                     {entry.instructor.name}
                   </div>
                   {entry.instructor.rank && (
-                    <div className="text-xs text-[#C60C30] font-semibold">
+                    <div className="text-xs text-hca-red font-semibold">
                       {entry.instructor.rank}
                     </div>
                   )}
@@ -365,7 +365,7 @@ export default function TimetableEntryCard({
             {(entry.ageRange || entry.duration) && (
               <div className="flex gap-3 flex-wrap">
                 {entry.ageRange && (
-                  <span className="inline-flex items-center gap-1 text-xs font-semibold text-[#003478] bg-[#003478]/8 rounded-lg px-2.5 py-1">
+                  <span className="inline-flex items-center gap-1 text-xs font-semibold text-hca-blue bg-hca-blue/10 rounded-lg px-2.5 py-1">
                     {entry.ageRange}
                   </span>
                 )}

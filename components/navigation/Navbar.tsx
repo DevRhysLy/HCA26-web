@@ -15,7 +15,6 @@ export default function Navbar({ navItems }: NavbarProps) {
   const pathname = usePathname();
   const menuRef = useRef<HTMLDivElement>(null);
 
-  // Close on Escape key or click outside
   useEffect(() => {
     if (!isOpen) return;
 
@@ -38,36 +37,36 @@ export default function Navbar({ navItems }: NavbarProps) {
     };
   }, [isOpen]);
 
-  // Close when route changes (e.g. Link click on same page)
   useEffect(() => {
     setIsOpen(false);
   }, [pathname]);
 
   return (
     <div className="relative" ref={menuRef}>
-      {/* Desktop Navigation */}
-      <nav className="hidden lg:flex items-center gap-6 xl:gap-10" aria-label="Main navigation">
+      <nav className="hidden items-center gap-6 lg:flex xl:gap-8" aria-label="Main navigation">
         {navItems.map((item) => {
-          const isActive = pathname === item.href;
+          const isActive =
+            pathname === item.href ||
+            (item.href !== "/" && pathname.startsWith(`${item.href}/`));
 
           return (
             <Link
               key={item.href}
               href={item.href}
               aria-current={isActive ? "page" : undefined}
-              className={`group relative text-sm xl:text-base font-semibold tracking-wide whitespace-nowrap transition-all duration-200 ${
+              className={`group relative whitespace-nowrap font-sans text-sm font-semibold tracking-wide focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-hca-blue xl:text-base ${
                 isActive
-                  ? "text-[#003478]"
-                  : "text-black/60 hover:text-[#C60C30]"
+                  ? "text-hca-blue"
+                  : "text-hca-ink/60 hover:text-hca-red"
               }`}
             >
               {item.label}
 
               <span
-                className={`absolute -bottom-2 left-0 h-[3px] rounded-full transition-all duration-300 ${
+                className={`hca-nav-line absolute -bottom-2 left-0 h-[3px] w-full rounded-full ${
                   isActive
-                    ? "w-full bg-[#C60C30]"
-                    : "w-0 bg-[#003478] group-hover:w-full"
+                    ? "scale-x-100 bg-hca-red"
+                    : "scale-x-0 bg-hca-blue group-hover:scale-x-100"
                 }`}
               />
             </Link>
@@ -75,32 +74,32 @@ export default function Navbar({ navItems }: NavbarProps) {
         })}
       </nav>
 
-      {/* Hamburger Toggle */}
       <button
         type="button"
         onClick={() => setIsOpen((prev) => !prev)}
-        className="lg:hidden inline-flex items-center justify-center rounded-xl border border-black/10 bg-white p-2.5 text-[#003478] shadow-sm hover:border-[#C60C30]/30 hover:text-[#C60C30] transition-colors duration-200"
-        aria-label="Toggle navigation menu"
+        className="hca-press inline-flex min-h-11 min-w-11 items-center justify-center rounded-xl border border-hca-border bg-hca-surface p-2 text-hca-blue hover:border-hca-red/30 hover:text-hca-red focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-hca-blue lg:hidden"
+        aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
         aria-expanded={isOpen}
         aria-controls="mobile-nav"
       >
-        {isOpen ? <X size={26} /> : <Menu size={26} />}
+        {isOpen ? <X size={26} aria-hidden="true" /> : <Menu size={26} aria-hidden="true" />}
       </button>
 
-      {/* Mobile Dropdown Menu */}
       {isOpen && (
         <div
           id="mobile-nav"
-          className="absolute right-0 top-14 z-[999] w-72 overflow-hidden rounded-2xl border border-black/10 bg-white shadow-xl lg:hidden"
+          className="hca-menu-enter absolute right-0 top-14 z-[999] w-72 overflow-hidden rounded-2xl border border-hca-border bg-hca-surface shadow-[0_8px_24px_rgba(17,24,39,0.08)] lg:hidden"
         >
-          <div className="flex h-1 w-full">
-            <div className="w-1/2 bg-[#C60C30]" />
-            <div className="w-1/2 bg-[#003478]" />
+          <div className="flex h-1 w-full" aria-hidden="true">
+            <div className="w-1/2 bg-hca-red" />
+            <div className="w-1/2 bg-hca-blue" />
           </div>
 
           <nav className="flex flex-col p-3" aria-label="Mobile navigation">
             {navItems.map((item) => {
-              const isActive = pathname === item.href;
+              const isActive =
+            pathname === item.href ||
+            (item.href !== "/" && pathname.startsWith(`${item.href}/`));
 
               return (
                 <Link
@@ -108,10 +107,10 @@ export default function Navbar({ navItems }: NavbarProps) {
                   href={item.href}
                   aria-current={isActive ? "page" : undefined}
                   onClick={() => setIsOpen(false)}
-                  className={`rounded-xl px-4 py-3 text-base font-semibold transition-colors ${
+                  className={`rounded-xl px-4 py-3 text-base font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-hca-blue ${
                     isActive
-                      ? "bg-[#003478]/5 text-[#003478]"
-                      : "text-black/70 hover:bg-[#C60C30]/5 hover:text-[#C60C30]"
+                      ? "bg-hca-blue/5 text-hca-blue"
+                      : "text-hca-ink/70 hover:bg-hca-red/5 hover:text-hca-red"
                   }`}
                 >
                   {item.label}

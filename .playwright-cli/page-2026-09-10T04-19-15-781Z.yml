@@ -1,0 +1,213 @@
+- generic [active] [ref=f4e1]:
+  - link "Skip to content" [ref=f4e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=f4e3]:
+    - generic [ref=f4e5]:
+      - link "Hapkido College of Australia" [ref=f4e6] [cursor=pointer]:
+        - /url: /
+      - generic [ref=f4e8]:
+        - button "Open navigation menu" [ref=f4e10]
+        - link "Book Free Trial" [ref=f4e12] [cursor=pointer]:
+          - /url: /contact
+  - main [ref=f4e16]:
+    - generic [ref=f4e18]:
+      - generic [ref=f4e19]:
+        - img "Master Kim" [ref=f4e22]
+        - generic [ref=f4e24]:
+          - navigation "Breadcrumb" [ref=f4e25]:
+            - list [ref=f4e26]:
+              - listitem [ref=f4e27]:
+                - link "Home" [ref=f4e28] [cursor=pointer]:
+                  - /url: /
+              - listitem [ref=f4e29]:
+                - generic [aria-hidden] [ref=f4e30]: /
+                - link "Instructors" [ref=f4e31] [cursor=pointer]:
+                  - /url: /instructors
+              - listitem [ref=f4e32]:
+                - generic [aria-hidden] [ref=f4e33]: /
+                - generic [ref=f4e34]: Master Kim
+          - paragraph [ref=f4e35]: Instructor
+          - heading "Master Kim" [level=1] [ref=f4e36]
+          - paragraph [ref=f4e37]: Master Young Kil Kim is the founder and Master of HCA, bringing over 40 years of martial arts experience and a lifelong commitment to preserving and teaching traditional Korean Hapkido.
+          - paragraph [ref=f4e39]: 8th Dan Master
+          - link "Book Free Trial" [ref=f4e44] [cursor=pointer]:
+            - /url: /contact
+      - generic [ref=f4e45]:
+        - generic [ref=f4e47]:
+          - article [ref=f4e51]:
+            - heading "Master Young Kil Kim" [level=2] [ref=f4e52]
+            - paragraph [ref=f4e53]: Master Young Kil Kim is the founder and Master of HCA and is widely respected for his dedication to martial arts, education, and community development. Originally from South Korea, Master Kim has devoted more than four decades to studying, practising, and teaching martial arts, with a particular focus on traditional Hapkido.
+            - paragraph [ref=f4e54]: Beginning his martial arts journey in Incheon, South Korea, in 1979, Master Kim trained extensively under highly respected instructors and developed a deep understanding of Hapkido's techniques, philosophy, and traditions. His passion for sharing these teachings led him to Australia in 1999, where he established a vision to provide authentic Korean martial arts instruction while fostering confidence, discipline, and personal growth in students of all ages.
+            - paragraph [ref=f4e55]: As a highly respected member of the Korea Hapkido Federation—the world's largest and most recognised Hapkido organisation—Master Kim maintains strong ties to the art's traditional roots. These affiliations help ensure that HCA students receive instruction that remains true to the principles, techniques, and standards of authentic Korean Hapkido.
+            - paragraph [ref=f4e56]: Throughout his career, Master Kim has developed a reputation for creating a professional, structured, and effective training curriculum that caters to children, teenagers, and adults alike. His teaching philosophy extends beyond physical techniques, focusing on character development, leadership, self-discipline, respect, and lifelong learning.
+            - paragraph [ref=f4e57]: Under his leadership, HCA has grown into a thriving martial arts community, helping thousands of students improve their fitness, confidence, self-defence skills, and overall wellbeing. His commitment to excellence continues to inspire instructors and students throughout the organisation.
+            - heading "Qualifications & Achievements" [level=3] [ref=f4e58]
+            - list [ref=f4e59]:
+              - listitem [ref=f4e60]: 8th Dan Hapkido
+              - listitem [ref=f4e61]: 4th Dan Hwal Bup (Pressure Point & Chiropractic Studies)
+              - listitem [ref=f4e62]: 4th Dan Gumdo (Korean Sword)
+              - listitem [ref=f4e63]: 2nd Dan Gongkwon Yusul
+              - listitem [ref=f4e64]: Certified Sports Master Instructor
+              - listitem [ref=f4e65]: Sports Massage Master
+            - heading "Career Highlights" [level=3] [ref=f4e66]
+            - list [ref=f4e67]:
+              - listitem [ref=f4e68]: Began Hapkido training in Incheon, South Korea (1979)
+              - listitem [ref=f4e69]: Australian College of Sports Instructor (1999)
+              - listitem [ref=f4e70]: Founded his first Hapkido school in Australia, Surry Hills, Sydney (2000)
+              - listitem [ref=f4e71]: Member of the Sydney 2000 Olympic Games Demonstration Team
+              - listitem [ref=f4e72]: Featured on Channel 7 and Channel 10 during Olympic demonstrations
+              - listitem [ref=f4e73]:
+                - text: Appeared in the Hollywood blockbuster
+                - emphasis [ref=f4e74]: Stealth
+                - text: (2005)
+              - listitem [ref=f4e75]: Established HCA as one of Australia's leading centres for traditional Korean Hapkido instruction
+            - paragraph [ref=f4e76]: Today, Master Kim continues to lead HCA with the same passion and dedication that began over 40 years ago, ensuring that future generations can benefit from the physical, mental, and personal development that martial arts training provides.
+          - button "Read more" [ref=f4e77]
+        - complementary [ref=f4e79]:
+          - heading "At a glance" [level=2] [ref=f4e80]
+          - generic [ref=f4e81]:
+            - generic [ref=f4e82]:
+              - heading "Teaches at" [level=3] [ref=f4e83]
+              - list [ref=f4e84]:
+                - listitem [ref=f4e85]:
+                  - link "Croydon HQ" [ref=f4e86] [cursor=pointer]:
+                    - /url: /locations/croydon
+            - generic [ref=f4e88]:
+              - heading "Classes" [level=3] [ref=f4e89]
+              - list [ref=f4e90]:
+                - listitem [ref=f4e91]:
+                  - link "Little Tigers 4-6 Years Old" [ref=f4e92] [cursor=pointer]:
+                    - /url: /classes/little-tigers
+                    - generic [ref=f4e93]: Little Tigers
+                    - generic [ref=f4e94]: 4-6 Years Old
+                - listitem [ref=f4e95]:
+                  - link "Adult Class 18 Years Old +" [ref=f4e96] [cursor=pointer]:
+                    - /url: /classes/adult-class
+                    - generic [ref=f4e97]: Adult Class
+                    - generic [ref=f4e98]: 18 Years Old +
+                - listitem [ref=f4e99]:
+                  - link "Youth Class 12 - 17 Years Old" [ref=f4e100] [cursor=pointer]:
+                    - /url: /classes/youth-class
+                    - generic [ref=f4e101]: Youth Class
+                    - generic [ref=f4e102]: 12 - 17 Years Old
+            - generic [ref=f4e103]:
+              - heading "Next sessions" [level=3] [ref=f4e104]
+              - generic [ref=f4e105]:
+                - generic [ref=f4e106]:
+                  - paragraph [ref=f4e107]: Tuesday
+                  - list [ref=f4e108]:
+                    - listitem [ref=f4e109]:
+                      - generic [ref=f4e110]: 4:15 PM
+                      - link "Little Tigers" [ref=f4e111] [cursor=pointer]:
+                        - /url: /classes/little-tigers
+                      - generic [ref=f4e112]: Croydon HQ
+                - generic [ref=f4e113]:
+                  - paragraph [ref=f4e114]: Thursday
+                  - list [ref=f4e115]:
+                    - listitem [ref=f4e116]:
+                      - generic [ref=f4e117]: 4:15 PM
+                      - link "Little Tigers" [ref=f4e118] [cursor=pointer]:
+                        - /url: /classes/little-tigers
+                      - generic [ref=f4e119]: Croydon HQ
+                - generic [ref=f4e120]:
+                  - paragraph [ref=f4e121]: Saturday
+                  - list [ref=f4e122]:
+                    - listitem [ref=f4e123]:
+                      - generic [ref=f4e124]: 10:00 am
+                      - link "Adult Class" [ref=f4e125] [cursor=pointer]:
+                        - /url: /classes/adult-class
+                      - generic [ref=f4e126]: Croydon HQ
+              - paragraph [ref=f4e127]:
+                - link "Full timetable" [ref=f4e128] [cursor=pointer]:
+                  - /url: /schedule
+    - generic [ref=f4e132]:
+      - generic [ref=f4e134]:
+        - paragraph [ref=f4e135]: Free trial
+        - heading "Ready to begin training?" [level=2] [ref=f4e136]
+        - paragraph [ref=f4e137]: Book a free trial class and experience traditional Hapkido training in a safe, structured, family-friendly environment.
+      - generic [ref=f4e141]:
+        - link "Book Free Trial" [ref=f4e142] [cursor=pointer]:
+          - /url: /contact
+        - link "View Classes" [ref=f4e143] [cursor=pointer]:
+          - /url: /classes
+  - contentinfo [ref=f4e144]:
+    - generic [ref=f4e148]:
+      - generic [ref=f4e149]:
+        - generic [ref=f4e150]:
+          - paragraph [ref=f4e151]: Hapkido College of Australia
+          - heading "Traditional martial arts. Family and community focused." [level=2] [ref=f4e152]: Traditional martial arts.Family and community focused.
+          - paragraph [ref=f4e153]: Building confidence, discipline, respect, and community through traditional Hapkido training for all ages.
+          - link "Book Free Trial" [ref=f4e154] [cursor=pointer]:
+            - /url: /contact
+        - generic [ref=f4e155]:
+          - heading "Quick Links" [level=3] [ref=f4e156]
+          - list [ref=f4e157]:
+            - listitem [ref=f4e158]:
+              - link "Home" [ref=f4e159] [cursor=pointer]:
+                - /url: /
+            - listitem [ref=f4e160]:
+              - link "Schedule" [ref=f4e161] [cursor=pointer]:
+                - /url: /schedule
+            - listitem [ref=f4e162]:
+              - link "About" [ref=f4e163] [cursor=pointer]:
+                - /url: /about
+            - listitem [ref=f4e164]:
+              - link "Classes" [ref=f4e165] [cursor=pointer]:
+                - /url: /classes
+            - listitem [ref=f4e166]:
+              - link "Locations" [ref=f4e167] [cursor=pointer]:
+                - /url: /locations
+            - listitem [ref=f4e168]:
+              - link "Instructors" [ref=f4e169] [cursor=pointer]:
+                - /url: /instructors
+            - listitem [ref=f4e170]:
+              - link "Calendar" [ref=f4e171] [cursor=pointer]:
+                - /url: /calendar
+            - listitem [ref=f4e172]:
+              - link "FAQ" [ref=f4e173] [cursor=pointer]:
+                - /url: /faq
+        - generic [ref=f4e174]:
+          - heading "Classes" [level=3] [ref=f4e175]
+          - list [ref=f4e176]:
+            - listitem [ref=f4e177]:
+              - link "Children Class" [ref=f4e178] [cursor=pointer]:
+                - /url: /classes/children-class
+            - listitem [ref=f4e179]:
+              - link "Youth Class" [ref=f4e180] [cursor=pointer]:
+                - /url: /classes/youth-class
+            - listitem [ref=f4e181]:
+              - link "Adult Class" [ref=f4e182] [cursor=pointer]:
+                - /url: /classes/adult-class
+            - listitem [ref=f4e183]:
+              - link "Little Tigers" [ref=f4e184] [cursor=pointer]:
+                - /url: /classes/little-tigers
+            - listitem [ref=f4e185]:
+              - link "HCA Eagles" [ref=f4e186] [cursor=pointer]:
+                - /url: /classes/hca-eagles
+        - generic [ref=f4e187]:
+          - heading "Contact" [level=3] [ref=f4e188]
+          - generic [ref=f4e189]:
+            - paragraph [ref=f4e190]:
+              - text: "Email:"
+              - link "train@hapkidocollege.com.au" [ref=f4e191] [cursor=pointer]:
+                - /url: mailto:train@hapkidocollege.com.au
+            - paragraph [ref=f4e192]:
+              - text: "Phone:"
+              - link "(02) 9747 0822" [ref=f4e193] [cursor=pointer]:
+                - /url: tel:+61297470822
+            - paragraph [ref=f4e194]: Follow us for updates, events, and training highlights.
+            - generic [ref=f4e195]:
+              - link "Instagram" [ref=f4e196] [cursor=pointer]:
+                - /url: https://www.instagram.com/hapkido_college_of_australia/
+              - link "Facebook" [ref=f4e199] [cursor=pointer]:
+                - /url: https://www.facebook.com/HapkidoCollegeofAustralia/
+              - link "YouTube" [ref=f4e202] [cursor=pointer]:
+                - /url: https://www.youtube.com/@HapkidoCollegeofAustralia
+      - paragraph [ref=f4e206]: © 2026 Hapkido College of Australia. All rights reserved.
+  - generic [ref=f4e208]:
+    - link "Book Free Trial" [ref=f4e209] [cursor=pointer]:
+      - /url: /contact
+    - link "Locations" [ref=f4e210] [cursor=pointer]:
+      - /url: /locations
+  - button "Open Next.js Dev Tools" [ref=f4e216] [cursor=pointer]
+  - alert [ref=f4e220]

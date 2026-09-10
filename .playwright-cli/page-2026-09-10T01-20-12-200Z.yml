@@ -1,0 +1,151 @@
+- generic [active] [ref=f5e1]:
+  - link "Skip to content" [ref=f5e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=f5e3]:
+    - generic [ref=f5e5]:
+      - link "Hapkido College of Australia" [ref=f5e6] [cursor=pointer]:
+        - /url: /
+      - generic [ref=f5e8]:
+        - navigation "Main navigation" [ref=f5e10]:
+          - link "Home" [ref=f5e11] [cursor=pointer]:
+            - /url: /
+          - link "Schedule" [ref=f5e12] [cursor=pointer]:
+            - /url: /schedule
+          - link "About" [ref=f5e13] [cursor=pointer]:
+            - /url: /about
+          - link "Classes" [ref=f5e14] [cursor=pointer]:
+            - /url: /classes
+          - link "Locations" [ref=f5e15] [cursor=pointer]:
+            - /url: /locations
+          - link "Instructors" [ref=f5e16] [cursor=pointer]:
+            - /url: /instructors
+        - link "Book Free Trial" [ref=f5e17] [cursor=pointer]:
+          - /url: /contact
+  - main [ref=f5e21]:
+    - generic [ref=f5e23]:
+      - generic [ref=f5e24]:
+        - paragraph [ref=f5e25]: Book a Free Trial
+        - heading "Start Your Hapkido Journey" [level=1] [ref=f5e26]
+        - paragraph [ref=f5e27]: Send us your details and our team will contact you about trial class availability, suitable programs, and the best location for your family.
+      - generic [ref=f5e31]:
+        - link [ref=f5e32] [cursor=pointer]:
+          - /url: tel:+61297470822
+          - paragraph [ref=f5e33]: Call Us
+          - paragraph [ref=f5e34]: (02) 9747 0822
+          - paragraph [ref=f5e35]: Speak with our team about trial class availability.
+        - link [ref=f5e36] [cursor=pointer]:
+          - /url: mailto:train@hapkidocollege.com.au
+          - paragraph [ref=f5e37]: Email Us
+          - paragraph [ref=f5e38]: train@hapkidocollege.com.au
+          - paragraph [ref=f5e39]: Send us any questions about classes, locations, or enrolments.
+        - link [ref=f5e40] [cursor=pointer]:
+          - /url: /locations
+          - paragraph [ref=f5e41]: Find a Dojang
+          - paragraph [ref=f5e42]: View Locations
+          - paragraph [ref=f5e43]: Find the studio location that best suits your family.
+      - generic [ref=f5e44]:
+        - paragraph [ref=f5e45]: Fields marked * are required.
+        - generic [ref=f5e46]:
+          - generic [ref=f5e47]:
+            - generic [ref=f5e48]: Name *
+            - textbox "Name" [ref=f5e49]
+          - generic [ref=f5e50]:
+            - generic [ref=f5e51]: Email *
+            - textbox "Email" [ref=f5e52]
+          - generic [ref=f5e53]:
+            - generic [ref=f5e54]: Phone *
+            - textbox "Phone" [ref=f5e55]:
+              - /placeholder: 0412 345 678…
+          - generic [ref=f5e56]:
+            - generic [ref=f5e57]: Class Option *
+            - combobox "Class Option" [ref=f5e58]:
+              - option "Select a class option" [selected]
+              - option "Little Tigers (4-6 Years Old)"
+              - option "Childrens Class (6 - 11 Years Old)"
+              - option "Youth Class (12 - 17 Years Old)"
+              - option "Adults (18+)"
+              - option "Other"
+          - generic [ref=f5e59]:
+            - text: Preferred Location
+            - combobox "Preferred Location" [ref=f5e60]:
+              - option "Select a location" [selected]
+              - option "Croydon HQ"
+              - option "Ermington"
+              - option "Belrose"
+          - generic [ref=f5e61]:
+            - generic [ref=f5e62]: Message *
+            - textbox "Message" [ref=f5e63]
+        - button "Submit Enquiry" [ref=f5e64]
+  - contentinfo [ref=f5e65]:
+    - generic [ref=f5e69]:
+      - generic [ref=f5e70]:
+        - generic [ref=f5e71]:
+          - paragraph [ref=f5e72]: Hapkido College of Australia
+          - heading "Traditional martial arts. Family and community focused." [level=2] [ref=f5e73]: Traditional martial arts.Family and community focused.
+          - paragraph [ref=f5e74]: Building confidence, discipline, respect, and community through traditional Hapkido training for all ages.
+          - link "Book Free Trial" [ref=f5e75] [cursor=pointer]:
+            - /url: /contact
+        - generic [ref=f5e76]:
+          - heading "Quick Links" [level=3] [ref=f5e77]
+          - list [ref=f5e78]:
+            - listitem [ref=f5e79]:
+              - link "Home" [ref=f5e80] [cursor=pointer]:
+                - /url: /
+            - listitem [ref=f5e81]:
+              - link "Schedule" [ref=f5e82] [cursor=pointer]:
+                - /url: /schedule
+            - listitem [ref=f5e83]:
+              - link "About" [ref=f5e84] [cursor=pointer]:
+                - /url: /about
+            - listitem [ref=f5e85]:
+              - link "Classes" [ref=f5e86] [cursor=pointer]:
+                - /url: /classes
+            - listitem [ref=f5e87]:
+              - link "Locations" [ref=f5e88] [cursor=pointer]:
+                - /url: /locations
+            - listitem [ref=f5e89]:
+              - link "Instructors" [ref=f5e90] [cursor=pointer]:
+                - /url: /instructors
+            - listitem [ref=f5e91]:
+              - link "FAQ" [ref=f5e92] [cursor=pointer]:
+                - /url: /faq
+        - generic [ref=f5e93]:
+          - heading "Classes" [level=3] [ref=f5e94]
+          - list [ref=f5e95]:
+            - listitem [ref=f5e96]:
+              - link "Children Class" [ref=f5e97] [cursor=pointer]:
+                - /url: /classes/children-class
+            - listitem [ref=f5e98]:
+              - link "Youth Class" [ref=f5e99] [cursor=pointer]:
+                - /url: /classes/youth-class
+            - listitem [ref=f5e100]:
+              - link "Adult Class" [ref=f5e101] [cursor=pointer]:
+                - /url: /classes/adult-class
+            - listitem [ref=f5e102]:
+              - link "Little Tigers" [ref=f5e103] [cursor=pointer]:
+                - /url: /classes/little-tigers
+            - listitem [ref=f5e104]:
+              - link "HCA Eagles" [ref=f5e105] [cursor=pointer]:
+                - /url: /classes/hca-eagles
+        - generic [ref=f5e106]:
+          - heading "Contact" [level=3] [ref=f5e107]
+          - generic [ref=f5e108]:
+            - paragraph [ref=f5e109]:
+              - text: "Email:"
+              - link "train@hapkidocollege.com.au" [ref=f5e110] [cursor=pointer]:
+                - /url: mailto:train@hapkidocollege.com.au
+            - paragraph [ref=f5e111]:
+              - text: "Phone:"
+              - link "(02) 9747 0822" [ref=f5e112] [cursor=pointer]:
+                - /url: tel:+61297470822
+            - paragraph [ref=f5e113]: Follow us for updates, events, and training highlights.
+            - generic [ref=f5e114]:
+              - link "Instagram" [ref=f5e115] [cursor=pointer]:
+                - /url: https://www.instagram.com/hapkido_college_of_australia/
+              - link "Facebook" [ref=f5e118] [cursor=pointer]:
+                - /url: https://www.facebook.com/HapkidoCollegeofAustralia/
+              - link "YouTube" [ref=f5e121] [cursor=pointer]:
+                - /url: https://www.youtube.com/@HapkidoCollegeofAustralia
+      - paragraph [ref=f5e125]: © 2026 Hapkido College of Australia. All rights reserved.
+  - button "Open Next.js Dev Tools" [ref=f5e131] [cursor=pointer]
+  - alert [ref=f5e135]

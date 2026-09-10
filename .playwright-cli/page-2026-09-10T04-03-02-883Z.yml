@@ -1,0 +1,129 @@
+- generic [active] [ref=f5e1]:
+  - link "Skip to content" [ref=f5e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=f5e3]:
+    - generic [ref=f5e5]:
+      - link "Hapkido College of Australia" [ref=f5e6] [cursor=pointer]:
+        - /url: /
+      - generic [ref=f5e8]:
+        - button "Open navigation menu" [ref=f5e10]
+        - link "Book Free Trial" [ref=f5e12] [cursor=pointer]:
+          - /url: /contact
+  - main [ref=f5e16]:
+    - generic [ref=f5e18]:
+      - generic [ref=f5e19]:
+        - paragraph [ref=f5e20]: Hapkido College of Australia
+        - heading "Studio Locations" [level=1] [ref=f5e21]
+        - paragraph [ref=f5e22]: Choose the dojang closest to you.
+      - generic [ref=f5e26]:
+        - link [ref=f5e27] [cursor=pointer]:
+          - /url: /locations/croydon
+          - generic [ref=f5e28]:
+            - img "Croydon HQ" [ref=f5e30]
+            - generic [ref=f5e31]:
+              - paragraph [ref=f5e32]: Training Dojang
+              - heading "Croydon HQ" [level=2] [ref=f5e33]
+              - paragraph [ref=f5e34]: 146 Parramatta Rd, Croydon NSW 2132
+              - paragraph [ref=f5e35]: Croydon is HCA's headquarters and only full-time training facility, offering martial arts programs for all ages in a modern, fully equipped, and air-conditioned training environment.
+              - paragraph [ref=f5e36]: View Location
+        - link [ref=f5e37] [cursor=pointer]:
+          - /url: /locations/ermington-west
+          - generic [ref=f5e38]:
+            - img "Ermington West" [ref=f5e40]
+            - generic [ref=f5e41]:
+              - paragraph [ref=f5e42]: Training Dojang
+              - heading "Ermington West" [level=2] [ref=f5e43]
+              - paragraph [ref=f5e44]: Vignes St, Ermington NSW 2116
+              - paragraph [ref=f5e45]: Conveniently located in Ermington West Public School Hall, our Ermington studio offers Children's, Youth, and Adult Hapkido classes in a welcoming and community-focused environment.
+              - paragraph [ref=f5e46]: View Location
+        - link [ref=f5e47] [cursor=pointer]:
+          - /url: /locations/belrose
+          - generic [ref=f5e48]:
+            - img "Belrose" [ref=f5e50]
+            - generic [ref=f5e51]:
+              - paragraph [ref=f5e52]: Training Dojang
+              - heading "Belrose" [level=2] [ref=f5e53]
+              - paragraph [ref=f5e54]: Lionel Watts Sports and Community Centre Lionel Watts Sports and Community Centre, Blackbutts Rd, Frenchs Forest NSW 2086, Belrose NSW 2085
+              - paragraph [ref=f5e55]: Located in the Northern Beaches, our Belrose studio offers Children's, Youth, and Adult Hapkido classes in a supportive environment focused on confidence, fitness, and practical self-defence.
+              - paragraph [ref=f5e56]: View Location
+  - contentinfo [ref=f5e57]:
+    - generic [ref=f5e61]:
+      - generic [ref=f5e62]:
+        - generic [ref=f5e63]:
+          - paragraph [ref=f5e64]: Hapkido College of Australia
+          - heading "Traditional martial arts. Family and community focused." [level=2] [ref=f5e65]: Traditional martial arts.Family and community focused.
+          - paragraph [ref=f5e66]: Building confidence, discipline, respect, and community through traditional Hapkido training for all ages.
+          - link "Book Free Trial" [ref=f5e67] [cursor=pointer]:
+            - /url: /contact
+        - generic [ref=f5e68]:
+          - heading "Quick Links" [level=3] [ref=f5e69]
+          - list [ref=f5e70]:
+            - listitem [ref=f5e71]:
+              - link "Home" [ref=f5e72] [cursor=pointer]:
+                - /url: /
+            - listitem [ref=f5e73]:
+              - link "Schedule" [ref=f5e74] [cursor=pointer]:
+                - /url: /schedule
+            - listitem [ref=f5e75]:
+              - link "About" [ref=f5e76] [cursor=pointer]:
+                - /url: /about
+            - listitem [ref=f5e77]:
+              - link "Classes" [ref=f5e78] [cursor=pointer]:
+                - /url: /classes
+            - listitem [ref=f5e79]:
+              - link "Locations" [ref=f5e80] [cursor=pointer]:
+                - /url: /locations
+            - listitem [ref=f5e81]:
+              - link "Instructors" [ref=f5e82] [cursor=pointer]:
+                - /url: /instructors
+            - listitem [ref=f5e83]:
+              - link "Calendar" [ref=f5e84] [cursor=pointer]:
+                - /url: /calendar
+            - listitem [ref=f5e85]:
+              - link "FAQ" [ref=f5e86] [cursor=pointer]:
+                - /url: /faq
+        - generic [ref=f5e87]:
+          - heading "Classes" [level=3] [ref=f5e88]
+          - list [ref=f5e89]:
+            - listitem [ref=f5e90]:
+              - link "Children Class" [ref=f5e91] [cursor=pointer]:
+                - /url: /classes/children-class
+            - listitem [ref=f5e92]:
+              - link "Youth Class" [ref=f5e93] [cursor=pointer]:
+                - /url: /classes/youth-class
+            - listitem [ref=f5e94]:
+              - link "Adult Class" [ref=f5e95] [cursor=pointer]:
+                - /url: /classes/adult-class
+            - listitem [ref=f5e96]:
+              - link "Little Tigers" [ref=f5e97] [cursor=pointer]:
+                - /url: /classes/little-tigers
+            - listitem [ref=f5e98]:
+              - link "HCA Eagles" [ref=f5e99] [cursor=pointer]:
+                - /url: /classes/hca-eagles
+        - generic [ref=f5e100]:
+          - heading "Contact" [level=3] [ref=f5e101]
+          - generic [ref=f5e102]:
+            - paragraph [ref=f5e103]:
+              - text: "Email:"
+              - link "train@hapkidocollege.com.au" [ref=f5e104] [cursor=pointer]:
+                - /url: mailto:train@hapkidocollege.com.au
+            - paragraph [ref=f5e105]:
+              - text: "Phone:"
+              - link "(02) 9747 0822" [ref=f5e106] [cursor=pointer]:
+                - /url: tel:+61297470822
+            - paragraph [ref=f5e107]: Follow us for updates, events, and training highlights.
+            - generic [ref=f5e108]:
+              - link "Instagram" [ref=f5e109] [cursor=pointer]:
+                - /url: https://www.instagram.com/hapkido_college_of_australia/
+              - link "Facebook" [ref=f5e112] [cursor=pointer]:
+                - /url: https://www.facebook.com/HapkidoCollegeofAustralia/
+              - link "YouTube" [ref=f5e115] [cursor=pointer]:
+                - /url: https://www.youtube.com/@HapkidoCollegeofAustralia
+      - paragraph [ref=f5e119]: © 2026 Hapkido College of Australia. All rights reserved.
+  - generic [ref=f5e121]:
+    - link "Book Free Trial" [ref=f5e122] [cursor=pointer]:
+      - /url: /contact
+    - link "Locations" [ref=f5e123] [cursor=pointer]:
+      - /url: /locations
+  - button "Open Next.js Dev Tools" [ref=f5e129] [cursor=pointer]
+  - alert [ref=f5e133]

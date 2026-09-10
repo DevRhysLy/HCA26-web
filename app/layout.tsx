@@ -4,6 +4,19 @@ import Header from "@/components/layout/Header";
 import { navItems, headerCta } from "@/config/navigation";
 import type { Metadata } from "next";
 import StickyMobileCTA from "@/components/layout/StickyMobileCTA";
+import { Figtree, Source_Sans_3 } from "next/font/google";
+
+const sourceSans = Source_Sans_3({
+  subsets: ["latin"],
+  variable: "--font-source-sans",
+  display: "swap",
+});
+
+const figtree = Figtree({
+  subsets: ["latin"],
+  variable: "--font-figtree",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: {
@@ -47,6 +60,10 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+
+  other: {
+    "theme-color": "#F7F4EE",
+  },
 };
 
 export default function RootLayout({
@@ -55,15 +72,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className="bg-[#F8FAFC]">
+    <html lang="en" className={`${sourceSans.variable} ${figtree.variable}`}>
+      <body className="bg-hca-cream font-sans text-hca-ink">
+        <a href="#main-content" className="skip-link">
+          Skip to content
+        </a>
+
         <Header
           logoText="Hapkido College of Australia"
           navItems={navItems}
           cta={headerCta}
         />
 
-        <main className="pb-24 lg:pb-0">{children}</main>
+        <main id="main-content" className="pb-24 lg:pb-0">
+          {children}
+        </main>
 
         <Footer />
 

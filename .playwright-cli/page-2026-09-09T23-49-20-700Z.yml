@@ -1,0 +1,126 @@
+- generic [active] [ref=f3e1]:
+  - banner [ref=f3e2]:
+    - generic [ref=f3e4]:
+      - link "Hapkido College of Australia" [ref=f3e5] [cursor=pointer]:
+        - /url: /
+      - button "Toggle navigation menu" [ref=f3e9]
+  - main [ref=f3e14]:
+    - generic [ref=f3e16]:
+      - generic [ref=f3e17]:
+        - paragraph [ref=f3e18]: Hapkido College of Australia
+        - heading "Our Classes" [level=1] [ref=f3e19]
+        - paragraph [ref=f3e20]: Explore our traditional Hapkido programs designed to support students of all ages in a safe and welcoming environment.
+      - generic [ref=f3e24]:
+        - link "6-11 Years Old Children Class Build confidence, focus, and practical self-defence skills through fun and engaging martial arts training designed to help children grow both physically and mentally. View Class" [ref=f3e25] [cursor=pointer]:
+          - /url: /classes/children-class
+          - generic [ref=f3e26]:
+            - generic [ref=f3e28]: 6-11 Years Old
+            - heading "Children Class" [level=2] [ref=f3e30]
+            - paragraph [ref=f3e31]: Build confidence, focus, and practical self-defence skills through fun and engaging martial arts training designed to help children grow both physically and mentally.
+            - generic [ref=f3e32]: View Class
+        - link "12 - 17 Years Old Youth Class Develop strength, flexibility, confidence, and resilience through dynamic martial arts training designed specifically for high school students. View Class" [ref=f3e39] [cursor=pointer]:
+          - /url: /classes/youth-class
+          - generic [ref=f3e40]:
+            - generic [ref=f3e42]: 12 - 17 Years Old
+            - heading "Youth Class" [level=2] [ref=f3e44]
+            - paragraph [ref=f3e45]: Develop strength, flexibility, confidence, and resilience through dynamic martial arts training designed specifically for high school students.
+            - generic [ref=f3e46]: View Class
+        - link "18 Years Old + Adult Class Improve your fitness, learn practical self-defence, and challenge yourself through martial arts training that builds strength, confidence, flexibility, and overall wellbeing. View Class" [ref=f3e53] [cursor=pointer]:
+          - /url: /classes/adult-class
+          - generic [ref=f3e54]:
+            - generic [ref=f3e56]: 18 Years Old +
+            - heading "Adult Class" [level=2] [ref=f3e58]
+            - paragraph [ref=f3e59]: Improve your fitness, learn practical self-defence, and challenge yourself through martial arts training that builds strength, confidence, flexibility, and overall wellbeing.
+            - generic [ref=f3e60]: View Class
+        - link "4-6 Years Old Little Tigers A fun and engaging introduction to martial arts that builds confidence, coordination, and discipline for children aged 4–6. View Class" [ref=f3e67] [cursor=pointer]:
+          - /url: /classes/little-tigers
+          - generic [ref=f3e68]:
+            - generic [ref=f3e70]: 4-6 Years Old
+            - heading "Little Tigers" [level=2] [ref=f3e72]
+            - paragraph [ref=f3e73]: A fun and engaging introduction to martial arts that builds confidence, coordination, and discipline for children aged 4–6.
+            - generic [ref=f3e74]: View Class
+        - link "12 Years Old + HCA Eagles The HCA Eagles are HCA's premier demonstration team, showcasing the highest levels of skill, teamwork, leadership, and dedication through exciting martial arts performances across Australia. View Class" [ref=f3e81] [cursor=pointer]:
+          - /url: /classes/hca-eagles
+          - generic [ref=f3e82]:
+            - generic [ref=f3e84]: 12 Years Old +
+            - heading "HCA Eagles" [level=2] [ref=f3e86]
+            - paragraph [ref=f3e87]: The HCA Eagles are HCA's premier demonstration team, showcasing the highest levels of skill, teamwork, leadership, and dedication through exciting martial arts performances across Australia.
+            - generic [ref=f3e88]: View Class
+  - contentinfo [ref=f3e95]:
+    - generic [ref=f3e99]:
+      - generic [ref=f3e100]:
+        - generic [ref=f3e101]:
+          - paragraph [ref=f3e102]: Hapkido College of Australia
+          - heading "Traditional Martial Arts. Family & Community Focused." [level=2] [ref=f3e103]: Traditional Martial Arts.Family & Community Focused.
+          - paragraph [ref=f3e104]: Building confidence, discipline, respect, and community through traditional Hapkido training for all ages.
+          - link "Book Free Trial" [ref=f3e105] [cursor=pointer]:
+            - /url: /contact
+        - generic [ref=f3e106]:
+          - heading "Quick Links" [level=3] [ref=f3e107]
+          - list [ref=f3e108]:
+            - listitem [ref=f3e109]:
+              - link "Home" [ref=f3e110] [cursor=pointer]:
+                - /url: /
+            - listitem [ref=f3e111]:
+              - link "Schedule" [ref=f3e112] [cursor=pointer]:
+                - /url: /schedule
+            - listitem [ref=f3e113]:
+              - link "About" [ref=f3e114] [cursor=pointer]:
+                - /url: /about
+            - listitem [ref=f3e115]:
+              - link "Classes" [ref=f3e116] [cursor=pointer]:
+                - /url: /classes
+            - listitem [ref=f3e117]:
+              - link "Locations" [ref=f3e118] [cursor=pointer]:
+                - /url: /locations
+            - listitem [ref=f3e119]:
+              - link "Instructors" [ref=f3e120] [cursor=pointer]:
+                - /url: /instructors
+            - listitem [ref=f3e121]:
+              - link "FAQ" [ref=f3e122] [cursor=pointer]:
+                - /url: /faq
+        - generic [ref=f3e123]:
+          - heading "Classes" [level=3] [ref=f3e124]
+          - list [ref=f3e125]:
+            - listitem [ref=f3e126]:
+              - link "Children Class" [ref=f3e127] [cursor=pointer]:
+                - /url: /classes/children-class
+            - listitem [ref=f3e128]:
+              - link "Youth Class" [ref=f3e129] [cursor=pointer]:
+                - /url: /classes/youth-class
+            - listitem [ref=f3e130]:
+              - link "Adult Class" [ref=f3e131] [cursor=pointer]:
+                - /url: /classes/adult-class
+            - listitem [ref=f3e132]:
+              - link "Little Tigers" [ref=f3e133] [cursor=pointer]:
+                - /url: /classes/little-tigers
+            - listitem [ref=f3e134]:
+              - link "HCA Eagles" [ref=f3e135] [cursor=pointer]:
+                - /url: /classes/hca-eagles
+        - generic [ref=f3e136]:
+          - heading "Contact" [level=3] [ref=f3e137]
+          - generic [ref=f3e138]:
+            - paragraph [ref=f3e139]:
+              - text: "Email:"
+              - link "train@hapkidocollege.com.au" [ref=f3e140] [cursor=pointer]:
+                - /url: mailto:train@hapkidocollege.com.au
+            - paragraph [ref=f3e141]:
+              - text: "Phone:"
+              - link "(02) 9747 0822" [ref=f3e142] [cursor=pointer]:
+                - /url: tel:+61297470822
+            - paragraph [ref=f3e143]: Follow us for updates, events, and training highlights.
+            - generic [ref=f3e144]:
+              - link "Instagram" [ref=f3e145] [cursor=pointer]:
+                - /url: https://www.instagram.com/hapkido_college_of_australia/
+              - link "Facebook" [ref=f3e148] [cursor=pointer]:
+                - /url: https://www.facebook.com/HapkidoCollegeofAustralia/
+              - link "YouTube" [ref=f3e151] [cursor=pointer]:
+                - /url: https://www.youtube.com/@HapkidoCollegeofAustralia
+      - paragraph [ref=f3e155]: © 2026 Hapkido College of Australia. All rights reserved.
+  - generic [ref=f3e157]:
+    - link "Book Free Trial" [ref=f3e158] [cursor=pointer]:
+      - /url: /contact
+    - link "Locations" [ref=f3e159] [cursor=pointer]:
+      - /url: /locations
+  - button "Open Next.js Dev Tools" [ref=f3e165] [cursor=pointer]
+  - alert [ref=f3e169]

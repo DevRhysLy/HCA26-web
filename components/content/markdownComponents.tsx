@@ -7,10 +7,10 @@ export const markdownRemarkPlugins = [remarkGfm];
 /** Stable component map for react-markdown. Defined once at module scope. */
 export const markdownComponents: Components = {
   h2: ({ children }) => (
-    <h2 className="text-2xl font-bold text-[#003478] mt-10 mb-4">{children}</h2>
+    <h2 className="text-2xl font-bold text-hca-blue mt-10 mb-4">{children}</h2>
   ),
   h3: ({ children }) => (
-    <h3 className="text-xl font-bold text-[#C60C30] mt-8 mb-3">{children}</h3>
+    <h3 className="text-xl font-bold text-hca-red mt-8 mb-3">{children}</h3>
   ),
   p: ({ children }) => (
     <p className="text-black/70 leading-relaxed mb-5">{children}</p>
@@ -18,7 +18,7 @@ export const markdownComponents: Components = {
   a: ({ href, children }) => (
     <a
       href={href}
-      className="text-[#003478] underline hover:text-[#C60C30] transition-colors"
+      className="text-hca-blue underline hover:text-hca-red transition-colors"
     >
       {children}
     </a>
@@ -33,11 +33,11 @@ export const markdownComponents: Components = {
   ),
   li: ({ children }) => <li>{children}</li>,
   blockquote: ({ children }) => (
-    <blockquote className="border-l-4 border-[#003478] pl-4 italic text-black/60 my-6">
+    <blockquote className="border-l-4 border-hca-blue pl-4 italic text-black/60 my-6">
       {children}
     </blockquote>
   ),
   strong: ({ children }) => (
-    <strong className="font-semibold text-[#111111]">{children}</strong>
+    <strong className="font-semibold text-hca-ink">{children}</strong>
   ),
 };

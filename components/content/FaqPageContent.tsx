@@ -1,6 +1,7 @@
 import CTASection from "@/components/content/CTASection";
 import FaqList from "@/components/content/FaqList";
 import ContactInfoCards from "@/components/contact/ContactInfoCards";
+import RevealOnView from "@/components/ui/RevealOnView";
 import SectionHeader from "@/components/ui/SectionHeader";
 import { FAQ_CATEGORY_ORDER } from "@/config/faq";
 import { groupFaqsByCategory, type FaqItem } from "@/lib/contentfulMappers";
@@ -14,36 +15,36 @@ export default function FaqPageContent({ faqs }: FaqPageContentProps) {
 
   return (
     <>
-      <main className="bg-[#F8FAFC] min-h-screen">
-        <section className="max-w-6xl mx-auto px-6 py-16 md:py-24">
-          <div className="max-w-4xl mx-auto">
+      <div className="min-h-screen bg-hca-cream">
+        <section className="hca-container hca-section">
+          <div className="mx-auto max-w-4xl">
             <SectionHeader
               as="h1"
               eyebrow="Frequently Asked Questions"
               title="Everything You Need to Know"
               description="Browse answers about trial classes, training, uniforms, safety, and what to expect when starting at Hapkido College of Australia."
-              className="text-center mb-14"
+              className="mb-8 text-center"
             />
 
-            <div className="space-y-12">
+            <RevealOnView className="space-y-12">
               {groupedFaqs.map(({ category, faqs: categoryFaqs }) => (
                 <div key={category}>
-                  <h2 className="mb-5 text-sm font-bold uppercase tracking-[0.25em] text-[#C60C30]">
+                  <h2 className="mb-4 text-sm font-bold uppercase tracking-[0.16em] text-hca-red">
                     {category}
                   </h2>
                   <FaqList faqs={categoryFaqs} />
                 </div>
               ))}
-            </div>
+            </RevealOnView>
           </div>
 
-          <div className="mt-16">
+          <RevealOnView className="mt-16">
             <SectionHeader
               as="h2"
               eyebrow="Still Have Questions?"
               title="We Are Here to Help"
               description="If you cannot find the answer you need, contact our team and we will guide you through trial classes, programs, and enrolments."
-              className="text-center mb-10"
+              className="mb-8 text-center"
             />
 
             <ContactInfoCards
@@ -55,11 +56,13 @@ export default function FaqPageContent({ faqs }: FaqPageContentProps) {
                 href: "/contact",
               }}
             />
-          </div>
+          </RevealOnView>
         </section>
-      </main>
+      </div>
 
-      <CTASection />
+      <RevealOnView>
+        <CTASection />
+      </RevealOnView>
     </>
   );
 }

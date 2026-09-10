@@ -1,0 +1,176 @@
+- generic [active] [ref=f2e1]:
+  - link "Skip to content" [ref=f2e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=f2e3]:
+    - generic [ref=f2e5]:
+      - link "Hapkido College of Australia" [ref=f2e6] [cursor=pointer]:
+        - /url: /
+      - generic [ref=f2e8]:
+        - button "Open navigation menu" [ref=f2e10]
+        - link "Book Free Trial" [ref=f2e12] [cursor=pointer]:
+          - /url: /contact
+  - main [ref=f2e16]:
+    - generic [ref=f2e17]:
+      - generic [ref=f2e19]:
+        - generic [ref=f2e20]:
+          - paragraph [ref=f2e21]: Hapkido College of Australia
+          - heading "WEEKLY CLASS TIMETABLE" [level=2] [ref=f2e22]
+          - paragraph [ref=f2e23]: Select a location to view its specific training hours and program availability.
+        - generic [ref=f2e29]:
+          - button "DOJANG Croydon HQ" [pressed] [ref=f2e30]:
+            - generic [ref=f2e36]:
+              - generic [ref=f2e37]: DOJANG
+              - generic [ref=f2e38]: Croydon HQ
+          - button "DOJANG Ermington West" [ref=f2e40]:
+            - generic [ref=f2e46]:
+              - generic [ref=f2e47]: DOJANG
+              - generic [ref=f2e48]: Ermington West
+          - button "DOJANG Belrose" [ref=f2e49]:
+            - generic [ref=f2e55]:
+              - generic [ref=f2e56]: DOJANG
+              - generic [ref=f2e57]: Belrose
+        - generic [ref=f2e58]:
+          - generic [ref=f2e60]:
+            - button "All classes" [pressed] [ref=f2e61]
+            - button "Kids" [ref=f2e62]
+            - button "Teenagers" [ref=f2e63]
+            - button "Adults" [ref=f2e64]
+            - button "Special Training" [ref=f2e65]
+            - button "Adults & Teenagers" [ref=f2e66]
+          - generic [ref=f2e68]:
+            - button "All times" [pressed] [ref=f2e69]
+            - button "9:00 am" [ref=f2e70]
+            - button "10:00 am" [ref=f2e71]
+            - button "4:00 pm" [ref=f2e72]
+            - button "4:15 PM" [ref=f2e73]
+            - button "5:00 pm" [ref=f2e74]
+            - button "6:00 pm" [ref=f2e75]
+            - button "7:00 pm" [ref=f2e76]
+        - generic [ref=f2e77]:
+          - tablist "Select day" [ref=f2e79]:
+            - tab "Mon" [selected] [ref=f2e80]
+            - tab "Tue" [ref=f2e81]
+            - tab "Wed" [ref=f2e82]
+            - tab "Thu" [ref=f2e83]
+            - tab "Fri" [ref=f2e84]
+            - tab "Sat" [ref=f2e85]
+          - tabpanel "Monday" [ref=f2e86]:
+            - generic [ref=f2e87]:
+              - generic [ref=f2e88]: Monday
+              - generic [ref=f2e89]: Times shown below for Croydon HQ
+            - generic [ref=f2e90]:
+              - generic [ref=f2e91]:
+                - generic [ref=f2e92]: 9:00 am
+                - generic [ref=f2e93]: No classes
+              - generic [ref=f2e94]:
+                - generic [ref=f2e95]: 10:00 am
+                - generic [ref=f2e96]: No classes
+              - generic [ref=f2e97]:
+                - generic [ref=f2e98]: 4:00 pm
+                - generic [ref=f2e103]:
+                  - generic [ref=f2e104]: Kids
+                  - generic [ref=f2e105]: Children Class
+                  - generic [ref=f2e106]: Details on hover
+              - generic [ref=f2e108]:
+                - generic [ref=f2e109]: 4:15 PM
+                - generic [ref=f2e110]: No classes
+              - generic [ref=f2e111]:
+                - generic [ref=f2e112]: 5:00 pm
+                - generic [ref=f2e117]:
+                  - generic [ref=f2e118]: Kids
+                  - generic [ref=f2e119]: Children Class
+                  - generic [ref=f2e120]: Details on hover
+              - generic [ref=f2e122]:
+                - generic [ref=f2e123]: 6:00 pm
+                - generic [ref=f2e128]:
+                  - generic [ref=f2e129]: Teenagers
+                  - generic [ref=f2e130]: Youth Class
+                  - generic [ref=f2e131]: Details on hover
+              - generic [ref=f2e133]:
+                - generic [ref=f2e134]: 7:00 pm
+                - generic [ref=f2e139]:
+                  - generic [ref=f2e140]: Adults
+                  - generic [ref=f2e141]: Adult Class
+                  - generic [ref=f2e142]: Details on hover
+      - generic [ref=f2e145]:
+        - heading "Schedule Notes" [level=3] [ref=f2e147]
+        - generic [ref=f2e151]:
+          - paragraph [ref=f2e152]: Every second Saturday, our Youth and Adult Class begins at 9:00 AM due to grading sessions.
+          - paragraph [ref=f2e153]: Any timetable or scheduling changes will be communicated directly to our members.
+  - contentinfo [ref=f2e154]:
+    - generic [ref=f2e158]:
+      - generic [ref=f2e159]:
+        - generic [ref=f2e160]:
+          - paragraph [ref=f2e161]: Hapkido College of Australia
+          - heading "Traditional martial arts. Family and community focused." [level=2] [ref=f2e162]: Traditional martial arts.Family and community focused.
+          - paragraph [ref=f2e163]: Building confidence, discipline, respect, and community through traditional Hapkido training for all ages.
+          - link "Book Free Trial" [ref=f2e164] [cursor=pointer]:
+            - /url: /contact
+        - generic [ref=f2e165]:
+          - heading "Quick Links" [level=3] [ref=f2e166]
+          - list [ref=f2e167]:
+            - listitem [ref=f2e168]:
+              - link "Home" [ref=f2e169] [cursor=pointer]:
+                - /url: /
+            - listitem [ref=f2e170]:
+              - link "Schedule" [ref=f2e171] [cursor=pointer]:
+                - /url: /schedule
+            - listitem [ref=f2e172]:
+              - link "About" [ref=f2e173] [cursor=pointer]:
+                - /url: /about
+            - listitem [ref=f2e174]:
+              - link "Classes" [ref=f2e175] [cursor=pointer]:
+                - /url: /classes
+            - listitem [ref=f2e176]:
+              - link "Locations" [ref=f2e177] [cursor=pointer]:
+                - /url: /locations
+            - listitem [ref=f2e178]:
+              - link "Instructors" [ref=f2e179] [cursor=pointer]:
+                - /url: /instructors
+            - listitem [ref=f2e180]:
+              - link "FAQ" [ref=f2e181] [cursor=pointer]:
+                - /url: /faq
+        - generic [ref=f2e182]:
+          - heading "Classes" [level=3] [ref=f2e183]
+          - list [ref=f2e184]:
+            - listitem [ref=f2e185]:
+              - link "Children Class" [ref=f2e186] [cursor=pointer]:
+                - /url: /classes/children-class
+            - listitem [ref=f2e187]:
+              - link "Youth Class" [ref=f2e188] [cursor=pointer]:
+                - /url: /classes/youth-class
+            - listitem [ref=f2e189]:
+              - link "Adult Class" [ref=f2e190] [cursor=pointer]:
+                - /url: /classes/adult-class
+            - listitem [ref=f2e191]:
+              - link "Little Tigers" [ref=f2e192] [cursor=pointer]:
+                - /url: /classes/little-tigers
+            - listitem [ref=f2e193]:
+              - link "HCA Eagles" [ref=f2e194] [cursor=pointer]:
+                - /url: /classes/hca-eagles
+        - generic [ref=f2e195]:
+          - heading "Contact" [level=3] [ref=f2e196]
+          - generic [ref=f2e197]:
+            - paragraph [ref=f2e198]:
+              - text: "Email:"
+              - link "train@hapkidocollege.com.au" [ref=f2e199] [cursor=pointer]:
+                - /url: mailto:train@hapkidocollege.com.au
+            - paragraph [ref=f2e200]:
+              - text: "Phone:"
+              - link "(02) 9747 0822" [ref=f2e201] [cursor=pointer]:
+                - /url: tel:+61297470822
+            - paragraph [ref=f2e202]: Follow us for updates, events, and training highlights.
+            - generic [ref=f2e203]:
+              - link "Instagram" [ref=f2e204] [cursor=pointer]:
+                - /url: https://www.instagram.com/hapkido_college_of_australia/
+              - link "Facebook" [ref=f2e207] [cursor=pointer]:
+                - /url: https://www.facebook.com/HapkidoCollegeofAustralia/
+              - link "YouTube" [ref=f2e210] [cursor=pointer]:
+                - /url: https://www.youtube.com/@HapkidoCollegeofAustralia
+      - paragraph [ref=f2e214]: © 2026 Hapkido College of Australia. All rights reserved.
+  - generic [ref=f2e216]:
+    - link "Book Free Trial" [ref=f2e217] [cursor=pointer]:
+      - /url: /contact
+    - link "Locations" [ref=f2e218] [cursor=pointer]:
+      - /url: /locations
+  - button "Open Next.js Dev Tools" [ref=f2e224] [cursor=pointer]

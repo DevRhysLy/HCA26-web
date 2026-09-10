@@ -1,18 +1,19 @@
 interface SectionDividerProps {
-  /** Adds mx-auto to centre the bar. Default false. */
   centered?: boolean;
-  /** Tailwind width class. Default "w-40". */
   width?: string;
   className?: string;
+  tone?: "default" | "onDark";
 }
 
 export default function SectionDivider({
   centered,
   width = "w-40",
   className,
+  tone = "default",
 }: SectionDividerProps) {
   const classes = [
-    "flex h-1 overflow-hidden rounded-full",
+    "korea-bar",
+    tone === "onDark" && "korea-bar-on-dark",
     width,
     centered && "mx-auto",
     className,
@@ -21,9 +22,9 @@ export default function SectionDivider({
     .join(" ");
 
   return (
-    <div className={classes}>
-      <div className="w-1/2 bg-[#C60C30]" />
-      <div className="w-1/2 bg-[#003478]" />
+    <div className={classes} aria-hidden="true">
+      <span />
+      <span />
     </div>
   );
 }

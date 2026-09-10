@@ -1,6 +1,6 @@
 import { getClasses } from "@/lib/contentful";
 import CardGridPage from "@/components/content/CardGridPage";
-import { mapToCardItem } from "@/lib/contentfulMappers";
+import { mapToImageCardItem } from "@/lib/contentfulMappers";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -16,13 +16,14 @@ export const metadata: Metadata = {
 };
 
 export default async function Classes() {
-  const classes = await getClasses();
+  const classesData = await getClasses();
 
-  const items = classes.map((classItem: any) =>
-    mapToCardItem(classItem, {
+  const items = classesData.items.map((classItem: any) =>
+    mapToImageCardItem(classItem, classesData, {
       basePath: "/classes",
       badge: classItem.fields.ageRange,
       ctaLabel: "View Class",
+      fallbackImage: "class",
     }),
   );
 
